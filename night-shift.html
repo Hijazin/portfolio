@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MEET MAJD: THE NIGHT SHIFT</title>
+<meta name="description" content="Majd Hijazin — growth marketer, brand launcher, community builder and AI product creator. Restore the records. Meet the builder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#04050A; --navy:#0A1026; --purple:#1A0B2E;
+  --red:#B3243B; --cyan:#35E6FF; --white:#E8EEF7; --dim:#93A3BE;
+  --ok:#3BE38B;
+  --px:'Press Start 2P',monospace;
+  --mono:'Share Tech Mono',monospace;
+  --ui:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{
+  background:var(--black);color:var(--white);font-family:var(--ui);
+  overflow:hidden;-webkit-font-smoothing:antialiased;
+  overscroll-behavior:none;touch-action:manipulation;
+}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------------- stage ---------------- */
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#000}
+#wrap{position:relative;width:100%;height:100%;overflow:hidden}
+#cv{position:absolute;inset:0;width:100%;height:100%;display:block;
+  image-rendering:pixelated;image-rendering:crisp-edges}
+#vig{position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:radial-gradient(ellipse 72% 64% at 50% 54%,transparent 26%,rgba(0,0,0,.56) 64%,rgba(0,0,0,.93) 100%)}
+#corrupt{position:absolute;inset:0;pointer-events:none;z-index:5;opacity:0;transition:opacity .6s ease;
+  background:radial-gradient(ellipse 90% 80% at 50% 55%,transparent 30%,rgba(120,8,26,.55) 100%);
+  mix-blend-mode:screen}
+#scan{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:.16;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.09) 0 1px,transparent 1px 3px)}
+#dread{position:absolute;inset:0;pointer-events:none;z-index:4;background:#04050A;opacity:0;
+  transition:opacity .5s ease}
+
+/* ---------------- HUD ---------------- */
+#hud[hidden]{display:none}
+#hud{position:absolute;top:0;left:0;right:0;z-index:20;padding:10px 12px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+  pointer-events:none;padding-top:max(10px,env(safe-area-inset-top))}
+#hud>*{pointer-events:auto}
+.hud-l{display:flex;flex-direction:column;gap:6px;min-width:0}
+.chip{font-family:var(--px);font-size:8px;line-height:1.6;letter-spacing:.04em;
+  padding:7px 10px;border:1px solid rgba(53,230,255,.35);border-radius:4px;
+  background:rgba(4,5,10,.78);color:var(--cyan);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;max-width:62vw}
+.chip.room{color:var(--white);border-color:rgba(232,238,247,.25)}
+.hud-r{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ibtn{font-family:var(--px);font-size:8px;padding:8px 9px;border-radius:4px;
+  border:1px solid rgba(232,238,247,.28);background:rgba(4,5,10,.78);color:var(--white);
+  transition:.2s;white-space:nowrap}
+.ibtn:hover{border-color:var(--cyan);color:var(--cyan)}
+.ibtn[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan);background:rgba(53,230,255,.12)}
+
+/* ---------------- prompt ---------------- */
+#prompt{position:absolute;left:50%;bottom:clamp(96px,17vh,150px);transform:translateX(-50%);
+  z-index:18;font-family:var(--px);font-size:9px;line-height:1.7;text-align:center;
+  padding:10px 14px;border-radius:6px;background:rgba(4,5,10,.86);
+  border:1px solid rgba(53,230,255,.5);color:var(--cyan);
+  opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap}
+#prompt.on{opacity:1}
+
+/* ---------------- touch controls ---------------- */
+#touch{position:absolute;inset:0;z-index:16;pointer-events:none;display:none}
+#touch.on{display:block}
+#stick{position:absolute;left:max(18px,env(safe-area-inset-left));bottom:max(20px,env(safe-area-inset-bottom));
+  width:118px;height:118px;border-radius:50%;pointer-events:auto;
+  background:rgba(10,16,38,.5);border:1px solid rgba(53,230,255,.3);touch-action:none}
+#nub{position:absolute;left:50%;top:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;
+  background:rgba(53,230,255,.35);border:1px solid rgba(53,230,255,.7)}
+#act{position:absolute;right:max(18px,env(safe-area-inset-right));bottom:max(30px,env(safe-area-inset-bottom));
+  width:92px;height:92px;border-radius:50%;pointer-events:auto;
+  background:rgba(53,230,255,.14);border:2px solid rgba(53,230,255,.6);color:var(--cyan);
+  font-family:var(--px);font-size:9px;line-height:1.5;touch-action:none}
+
+/* ---------------- overlays ---------------- */
+.ov{position:absolute;inset:0;z-index:40;display:grid;place-items:center;padding:18px;
+  background:rgba(4,5,10,.9);backdrop-filter:blur(6px);overflow-y:auto;
+  opacity:1;transition:opacity .35s ease}
+.ov[hidden]{display:none}
+.ov.fade{opacity:0;pointer-events:none}
+.card{width:min(680px,100%);border:1px solid rgba(53,230,255,.3);border-radius:10px;
+  background:linear-gradient(160deg,rgba(10,16,38,.96),rgba(26,11,46,.96));
+  padding:clamp(18px,3.4vw,32px);box-shadow:0 30px 90px rgba(0,0,0,.7);margin:auto}
+.kick{font-family:var(--px);font-size:8px;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px}
+.card h2{font-family:var(--px);font-size:clamp(13px,2.4vw,20px);line-height:1.7;margin-bottom:14px}
+.term{font-family:var(--mono);font-size:clamp(14px,1.6vw,17px);line-height:1.62;color:#CFE4F5;
+  white-space:pre-wrap;border-left:2px solid rgba(53,230,255,.5);padding-left:14px;margin-bottom:20px}
+.body{font-family:var(--ui);font-size:clamp(14px,1.5vw,16px);line-height:1.65;color:#C6D3E6}
+.btn{font-family:var(--px);font-size:9px;line-height:1.6;padding:13px 18px;border-radius:6px;
+  border:1px solid rgba(53,230,255,.55);background:rgba(53,230,255,.1);color:var(--cyan);
+  transition:.2s;display:inline-block}
+.btn:hover{background:var(--cyan);color:#04050A}
+.btn.ghost{border-color:rgba(232,238,247,.3);background:transparent;color:var(--white)}
+.btn.ghost:hover{background:rgba(232,238,247,.12);color:var(--white)}
+.btn.wide{display:block;width:100%;text-align:center}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+/* landing */
+#landing .card{text-align:center;max-width:640px}
+#landing h1{font-family:var(--px);font-size:clamp(15px,3.6vw,30px);line-height:1.8;
+  color:var(--white);text-shadow:0 0 22px rgba(53,230,255,.45);margin-bottom:16px}
+#landing .sub{font-family:var(--mono);font-size:clamp(14px,1.8vw,18px);color:var(--cyan);
+  letter-spacing:.06em;margin-bottom:22px}
+#landing .blurb{font-family:var(--ui);font-size:clamp(13px,1.5vw,15.5px);line-height:1.7;
+  color:#AFC0D8;max-width:460px;margin:0 auto 26px}
+#landing .stack{display:flex;flex-direction:column;gap:10px;max-width:330px;margin:0 auto}
+.toggles{display:flex;gap:8px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+
+/* answers */
+.qwrap{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.ans{display:flex;align-items:flex-start;gap:11px;text-align:left;width:100%;
+  padding:13px 15px;border-radius:7px;border:1px solid rgba(232,238,247,.22);
+  background:rgba(4,5,10,.5);color:var(--white);transition:.18s;
+  font-family:var(--ui);font-size:clamp(13.5px,1.45vw,15.5px);line-height:1.45}
+.ans:hover:not(:disabled){border-color:var(--cyan);background:rgba(53,230,255,.1)}
+.ans:disabled{cursor:default}
+.ans .k{font-family:var(--px);font-size:9px;color:var(--cyan);padding-top:3px;flex:none;width:14px}
+.ans.right{border-color:var(--ok);background:rgba(59,227,139,.14)}
+.ans.right .k{color:var(--ok)}
+.ans.wrong{border-color:var(--red);background:rgba(179,36,59,.16)}
+.ans.wrong .k{color:#FF7A8F}
+.verdict{margin-top:16px;font-family:var(--mono);font-size:15px;line-height:1.55;
+  padding:12px 14px;border-radius:6px;display:flex;gap:9px;align-items:flex-start}
+.verdict.ok{background:rgba(59,227,139,.12);border:1px solid rgba(59,227,139,.45);color:#B9F5D5}
+.verdict.no{background:rgba(179,36,59,.14);border:1px solid rgba(179,36,59,.5);color:#FFC2CC}
+.verdict b{font-family:var(--px);font-size:10px;flex:none}
+#foeCv{display:block;margin:0 auto 4px;image-rendering:pixelated;width:132px;height:132px}
+.foeName{text-align:center;font-family:var(--px);font-size:9px;color:var(--red);
+  letter-spacing:.1em;margin-bottom:16px}
+
+/* toast */
+#toast{position:absolute;left:50%;top:22%;transform:translate(-50%,-14px);z-index:45;
+  width:min(520px,90%);padding:18px 20px;border-radius:10px;text-align:center;
+  background:rgba(4,5,10,.94);border:1px solid rgba(59,227,139,.5);
+  box-shadow:0 0 60px rgba(59,227,139,.25);opacity:0;transition:.45s;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast .t{font-family:var(--px);font-size:9px;color:var(--ok);margin-bottom:10px;letter-spacing:.08em}
+#toast .m{font-family:var(--mono);font-size:16px;line-height:1.5;color:var(--white)}
+
+/* banner */
+#banner{position:absolute;left:0;right:0;top:38%;z-index:44;text-align:center;
+  opacity:0;transition:.5s;pointer-events:none}
+#banner.on{opacity:1}
+#banner .b1{font-family:var(--px);font-size:clamp(12px,2.6vw,22px);color:var(--cyan);
+  text-shadow:0 0 30px rgba(53,230,255,.6);line-height:1.8}
+#banner .b2{font-family:var(--mono);font-size:16px;color:var(--white);margin-top:12px;padding:0 20px}
+
+/* final */
+#final .card{max-width:820px}
+#final h2{color:var(--cyan);text-align:center}
+#final .stmt{font-family:var(--ui);font-size:clamp(15px,1.9vw,20px);line-height:1.62;
+  color:var(--white);text-align:center;margin:6px 0 26px}
+.ctas{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.sect{margin-top:26px;border-top:1px solid rgba(232,238,247,.14);padding-top:20px}
+.sect h3{font-family:var(--px);font-size:10px;color:var(--cyan);margin-bottom:14px;letter-spacing:.08em}
+.fact{font-family:var(--ui);font-size:14.5px;line-height:1.6;color:#C6D3E6;
+  padding:10px 0 10px 20px;position:relative;border-bottom:1px solid rgba(232,238,247,.08)}
+.fact:before{content:'▸';position:absolute;left:0;color:var(--ok)}
+
+/* archive / cv */
+.pcard{border:1px solid rgba(232,238,247,.16);border-radius:9px;padding:16px;margin-bottom:14px;
+  background:rgba(4,5,10,.5)}
+.pcard h4{font-family:var(--px);font-size:11px;line-height:1.7;margin-bottom:8px}
+.pcard .tag{font-family:var(--mono);font-size:15px;color:var(--cyan);margin-bottom:12px;line-height:1.45}
+.pfield{margin-top:10px}
+.pfield .lab{font-family:var(--px);font-size:7.5px;letter-spacing:.14em;color:var(--dim);margin-bottom:5px}
+.pfield .val{font-family:var(--ui);font-size:14px;line-height:1.6;color:#C6D3E6}
+.todo{color:#FFC98A}
+.shot{width:100%;aspect-ratio:16/9;border-radius:7px;border:1px dashed rgba(232,238,247,.3);
+  display:grid;place-items:center;text-align:center;margin-bottom:12px;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 10px,transparent 10px 20px);
+  font-family:var(--px);font-size:8px;line-height:2;color:var(--dim);padding:14px}
+.shot img{width:100%;height:100%;object-fit:cover;border-radius:7px}
+.cvjob{margin-bottom:20px}
+.cvjob .r{font-family:var(--px);font-size:10px;line-height:1.7;color:var(--white)}
+.cvjob .m{font-family:var(--mono);font-size:14px;color:var(--cyan);margin:5px 0 9px}
+.cvjob ul{list-style:none}
+.cvjob li{font-family:var(--ui);font-size:14px;line-height:1.6;color:#C6D3E6;
+  padding-left:18px;position:relative;margin-bottom:7px}
+.cvjob li:before{content:'—';position:absolute;left:0;color:var(--dim)}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pills span{font-family:var(--mono);font-size:13px;padding:6px 11px;border-radius:999px;
+  border:1px solid rgba(232,238,247,.2);color:#C6D3E6}
+.closeX{position:absolute;top:14px;right:14px;z-index:5;font-family:var(--px);font-size:10px;
+  padding:10px 12px;border-radius:5px;border:1px solid rgba(232,238,247,.3);background:rgba(4,5,10,.9)}
+
+@media(max-width:600px){
+  .chip{font-size:7px;max-width:54vw}
+  .ibtn{font-size:7px;padding:7px}
+  #prompt{font-size:8px;bottom:150px}
+  .card{padding:16px}
+  #foeCv{width:104px;height:104px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<div id="stage"><div id="wrap">
+  <canvas id="cv" width="640" height="360" aria-label="Game view"></canvas>
+  <div id="vig"></div><div id="scan"></div><div id="corrupt"></div><div id="dread"></div>
+
+  <div id="hud" hidden>
+    <div class="hud-l">
+      <div class="chip" id="hProg">Records Restored: 0/5</div>
+      <div class="chip room" id="hRoom">THE RIDER NETWORK</div>
+    </div>
+    <div class="hud-r">
+      <button class="ibtn" id="bHome">⌂ Exit</button>
+      <button class="ibtn" id="bSkip">Skip to Portfolio</button>
+      <button class="ibtn" id="bSound" aria-pressed="false">Sound Off</button>
+      <button class="ibtn" id="bMotion" aria-pressed="false">Motion On</button>
+    </div>
+  </div>
+
+  <div id="prompt">Press E</div>
+
+  <div id="touch">
+    <div id="stick" aria-hidden="true"><div id="nub"></div></div>
+    <button id="act">INTERACT</button>
+  </div>
+
+  <div id="banner"><div class="b1"></div><div class="b2"></div></div>
+  <div id="toast"><div class="t">MEMORY RESTORED</div><div class="m"></div></div>
+
+  <!-- LANDING -->
+  <div class="ov" id="landing">
+    <div class="card">
+      <h1>MEET MAJD:<br>THE NIGHT SHIFT</h1>
+      <div class="sub">Restore the records. Meet the builder.</div>
+      <p class="blurb" id="lBlurb"></p>
+      <div class="stack">
+        <button class="btn wide" id="bStart">Start Experience</button>
+        <button class="btn ghost wide" id="bSkip2">Skip to Portfolio</button>
+        <a class="btn ghost wide" id="bHome2" href="index.html" style="text-decoration:none">⌂ Back to portfolio</a>
+      </div>
+      <div class="toggles">
+        <button class="ibtn" id="bSound2" aria-pressed="false">Sound Off</button>
+        <button class="ibtn" id="bMotion2" aria-pressed="false">Reduced Motion Off</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="ov" id="intro" hidden>
+    <div class="card">
+      <div class="kick">TRANSMISSION</div>
+      <div class="term" id="iText"></div>
+      <button class="btn" id="bIntroGo">Enter the lab</button>
+    </div>
+  </div>
+
+  <!-- ARTIFACT -->
+  <div class="ov" id="artifact" hidden>
+    <div class="card">
+      <div class="kick" id="aKick">RECORD</div>
+      <h2 id="aTitle"></h2>
+      <div class="term" id="aText"></div>
+      <div class="shot" id="aShot" hidden></div>
+      <button class="btn" id="bArtGo">Continue</button>
+    </div>
+  </div>
+
+  <!-- BATTLE -->
+  <div class="ov" id="battle" hidden>
+    <div class="card">
+      <canvas id="foeCv" width="66" height="66"></canvas>
+      <div class="foeName" id="fName"></div>
+      <h2 id="qText"></h2>
+      <div class="qwrap" id="qWrap"></div>
+      <div id="verdict"></div>
+      <div class="row" id="bRow" hidden><button class="btn" id="bNext">Continue</button></div>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="ov" id="final" hidden>
+    <div class="card">
+      <div class="kick" id="fKick">ARCHIVE RESTORED</div>
+      <h2>THE SIGNAL</h2>
+      <p class="stmt" id="fStmt"></p>
+      <div class="ctas">
+        <button class="btn" id="cCv">View Full CV</button>
+        <button class="btn" id="cProj">Explore All Projects</button>
+        <a class="btn ghost" id="cLi" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" id="cGh" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" id="cMail">Email Majd</a>
+        <a class="btn ghost" id="cDl" download>Download CV</a>
+      </div>
+      <div class="row">
+        <a class="btn" id="bHome3" href="index.html" style="text-decoration:none">⌂ Back to portfolio</a>
+        <a class="btn ghost" id="bGames" href="games.html" style="text-decoration:none">All games</a>
+        <button class="btn ghost" id="bReplay">Run it again</button>
+      </div>
+      <div class="sect" id="fFacts"><h3>Records you restored</h3></div>
+    </div>
+  </div>
+
+  <!-- ARCHIVE (projects + cv) -->
+  <div class="ov" id="sheet" hidden>
+    <button class="closeX" id="bClose">Close</button>
+    <div class="card" id="sheetCard"></div>
+  </div>
+</div></div>
+
+<script>
+"use strict";
+/* ===========================================================================
+   MEET MAJD: THE NIGHT SHIFT
+   All copy lives in DATA below — it mirrors src/data/portfolioData.ts exactly.
+   [CV] = from Majd_Hijazin_CV.pdf   [VERIFIED] = from Majd's live sites
+   [PLACEHOLDER] = awaiting Majd
+   =========================================================================== */
+
+var DATA = {
+  identity:{
+    name:'Majd Hijazin',
+    title:'Marketing Manager — Brand Growth, Digital Marketing & Engagement',
+    location:'Amman, Jordan',
+    email:'mfhijazin@gmail.com',
+    phone:'+962 7 9937 8732',
+    linkedin:'https://www.linkedin.com/in/majd-hijazin/',
+    github:'https://github.com/Hijazin',
+    cvFile:'./Majd_Hijazin_CV.pdf',
+    summary:'Marketing Manager with 6+ years of experience driving brand growth, digital marketing strategy, and large-scale campaign execution across the MENA region. Proven track record in scaling brands, go-to-market product launches, and building rider and customer engagement programs. Deep expertise in performance marketing, content strategy, SEO, and cross-functional team leadership, with a data-driven approach that consistently ties marketing activity to measurable business outcomes.'
+  },
+  positioning:'Majd Hijazin combines growth marketing, brand launches, community building, entrepreneurship, and hands-on AI product creation. He turns ambitious ideas into experiences people can actually use.',
+  copy:{
+    intro:'The lab remembers every launch, every community, and every product. Something has corrupted the archive.'
+  },
+  expertise:['Digital Marketing & SEO','Data & Performance Analysis','Resource Management','Team Leadership & Collaboration','Event Management & Product Launches','Team Development','Go-to-Market Strategy','Brand Management','Content Strategy & Storytelling','Campaign Planning & Execution','Stakeholder & Partner Management','Budget Management & ROI Tracking'],
+  experience:[
+    {role:'Marketing Manager',company:'Talabat',place:'Jordan',period:'May 2025 – Present',points:[
+      'Built and led a rider engagement and marketing function from the ground up, designing team structures, engagement frameworks, and digital platforms to support 10,000+ frontline delivery workers.',
+      'Scaled monthly digital reach from low thousands to 2M+ through data-driven content strategy, A/B testing, and performance optimization.',
+      'Designed and executed KPI-linked incentive and recognition programs for a large distributed frontline workforce, improving engagement scores and delivering measurable performance uplift.']},
+    {role:'Founder',company:'Boatify Rentals LLC.',place:'Jordan & UAE',period:'May 2022 – January 2025',points:[
+      'Managed all business operations and P&L for a boat rental marketplace, overseeing the onboarding of 1,500+ clients worldwide.',
+      'Developed and executed strategic business plans, securing key supplier and partner contracts and expanding into new markets across Jordan and the UAE.',
+      'Led the team in launching new services, including boat experience packages and corporate rentals, delivering projects on schedule and within budget.']},
+    {role:'Marketing Manager',company:'Mannai Trading Co. WLL',place:'Qatar',period:'April 2023 – May 2024',points:[
+      'Led the go-to-market launch of BYD and JAC Motors in Qatar, executing integrated campaigns, launch events, and dealer enablement initiatives that increased brand recognition and drove measurable market share gains.',
+      'Led cross-functional teams in executing major launch events and campaigns, managing timelines, budgets, and agency relationships.',
+      'Tracked and reported campaign performance against KPIs, iterating strategies to stay within budget and exceed targets.']},
+    {role:'Marketing Manager',company:'Central Trade & Auto Co.',place:'Jordan',period:'January 2021 – April 2023',points:[
+      'Built Desert Fox Racing into the No. 1 esports brand in the Middle East, hosting TGR Esports MENA for four consecutive years and growing a loyal fan base of 500,000+.',
+      'Directed the launch of Toyota GR86 in Jordan, engaging 40,000+ participants across online and offline channels and setting a regional event benchmark.',
+      'Increased organic traffic and brand visibility by 3x through targeted data-driven digital marketing and SEO strategies, including content marketing, paid search, and social media campaigns.']}
+  ],
+  certifications:['AI-Driven Digital Marketing Strategies — Alison, 2025','Project Management (Professional Certificate) — Google, 2024','Effective Communication Skills — Central Trade & Auto Co., 2023','Leadership & Management Skills — Central Trade & Auto Co., 2023','Supervisory Skills — Central Trade & Auto Co., 2022','Ask Questions to Make Data-Driven Decisions — Google, 2022','Foundations: Data, Data, Everywhere — Google, 2022'],
+  education:[
+    {school:'American University – Jordan',detail:'Bachelor of Arts in Marketing',period:'2013 – 2018'},
+    {school:'Amman National School',detail:'Amman, Jordan',period:'1997 – 2013'}
+  ],
+  rooms:[
+    {id:'rider-network',name:'THE RIDER NETWORK',subtitle:'Talabat · Jordan · May 2025 – Present',theme:'control',
+     palette:{sky:'#05070F',far:'#0B1430',near:'#111C3E',floor:'#0A1226',accent:'#FF6A2B',glow:'#35E6FF'},
+     entryLine:'Rider routes still pulse across the wall. The archive is scrambled.',
+     memory:'Build systems that help large communities feel seen.',
+     encounters:[
+      {id:'talabat-personnel',station:'PERSONNEL RECORD',clueTitle:'RECORD 01 — CURRENT POST',
+       clueLines:['NAME: Majd Hijazin','ROLE: Marketing Manager, Talabat (Jordan)','SINCE: May 2025','','Built and led a rider engagement and marketing function from the ground up — team structures, engagement frameworks and digital platforms — to support 10,000+ frontline delivery workers.'],
+       creature:'NULL-COURIER',
+       question:{prompt:'How many frontline delivery workers does the function Majd built support?',
+        choices:[{text:'10,000+ frontline delivery workers',correct:true},{text:'150+ frontline delivery workers'},{text:'1,500+ frontline delivery workers'},{text:'500+ frontline delivery workers'}],
+        hint:'Look at the record again — the support figure was in the tens of thousands, not the hundreds.'},
+       unlockedFact:'Marketing Manager at Talabat, Jordan. Built the rider engagement and marketing function from the ground up for 10,000+ frontline delivery workers.'},
+      {id:'talabat-reach',station:'REACH TELEMETRY',clueTitle:'RECORD 02 — SIGNAL GROWTH',
+       clueLines:['CHANNEL: Monthly digital reach','BEFORE: low thousands','AFTER:  2,000,000+','','Scaled through data-driven content strategy, A/B testing and performance optimization.'],
+       creature:'ECHO-DRIFT',
+       question:{prompt:'What did Majd scale to over 2 million?',
+        choices:[{text:'Monthly digital reach',correct:true},{text:'Boats onboarded'},{text:'Showroom visits'},{text:'Launch event attendees'}],
+        hint:'The telemetry panel was measuring a channel metric, not a physical count.'},
+       unlockedFact:'Scaled Talabat monthly digital reach from low thousands to 2M+ using data-driven content strategy, A/B testing and performance optimization.'}
+     ]},
+    {id:'launch-protocol',name:'LAUNCH PROTOCOL',subtitle:'Mannai Trading Co. WLL · Central Trade & Auto Co.',theme:'garage',
+     palette:{sky:'#07050E',far:'#1A0B2E',near:'#2A1140',floor:'#120A22',accent:'#B3243B',glow:'#35E6FF'},
+     entryLine:'Holographic cars flicker on their plinths. Campaign data is shredded.',
+     memory:'Creative ideas only matter when they reach people.',
+     encounters:[
+      {id:'launch-qatar',station:'GO-TO-MARKET DOSSIER',clueTitle:'RECORD 03 — MARKET ENTRY',
+       clueLines:['EMPLOYER: Mannai Trading Co. WLL — Qatar','PERIOD: April 2023 – May 2024','','Led the go-to-market launch of BYD and JAC Motors in Qatar — integrated campaigns, launch events and dealer enablement that increased brand recognition and drove measurable market share gains.'],
+       creature:'FRAGMENT-01',
+       question:{prompt:'Which two automotive brands did Majd launch in Qatar?',
+        choices:[{text:'BYD and JAC Motors',correct:true},{text:'Toyota and Lexus'},{text:'BYD and Tesla'},{text:'JAC Motors and Kia'}],
+        hint:'Both names were printed together on the dossier header.'},
+       unlockedFact:'Led the go-to-market launch of BYD and JAC Motors in Qatar at Mannai Trading Co. WLL, driving brand recognition and market share gains.'},
+      {id:'launch-gr86',station:'EVENT BENCHMARK',clueTitle:'RECORD 04 — RECORD-SETTING LAUNCH',
+       clueLines:['PROJECT: Toyota GR86 launch — Jordan','PARTICIPANTS: 40,000+ online and offline','','Directed the launch, setting a regional event benchmark for automotive launches.'],
+       creature:'REDLINE',
+       question:{prompt:'Which launch engaged more than 40,000 participants?',
+        choices:[{text:'Toyota GR86 in Jordan',correct:true},{text:'BYD in Qatar'},{text:'JAC Motors in Qatar'},{text:'Boatify Rentals in the UAE'}],
+        hint:'The benchmark plate named one specific car and one specific country.'},
+       unlockedFact:'Directed the Toyota GR86 launch in Jordan, engaging 40,000+ online and offline participants and setting a regional event benchmark.'}
+     ]},
+    {id:'community-engine',name:'THE COMMUNITY ENGINE',subtitle:'Desert Fox Racing · TGR Esports MENA',theme:'arena',
+     palette:{sky:'#050610',far:'#0E0A2A',near:'#191046',floor:'#0B0A1E',accent:'#8B5CF6',glow:'#35E6FF'},
+     entryLine:'An empty arena. The crowd noise is looping, corrupted, endless.',
+     memory:'Communities are products too.',
+     encounters:[
+      {id:'desert-fox',station:'COMMUNITY CORE',clueTitle:'RECORD 05 — THE CROWD',
+       clueLines:['BRAND: Desert Fox Racing','STATUS: No. 1 esports brand in the Middle East','EVENT: Hosted TGR Esports MENA, four consecutive years','FANS: 500,000+ online','','Built at Central Trade & Auto Co., Jordan.'],
+       creature:'CHAT-SWARM',
+       question:{prompt:'What did Majd grow to over 500,000?',
+        choices:[{text:'An online esports community',correct:true},{text:'Monthly digital reach'},{text:'Clients served'},{text:'Boats onboarded'}],
+        hint:'The core was counting people who followed a brand, not a marketing channel figure.'},
+       unlockedFact:'Built Desert Fox Racing into the No. 1 esports brand in the Middle East, hosted TGR Esports MENA four consecutive years, and grew a community of 500,000+ online fans.'}
+     ]},
+    {id:'founders-dock',name:"THE FOUNDER'S DOCK",subtitle:'Boatify Rentals LLC. · Jordan & UAE · May 2022 – January 2025',theme:'marina',
+     palette:{sky:'#03060F',far:'#062033',near:'#0A3550',floor:'#04121F',accent:'#00C2FF',glow:'#35E6FF'},
+     entryLine:'A drowned marina. Booking records drift past like debris.',
+     memory:'From idea to operating business.',
+     encounters:[
+      {id:'boatify-ops',station:'OPERATIONS LEDGER',clueTitle:'RECORD 06 — FOUNDER',
+       clueLines:['VENTURE: Boatify Rentals LLC. (founded by Majd)','MARKETS: Jordan & UAE','FLEET: 150+ boats onboarded','CLIENTS: 1,500+ across the MENA region','','Managed all business operations and P&L for the marketplace.'],
+       creature:'DEAD-BOOKING',
+       question:{prompt:'What did Boatify Rentals onboard?',
+        choices:[{text:'150+ boats',correct:true},{text:'150+ clients'},{text:'1,500+ boats'},{text:'40,000+ boats'}],
+        hint:'The ledger listed two numbers — one for the fleet, one for the clients. This asks about the fleet.'},
+       unlockedFact:'Founded and scaled Boatify Rentals LLC. across Jordan and the UAE — 150+ boats onboarded, 1,500+ clients, full ownership of operations and P&L.'}
+     ]},
+    {id:'ai-lab',name:'THE AI LAB',subtitle:'Prototypes in containment · Retainly · Rider Hub · Raha',theme:'lab',
+     palette:{sky:'#04030C',far:'#0C0A28',near:'#151046',floor:'#080720',accent:'#6B21F0',glow:'#35E6FF'},
+     entryLine:'Three chambers. Three prototypes. All of them still breathing.',
+     memory:'Ship the thing. A prompt is only worth what it becomes.',
+     encounters:[]}
+  ],
+  projects:[
+    {id:'retainly',name:'Retainly',accent:'#6B21F0',
+     tagline:'AI-powered loyalty and retention platform for businesses that live on repeat customers.',
+     brief:['PROTOTYPE: Retainly','STATUS: Live — retainly.dev','','Helps businesses increase repeat customers using AI-powered loyalty programs, campaigns and customer insights.'],
+     problem:'Businesses lose repeat customers quietly, and most have no system that notices in time or wins them back automatically.',
+     built:'REPLACE ME — describe what you actually built: the enrolment flow, the campaign engine, the analytics, the integrations.',
+     role:'REPLACE ME — your role, e.g. sole builder: product, design, prompts and go-to-market.',
+     aiApproach:'REPLACE ME — the AI tools, workflows and product decisions: which models, how campaigns are generated, what is automated vs. human-approved.',
+     outcome:'REPLACE ME — real or expected outcome. Use a number only if you can stand behind it.',
+     link:'https://retainly.dev',linkLabel:'retainly.dev',screenshot:null,
+     creature:'CHURN-WRAITH',
+     question:{prompt:'Based on the brief you just read, what problem is Retainly built to solve?',
+      choices:[{text:'Businesses lose repeat customers and have no system to win them back',correct:true},{text:'Restaurants cannot accept online payments'},{text:'Delivery riders cannot find efficient routes'},{text:'Event companies cannot hire temporary staff'}],
+      hint:'The brief used two words repeatedly: loyalty and retention. Which option is about keeping customers?'},
+     unlockedFact:'Retainly — an AI-powered loyalty and retention platform, live on its own domain at retainly.dev.'},
+    {id:'rider-hub',name:'Rider Hub',accent:'#FF4D00',
+     tagline:'An Arabic-first rewards portal for Talabat delivery riders in Jordan.',
+     brief:['PROTOTYPE: Rider Hub','STATUS: Live — talabatrh.retainly.dev','','Exclusive offers and discounts built for Talabat riders across Jordan — food, health, fitness and more. Fully Arabic, right-to-left, with driver-ID sign-in.'],
+     problem:'Frontline riders earn perks but have no single, native-language place to find and use them.',
+     built:'REPLACE ME — what you built: the RTL portal, driver-ID login, the partner venue directory, how offers are managed.',
+     role:'REPLACE ME — your role on this product.',
+     aiApproach:'REPLACE ME — AI tools and workflows used, and the product decisions behind them.',
+     outcome:'REPLACE ME — adoption, redemption or engagement outcome, only if you can evidence it.',
+     link:'https://talabatrh.retainly.dev',linkLabel:'talabatrh.retainly.dev',screenshot:null,
+     creature:'SIGNAL-LEECH',
+     question:{prompt:'Based on the brief, what problem does Rider Hub solve?',
+      choices:[{text:'Riders have no single native-language place to find the perks they have earned',correct:true},{text:'Restaurants need a faster point-of-sale system'},{text:'Boat owners need an online booking calendar'},{text:'Marketers need an SEO auditing tool'}],
+      hint:'The brief stressed who it is for and what language it is in. Who was it built for?'},
+     unlockedFact:'Rider Hub — a live, fully Arabic RTL rewards portal for Talabat delivery riders in Jordan, with driver-ID sign-in.'},
+    {id:'raha',name:'Raha',accent:'#FF8A00',
+     tagline:'Book vetted hospitality staff — see rates and reviews, and book the person you want in minutes.',
+     brief:['PROTOTYPE: Raha','STATUS: Live — raha.retainly.dev','','Browse vetted waiters, baristas, hostesses and event staff, see their rates and reviews, and book the person you want — in minutes.'],
+     problem:'Booking trusted event staff is slow and opaque — it runs through agency phone calls with no visibility of who actually turns up.',
+     built:'REPLACE ME — what you built: the vetting flow, profiles, rates, booking and the bilingual experience.',
+     role:'REPLACE ME — your role on this product.',
+     aiApproach:'REPLACE ME — AI tools, workflows and product decisions.',
+     outcome:'REPLACE ME — real or expected outcome.',
+     link:'https://raha.retainly.dev',linkLabel:'raha.retainly.dev',screenshot:null,
+     creature:'NO-SHOW',
+     question:{prompt:'Based on the brief, what problem does Raha solve?',
+      choices:[{text:'Booking trusted event staff is slow and opaque, run through agency phone calls',correct:true},{text:'Riders need discounts on fuel'},{text:'Car dealerships need launch events'},{text:'Boat owners need insurance cover'}],
+      hint:'The brief promised you could see rates and reviews and book in minutes. What is it replacing?'},
+     unlockedFact:'Raha — a live hospitality staffing platform where vetted waiters, baristas and event staff can be browsed by rate and review, and booked in minutes.'}
+  ],
+  storageKey:'majd-night-shift-v1'
+};
+
+/* AI Lab encounters are generated from the projects so content stays in one place */
+DATA.rooms[4].encounters = DATA.projects.map(function(p){
+  return {id:'proj-'+p.id, station:p.name.toUpperCase()+' CHAMBER', clueTitle:p.name+' — PROTOTYPE BRIEF',
+    clueLines:p.brief, creature:p.creature, question:p.question, unlockedFact:p.unlockedFact, project:p};
+});
+
+/* =========================== helpers =========================== */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function show(el){ el.hidden=false; el.classList.remove('fade'); }
+function hide(el){ el.classList.add('fade'); setTimeout(function(){ el.hidden=true; },320); }
+function isTodo(s){ return /^REPLACE ME/.test(s); }
+
+/* =========================== state =========================== */
+var S = {
+  mode:'landing', room:0, solved:{}, dread:0, shake:0, t:0,
+  sound:false, reduced:false,
+  player:{x:110,y:280,vx:0,vy:0,face:1,walk:0},
+  cam:0, near:null, banner:0, transition:0, pendingRoom:-1,
+  flick:1, flickT:0, stalkX:-400, beatT:0
+};
+
+function load(){
+  try{
+    var raw=localStorage.getItem(DATA.storageKey); if(!raw) return;
+    var o=JSON.parse(raw);
+    if(o.solved) S.solved=o.solved;
+    if(typeof o.room==='number') S.room=Math.min(o.room,DATA.rooms.length-1);
+    if(typeof o.sound==='boolean') S.sound=o.sound;
+    if(typeof o.reduced==='boolean') S.reduced=o.reduced;
+  }catch(e){}
+}
+function save(){
+  try{ localStorage.setItem(DATA.storageKey, JSON.stringify({solved:S.solved,room:S.room,sound:S.sound,reduced:S.reduced})); }catch(e){}
+}
+function roomDone(i){
+  var r=DATA.rooms[i];
+  for(var k=0;k<r.encounters.length;k++) if(!S.solved[r.encounters[k].id]) return false;
+  return true;
+}
+function recordsRestored(){ var n=0; for(var i=0;i<DATA.rooms.length;i++) if(roomDone(i)) n++; return n; }
+function allDone(){ return recordsRestored()>=DATA.rooms.length; }
+
+/* =========================== audio =========================== */
+var AC=null, drone=null, droneGain=null;
+function actx(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ AC=null; } } return AC; }
+function beep(freq,dur,type,vol){
+  if(!S.sound) return; var a=actx(); if(!a) return;
+  try{
+    var o=a.createOscillator(), g=a.createGain();
+    o.type=type||'square'; o.frequency.value=freq;
+    g.gain.value=0; o.connect(g); g.connect(a.destination);
+    var t=a.currentTime;
+    g.gain.linearRampToValueAtTime(vol||0.05,t+0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||0.12));
+    o.start(t); o.stop(t+(dur||0.12)+0.02);
+  }catch(e){}
+}
+function chord(freqs,dur,type,vol){ for(var i=0;i<freqs.length;i++){ (function(f,d){ setTimeout(function(){ beep(f,dur,type,vol); },d); })(freqs[i],i*70); } }
+function heartbeat(){
+  if(!S.sound) return; var a=actx(); if(!a) return;
+  try{
+    var o=a.createOscillator(), gg=a.createGain();
+    o.type='sine'; o.frequency.value=48;
+    o.connect(gg); gg.connect(a.destination);
+    var t=a.currentTime;
+    gg.gain.setValueAtTime(0.0001,t);
+    gg.gain.exponentialRampToValueAtTime(0.06+S.dread*0.06,t+0.03);
+    gg.gain.exponentialRampToValueAtTime(0.0001,t+0.22);
+    o.start(t); o.stop(t+0.25);
+    setTimeout(function(){
+      if(!S.sound) return;
+      var o2=a.createOscillator(), g2b=a.createGain();
+      o2.type='sine'; o2.frequency.value=42; o2.connect(g2b); g2b.connect(a.destination);
+      var t2=a.currentTime;
+      g2b.gain.setValueAtTime(0.0001,t2);
+      g2b.gain.exponentialRampToValueAtTime(0.04+S.dread*0.04,t2+0.03);
+      g2b.gain.exponentialRampToValueAtTime(0.0001,t2+0.18);
+      o2.start(t2); o2.stop(t2+0.2);
+    },170);
+  }catch(e){}
+}
+function staticBurst(){
+  if(!S.sound) return; var a=actx(); if(!a) return;
+  try{
+    var len=Math.floor(a.sampleRate*0.5), buf=a.createBuffer(1,len,a.sampleRate), d=buf.getChannelData(0);
+    for(var i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2);
+    var src=a.createBufferSource(); src.buffer=buf;
+    var f=a.createBiquadFilter(); f.type='bandpass'; f.frequency.value=900; f.Q.value=0.8;
+    var gg=a.createGain(); gg.gain.value=0.09;
+    src.connect(f); f.connect(gg); gg.connect(a.destination); src.start();
+  }catch(e){}
+}
+function startDrone(){
+  var a=actx(); if(!a||drone) return;
+  try{
+    drone=a.createOscillator(); droneGain=a.createGain();
+    drone.type='sawtooth'; drone.frequency.value=38;
+    droneGain.gain.value=0; drone.connect(droneGain); droneGain.connect(a.destination); drone.start();
+  }catch(e){}
+}
+function setDrone(){ if(droneGain&&AC){ try{ droneGain.gain.setTargetAtTime(S.sound?0.016:0, AC.currentTime, .3); }catch(e){} } }
+
+/* =========================== rooms/world =========================== */
+var VW=640, VH=360, FLOOR_TOP=214, FLOOR_BOT=322, STATION_Y=206;
+function roomWidth(r){ return 330 + r.encounters.length*288; }
+function stationX(r,i){ return 250 + i*288; }
+function doorX(r){ return roomWidth(r)-60; }
+
+/* =========================== canvas =========================== */
+var cvs=$('cv'), ctx=cvs.getContext('2d');
+ctx.imageSmoothingEnabled=false;
+
+function px(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h)); }
+function glowRect(x,y,w,h,c,blur){
+  ctx.save(); ctx.shadowColor=c; ctx.shadowBlur=S.reduced?0:(blur||10);
+  ctx.fillStyle=c; ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h)); ctx.restore();
+}
+
+function drawBackdrop(r){
+  px(0,0,VW,VH,r.palette.sky);
+  var th=r.theme, ox=S.cam;
+  /* far parallax */
+  var f=-ox*0.22;
+  if(th==='control'){
+    for(var i=0;i<26;i++){ var x=(f+i*54)%(VW+60)-30, h=26+((i*37)%54);
+      px(x,FLOOR_TOP-h,34,h,r.palette.far);
+      for(var w=0;w<3;w++) if((i+w)%3) px(x+5+w*10,FLOOR_TOP-h+7,5,5,'rgba(53,230,255,.25)'); }
+    /* route lines */
+    for(var j=0;j<5;j++){ var yy=44+j*24, ph=(S.t*38+j*70)%(VW+120)-60;
+      px(0,yy,VW,1,'rgba(53,230,255,.07)');
+      glowRect(ph,yy-1,26,3,'rgba(255,106,43,.75)',9); }
+  } else if(th==='garage'){
+    for(var i2=0;i2<9;i2++){ var x2=(f+i2*150)%(VW+180)-90;
+      px(x2,60,4,FLOOR_TOP-60,'rgba(179,36,59,.28)');
+      px(x2+96,80,4,FLOOR_TOP-80,'rgba(53,230,255,.16)'); }
+    var cx0=(f*0.6+120)%(VW+320)-160;
+    drawCarHolo(cx0,FLOOR_TOP-56,r);
+    drawCarHolo(cx0+340,FLOOR_TOP-48,r);
+  } else if(th==='arena'){
+    for(var row=0;row<4;row++){ var yy2=54+row*26;
+      for(var c2=0;c2<30;c2++){ var x3=(f*0.5+c2*24)%(VW+40)-20;
+        var lit=(Math.sin(S.t*1.6+c2*0.7+row)*0.5+0.5);
+        px(x3,yy2,14,10,'rgba(139,92,246,'+(0.1+lit*0.26).toFixed(3)+')'); } }
+    px(0,FLOOR_TOP-64,VW,2,'rgba(53,230,255,.2)');
+  } else if(th==='marina'){
+    for(var b=0;b<6;b++){ var x4=(f*0.7+b*190)%(VW+240)-120;
+      px(x4,FLOOR_TOP-70,86,10,'rgba(0,194,255,.18)');
+      px(x4+16,FLOOR_TOP-84,54,14,'rgba(0,194,255,.12)'); }
+    for(var d=0;d<40;d++){ var dx=(d*97+S.t*14)%VW, dy=(d*53+S.t*9)%(FLOOR_TOP-20);
+      px(dx,dy,2,2,'rgba(53,230,255,'+(0.06+(d%5)*0.03).toFixed(2)+')'); }
+  } else {
+    for(var t2=0;t2<3;t2++){ var x5=(f*0.8+140+t2*380)%(VW+520)-200;
+      px(x5,FLOOR_TOP-116,110,116,'rgba(107,33,240,.13)');
+      px(x5,FLOOR_TOP-116,110,2,'rgba(53,230,255,.3)'); }
+    for(var g=0;g<30;g++){ var gx=(g*61+S.t*10)%VW;
+      px(gx,20+((g*29)%150),2,2,'rgba(53,230,255,.22)'); }
+  }
+  /* ceiling rig — gives the rooms a top edge instead of empty void */
+  px(0,0,VW,16,r.palette.near);
+  px(0,16,VW,2,'rgba(0,0,0,.5)');
+  var co=-(ox*0.5)%120;
+  for(var ci=0;ci<VW/120+2;ci++){
+    var cxp=co+ci*120;
+    px(cxp,16,8,26,r.palette.near);
+    px(cxp+34,16,3,14,'rgba(255,255,255,.05)');
+    glowRect(cxp+56,18,22,3,r.palette.glow,10*S.flick);
+    ctx.save(); ctx.globalAlpha=(S.reduced?.05:.07+Math.sin(S.t*1.4+ci)*0.02)*S.flick;
+    ctx.fillStyle=r.palette.glow;
+    ctx.beginPath(); ctx.moveTo(cxp+56,21); ctx.lineTo(cxp+22,FLOOR_TOP); ctx.lineTo(cxp+112,FLOOR_TOP); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  }
+  /* hazard stripe */
+  for(var hz=0;hz<VW/16+2;hz++){ var hx=(-(ox*0.5)%32)+hz*16;
+    px(hx,42,8,2,hz%2?'rgba(179,36,59,.35)':'rgba(232,238,247,.12)'); }
+  /* near band */
+  px(0,FLOOR_TOP-10,VW,10,r.palette.near);
+  /* floor */
+  px(0,FLOOR_TOP,VW,VH-FLOOR_TOP,r.palette.floor);
+  glowRect(0,FLOOR_TOP,VW,1,r.palette.glow,8);
+  var gs=48, off=-(ox%gs);
+  for(var k=0;k<VW/gs+2;k++) px(off+k*gs,FLOOR_TOP,1,VH-FLOOR_TOP,'rgba(255,255,255,.045)');
+  for(var l=0;l<5;l++){ var yy3=FLOOR_TOP+8+l*l*5; px(0,yy3,VW,1,'rgba(255,255,255,.04)'); }
+}
+function drawCarHolo(x,y,r){
+  px(x,y+18,86,10,'rgba(53,230,255,.18)');
+  px(x+10,y+8,64,12,'rgba(53,230,255,.22)');
+  px(x+22,y,36,10,'rgba(53,230,255,.14)');
+  px(x+8,y+28,12,6,'rgba(53,230,255,.3)'); px(x+64,y+28,12,6,'rgba(53,230,255,.3)');
+}
+
+function drawStation(r,i,enc,worldX){
+  var sx=worldX-S.cam;
+  if(sx<-90||sx>VW+90) return;
+  var done=!!S.solved[enc.id];
+  var pulse=S.reduced?0.6:(0.55+Math.sin(S.t*3+i)*0.25);
+  var col=done?'#3BE38B':r.palette.accent;
+  /* pedestal */
+  px(sx-20,STATION_Y+30,40,8,'#05060C');
+  px(sx-16,STATION_Y-4,32,36,'#0B1024');
+  px(sx-16,STATION_Y-4,32,2,'rgba(255,255,255,.12)');
+  /* screen */
+  ctx.save(); ctx.globalAlpha=done?0.85:pulse;
+  glowRect(sx-13,STATION_Y+2,26,20,col,14); ctx.restore();
+  px(sx-10,STATION_Y+6,20,2,'rgba(4,5,10,.55)');
+  px(sx-10,STATION_Y+11,14,2,'rgba(4,5,10,.55)');
+  /* beacon */
+  if(!done){ ctx.save(); ctx.globalAlpha=0.14*pulse;
+    ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(sx,STATION_Y-2);
+    ctx.lineTo(sx-26,STATION_Y-70); ctx.lineTo(sx+26,STATION_Y-70); ctx.closePath(); ctx.fill(); ctx.restore(); }
+  else { px(sx-4,STATION_Y-14,8,8,'#3BE38B'); }
+}
+
+function drawDoor(r){
+  var dx=doorX(r)-S.cam, open=roomDone(S.room);
+  if(dx<-80||dx>VW+80) return;
+  px(dx-26,FLOOR_TOP-84,52,86,'#05060C');
+  px(dx-22,FLOOR_TOP-80,44,78,open?'rgba(59,227,139,.14)':'rgba(179,36,59,.12)');
+  var c=open?'#3BE38B':'#B3243B';
+  glowRect(dx-22,FLOOR_TOP-80,44,2,c,12);
+  glowRect(dx-22,FLOOR_TOP-2,44,2,c,12);
+  px(dx-22,FLOOR_TOP-80,2,78,c); px(dx+20,FLOOR_TOP-80,2,78,c);
+  if(open&&!S.reduced){ for(var i=0;i<4;i++){ var yy=FLOOR_TOP-8-((S.t*26+i*20)%74); px(dx-14,yy,28,1,'rgba(59,227,139,.35)'); } }
+}
+
+function drawPlayer(){
+  var p=S.player, x=Math.round(p.x-S.cam), y=Math.round(p.y);
+  var bob=(Math.abs(p.vx)+Math.abs(p.vy))>4 && !S.reduced ? Math.round(Math.sin(p.walk*9)*1) : 0;
+  /* shadow */
+  ctx.save(); ctx.globalAlpha=.34; px(x-7,y+1,14,4,'#000'); ctx.restore();
+  /* legs */
+  px(x-4,y-8+bob,3,8,'#12172B'); px(x+1,y-8-bob,3,8,'#12172B');
+  /* coat */
+  px(x-6,y-22,12,15,'#1B2440');
+  px(x-6,y-22,12,2,'rgba(53,230,255,.35)');
+  /* head */
+  px(x-5,y-31,10,9,'#0E1428');
+  /* visor */
+  glowRect(x-4+(p.face>0?1:-1),y-29,7,3,'#35E6FF',10);
+  /* backpack glow */
+  glowRect(x+(p.face>0?-8:5),y-20,3,7,'rgba(53,230,255,.5)',6);
+}
+
+function drawStalker(r){
+  if(S.dread<0.12) return;
+  var p=S.player;
+  var lag = 300 - S.dread*170;                  /* higher dread -> stands closer */
+  var wx = p.x - (p.face>0?lag:-lag);
+  S.stalkX += (wx - S.stalkX) * (S.reduced?1:0.012);
+  var sx = S.stalkX - S.cam;
+  if(sx<-70||sx>VW+70) return;
+  var a = Math.min(0.55, S.dread*0.8) * (S.reduced?0.6:S.flick);
+  var sway = S.reduced?0:Math.sin(S.t*1.1)*1.5;
+  ctx.save(); ctx.globalAlpha=a;
+  px(sx-9+sway,p.y-46,18,34,'#05060C');
+  px(sx-6+sway,p.y-58,12,14,'#05060C');
+  px(sx-11+sway,p.y-40,4,20,'#05060C');
+  px(sx+7+sway,p.y-40,4,20,'#05060C');
+  ctx.restore();
+  ctx.save(); ctx.globalAlpha=Math.min(0.9,a*1.9);
+  px(sx-4+sway,p.y-54,3,2,'#B3243B'); px(sx+2+sway,p.y-54,3,2,'#B3243B');
+  ctx.restore();
+}
+function drawParticles(r){
+  if(S.reduced) return;
+  for(var i=0;i<24;i++){
+    var seed=i*137.7;
+    var x=((seed+S.t*(12+(i%5)*4))%(VW+40))-20;
+    var y=((seed*1.7+S.t*(6+(i%3)*3))%(FLOOR_TOP+60));
+    ctx.globalAlpha=0.10+((i%4)*0.04);
+    px(x,y,1,1,r.palette.glow);
+  }
+  ctx.globalAlpha=1;
+}
+
+function drawGlitchBars(){
+  if(S.reduced) return;
+  if(Math.random()<0.045+S.dread*0.3){
+    var y=Math.random()*VH, h=1+Math.random()*4, dx=(Math.random()-0.5)*14;
+    var img=ctx.getImageData(0,Math.max(0,Math.round(y)),VW,Math.round(h));
+    ctx.putImageData(img,Math.round(dx),Math.round(y));
+  }
+}
+
+function render(){
+  var r=DATA.rooms[S.room];
+  ctx.save();
+  if(S.shake>0&&!S.reduced) ctx.translate((Math.random()-.5)*S.shake*7,(Math.random()-.5)*S.shake*7);
+  drawBackdrop(r);
+  for(var i=0;i<r.encounters.length;i++) drawStation(r,i,r.encounters[i],stationX(r,i));
+  drawDoor(r);
+  drawParticles(r);
+  drawStalker(r);
+  drawPlayer();
+  ctx.restore();
+  drawGlitchBars();
+}
+
+/* =========================== input =========================== */
+var keys={};
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){ closeTop(); return; }
+  keys[e.key.toLowerCase()]=true;
+  if((e.key===' '||e.key.toLowerCase()==='e')){ if(S.mode==='play'){ e.preventDefault(); interact(); } }
+  if(['arrowup','arrowdown','arrowleft','arrowright',' '].indexOf(e.key.toLowerCase())>=0 && S.mode==='play') e.preventDefault();
+});
+document.addEventListener('keyup',function(e){ keys[e.key.toLowerCase()]=false; });
+
+var joy={active:false,dx:0,dy:0,id:null};
+var stick=$('stick'), nub=$('nub');
+function joyStart(e){ var t=e.changedTouches?e.changedTouches[0]:e; joy.active=true; joy.id=t.identifier!=null?t.identifier:'m'; joyMove(e); }
+function joyMove(e){
+  if(!joy.active) return;
+  var t=e.changedTouches?e.changedTouches[0]:e, rect=stick.getBoundingClientRect();
+  var cx0=rect.left+rect.width/2, cy0=rect.top+rect.height/2;
+  var dx=t.clientX-cx0, dy=t.clientY-cy0, m=Math.max(1,Math.hypot(dx,dy)), lim=Math.min(m,44);
+  joy.dx=(dx/m)*(lim/44); joy.dy=(dy/m)*(lim/44);
+  nub.style.transform='translate('+(joy.dx*44)+'px,'+(joy.dy*44)+'px)';
+}
+function joyEnd(){ joy.active=false; joy.dx=0; joy.dy=0; nub.style.transform=''; }
+stick.addEventListener('touchstart',function(e){e.preventDefault();joyStart(e);},{passive:false});
+stick.addEventListener('touchmove',function(e){e.preventDefault();joyMove(e);},{passive:false});
+stick.addEventListener('touchend',joyEnd); stick.addEventListener('touchcancel',joyEnd);
+stick.addEventListener('pointerdown',function(e){ if(e.pointerType!=='touch'){ joyStart(e); } });
+window.addEventListener('pointermove',function(e){ if(joy.active&&e.pointerType!=='touch') joyMove(e); });
+window.addEventListener('pointerup',function(){ if(joy.active) joyEnd(); });
+$('act').addEventListener('click',function(e){ e.preventDefault(); interact(); });
+
+function hasTouch(){ return ('ontouchstart' in window)||navigator.maxTouchPoints>0; }
+
+/* =========================== loop =========================== */
+var last=0;
+function frame(ts){
+  requestAnimationFrame(frame);
+  if(!last) last=ts; var dt=Math.min(0.034,(ts-last)/1000); last=ts;
+  S.t+=dt;
+  if(S.shake>0) S.shake=Math.max(0,S.shake-dt*2.2);
+
+  /* lights falter more often the worse the corruption gets */
+  if(S.reduced){ S.flick=1; }
+  else {
+    S.flickT-=dt;
+    if(S.flickT<=0){
+      var bad=Math.random()< (0.1+S.dread*0.35);
+      S.flick = bad ? (0.32+Math.random()*0.3) : 1;
+      S.flickT = bad ? (0.05+Math.random()*0.1) : (0.5+Math.random()*2.2);
+    }
+  }
+  /* heartbeat rises with dread */
+  if(S.dread>0.12 && S.mode!=='landing'){
+    S.beatT-=dt;
+    if(S.beatT<=0){ heartbeat(); S.beatT=Math.max(0.42,1.15-S.dread*0.95); }
+  }
+  if(S.mode==='play') update(dt);
+  render();
+}
+function update(dt){
+  var r=DATA.rooms[S.room], p=S.player, sp=182;
+  var ax=0, ay=0;
+  if(keys['a']||keys['arrowleft']) ax-=1;
+  if(keys['d']||keys['arrowright']) ax+=1;
+  if(keys['w']||keys['arrowup']) ay-=1;
+  if(keys['s']||keys['arrowdown']) ay+=1;
+  if(joy.active){ ax+=joy.dx*1.4; ay+=joy.dy*1.4; }
+  var m=Math.hypot(ax,ay); if(m>1){ ax/=m; ay/=m; }
+  p.vx=ax*sp; p.vy=ay*sp*0.62;
+  p.x+=p.vx*dt; p.y+=p.vy*dt;
+  if(ax!==0) p.face=ax>0?1:-1;
+  if(m>0.05) p.walk+=dt; 
+  p.x=Math.max(28,Math.min(roomWidth(r)-28,p.x));
+  p.y=Math.max(FLOOR_TOP+14,Math.min(FLOOR_BOT,p.y));
+
+  var target=Math.max(0,Math.min(roomWidth(r)-VW,p.x-VW/2));
+  S.cam+=(target-S.cam)*Math.min(1,dt*7);
+
+  /* nearest interactable */
+  var best=null,bd=1e9;
+  for(var i=0;i<r.encounters.length;i++){
+    if(S.solved[r.encounters[i].id]) continue;
+    var d=Math.abs(p.x-stationX(r,i))+Math.abs(p.y-(STATION_Y+40))*0.5;
+    if(d<bd){ bd=d; best=r.encounters[i]; }
+  }
+  var doorD=Math.abs(p.x-doorX(r));
+  if(roomDone(S.room)&&doorD<60&&doorD<bd){ S.near={door:true}; }
+  else if(best&&bd<86){ S.near={enc:best}; }
+  else S.near=null;
+
+  var pr=$('prompt');
+  if(S.near){
+    pr.classList.add('on');
+    pr.textContent = S.near.door
+      ? (S.room<DATA.rooms.length-1?'Press E — next sector':'Press E — restore the signal')
+      : ('Press E — '+S.near.enc.station);
+  } else pr.classList.remove('on');
+}
+requestAnimationFrame(frame);
+
+/* =========================== creature canvas =========================== */
+var foe=$('foeCv'), fctx=foe.getContext('2d');
+fctx.imageSmoothingEnabled=false;
+var foeState={t:0,closer:0,dying:0,lunge:0,alive:false,seed:1};
+function foeLoop(){
+  requestAnimationFrame(foeLoop);
+  if(!foeState.alive){
+    if(foeState.cleared){
+      var Wc=66,Hc=66; fctx.clearRect(0,0,Wc,Hc);
+      foeState.t+=0.016;
+      var rr=20+Math.sin(foeState.t*2)*1.5;
+      fctx.strokeStyle='rgba(53,230,255,.55)'; fctx.lineWidth=2;
+      fctx.beginPath(); fctx.arc(33,33,rr,0,6.28); fctx.stroke();
+      fctx.strokeStyle='rgba(59,227,139,.95)'; fctx.lineWidth=3;
+      fctx.beginPath(); fctx.moveTo(24,33); fctx.lineTo(31,40); fctx.lineTo(43,26); fctx.stroke();
+    }
+    return;
+  }
+  foeState.t+=0.016;
+  var W=66,H=66; fctx.clearRect(0,0,W,H);
+  if(foeState.lunge>0) foeState.lunge=Math.max(0,foeState.lunge-0.045);
+  var breathe = S.reduced?0:Math.sin(foeState.t*2.2)*0.035;
+  var scale=1+foeState.closer*0.26+breathe+foeState.lunge*0.34, dy=foeState.closer*4;
+  var jit=S.reduced?0:Math.sin(foeState.t*7)*0.8;
+  fctx.save(); fctx.translate(W/2,H/2+dy); fctx.scale(scale,scale); fctx.translate(-W/2,-H/2);
+  var a=foeState.dying>0?Math.max(0,1-foeState.dying):1;
+  fctx.globalAlpha=a;
+  /* body blocks */
+  var s=foeState.seed;
+  function rnd(i){ var v=Math.sin(i*127.1+s*311.7)*43758.5453; return v-Math.floor(v); }
+  for(var i=0;i<26;i++){
+    var bx=10+Math.floor(rnd(i)*44), by=12+Math.floor(rnd(i+40)*40);
+    var bw=4+Math.floor(rnd(i+80)*8), bh=4+Math.floor(rnd(i+120)*8);
+    var wob=S.reduced?0:Math.round(Math.sin(foeState.t*3+i)*1.4);
+    var cc = rnd(i+200)<0.2 ? 'rgba(53,230,255,.85)' : (rnd(i+300)<0.25?'rgba(179,36,59,.9)':'rgba(30,20,60,.95)');
+    fctx.fillStyle=cc; fctx.fillRect(bx+wob+jit,by,bw,bh);
+  }
+  /* eyes */
+  fctx.fillStyle='#FF4D66'; fctx.fillRect(22,30,6,5); fctx.fillRect(38,30,6,5);
+  fctx.fillStyle='rgba(255,255,255,.9)'; fctx.fillRect(24,31,2,2); fctx.fillRect(40,31,2,2);
+  fctx.restore(); fctx.globalAlpha=1;
+  if(foeState.dying>0){
+    foeState.dying+=0.045;
+    for(var k=0;k<14;k++){
+      var px2=33+Math.cos(k)*foeState.dying*30, py2=33+Math.sin(k*1.7)*foeState.dying*30;
+      fctx.fillStyle='rgba(53,230,255,'+Math.max(0,1-foeState.dying)+')';
+      fctx.fillRect(px2,py2,2,2);
+    }
+    if(foeState.dying>1.3){ foeState.alive=false; foeState.cleared=true; }
+  }
+}
+requestAnimationFrame(foeLoop);
+
+/* =========================== flow =========================== */
+var cur=null;
+
+function setDread(v){
+  S.dread=Math.max(0,Math.min(0.66,v));
+  $('dread').style.opacity=S.dread*0.72;
+  $('corrupt').style.opacity=Math.min(0.85,S.dread*1.25);
+}
+function updHud(){
+  $('hProg').textContent='Records Restored: '+recordsRestored()+'/'+DATA.rooms.length;
+  $('hRoom').textContent=DATA.rooms[S.room].name;
+}
+
+function interact(){
+  if(S.mode!=='play'||!S.near) return;
+  if(S.near.door){ nextRoom(); return; }
+  openArtifact(S.near.enc);
+}
+
+function openArtifact(enc){
+  cur=enc; S.mode='artifact';
+  $('aKick').textContent = enc.project ? 'CONTAINMENT CHAMBER' : 'CORRUPTED RECORD';
+  $('aTitle').textContent=enc.clueTitle;
+  $('aText').textContent=enc.clueLines.join('\n');
+  var sh=$('aShot');
+  if(enc.project){
+    sh.hidden=false;
+    if(enc.project.screenshot){ sh.innerHTML='<img src="'+esc(enc.project.screenshot)+'" alt="'+esc(enc.project.name)+' screenshot">'; }
+    else { sh.innerHTML='[ SCREENSHOT PLACEHOLDER ]<br>add projects.'+esc(enc.project.id)+'.screenshot'; }
+  } else sh.hidden=true;
+  show($('artifact'));
+  beep(520,.08,'square',.04);
+}
+
+function openBattle(){
+  hide($('artifact'));
+  S.mode='battle';
+  var q=cur.question;
+  $('fName').textContent='⚠ '+cur.creature+' — CORRUPTED';
+  $('qText').textContent=q.prompt;
+  $('verdict').innerHTML=''; $('bRow').hidden=true;
+  foeState={t:0,closer:0,dying:0,lunge:0,alive:true,cleared:false,seed:Math.random()*100};
+  var w=$('qWrap'); w.innerHTML='';
+  var letters=['A','B','C','D','E'];
+  var order=q.choices.map(function(c,i){ return i; });
+  order.forEach(function(idx,n){
+    var c=q.choices[idx];
+    var b=document.createElement('button');
+    b.className='ans'; b.type='button';
+    b.innerHTML='<span class="k">'+letters[n]+'</span><span>'+esc(c.text)+'</span>';
+    b.addEventListener('click',function(){ answer(b,!!c.correct); });
+    w.appendChild(b);
+  });
+  show($('battle'));
+  beep(180,.18,'sawtooth',.05);
+}
+
+function answer(btn,correct){
+  var all=$('qWrap').querySelectorAll('.ans');
+  if(correct){
+    for(var i=0;i<all.length;i++) all[i].disabled=true;
+    btn.classList.add('right');
+    btn.querySelector('.k').textContent='✓';
+    $('verdict').className='verdict ok';
+    $('verdict').innerHTML='<b>NEUTRALISED</b><span>'+esc(cur.creature)+' dissolves. Record restored to the archive.</span>';
+    foeState.dying=0.01;
+    S.solved[cur.id]=true; save();
+    setDread(Math.max(0,S.dread-0.18));
+    chord([660,880,1180],.16,'triangle',.05);
+    $('bRow').hidden=false;
+    $('bNext').focus();
+    updHud();
+  } else {
+    btn.classList.add('wrong');
+    btn.querySelector('.k').textContent='✕';
+    btn.disabled=true;
+    foeState.closer=Math.min(1,foeState.closer+0.34);
+    foeState.lunge=1;
+    setDread(S.dread+0.2);
+    S.shake=1.5;
+    beep(70,.34,'sawtooth',.07);
+    staticBurst();
+    $('verdict').className='verdict no';
+    $('verdict').innerHTML='<b>TRY AGAIN</b><span>'+esc(cur.question.hint)+'</span>';
+  }
+}
+
+$('bNext').addEventListener('click',function(){
+  hide($('battle'));
+  var enc=cur;
+  setTimeout(function(){
+    toast('MEMORY RESTORED', enc.unlockedFact);
+    if(roomDone(S.room)){
+      setTimeout(function(){
+        banner('RECORD RESTORED', DATA.rooms[S.room].memory);
+      },1100);
+    }
+    S.mode='play';
+  },320);
+});
+
+function toast(t,m){
+  var el=$('toast'); el.querySelector('.t').textContent=t; el.querySelector('.m').textContent=m;
+  el.classList.add('on');
+  setTimeout(function(){ el.classList.remove('on'); },1500);
+}
+function banner(a,b){
+  var el=$('banner'); el.querySelector('.b1').textContent=a; el.querySelector('.b2').textContent=b;
+  el.classList.add('on'); chord([520,700,940],.2,'triangle',.045);
+  setTimeout(function(){ el.classList.remove('on'); },1700);
+}
+
+function nextRoom(){
+  if(S.room>=DATA.rooms.length-1){ openFinal(); return; }
+  S.room++; S.player.x=90; S.player.y=286; S.cam=0; setDread(0); save(); updHud();
+  var r=DATA.rooms[S.room];
+  banner(r.name, r.entryLine);
+  beep(300,.2,'triangle',.05);
+}
+
+function startGame(){
+  hide($('landing')); hide($('intro'));
+  $('hud').hidden=false;
+  if(hasTouch()) $('touch').classList.add('on');
+  S.mode='play'; updHud();
+  var r=DATA.rooms[S.room];
+  banner(r.name, r.entryLine);
+  startDrone(); setDrone();
+}
+
+/* =========================== final + sheets =========================== */
+function openFinal(){
+  S.mode='final';
+  $('prompt').classList.remove('on');
+  $('fStmt').textContent=DATA.positioning;
+  $('fKick').textContent = allDone()? 'ARCHIVE RESTORED' : 'ARCHIVE — PARTIAL';
+  var facts=[];
+  DATA.rooms.forEach(function(r){ r.encounters.forEach(function(e){ if(S.solved[e.id]) facts.push(e.unlockedFact); }); });
+  var box=$('fFacts');
+  box.innerHTML='<h3>Records you restored ('+facts.length+')</h3>'+
+    (facts.length? facts.map(function(f){ return '<div class="fact">'+esc(f)+'</div>'; }).join('')
+      : '<div class="body">You skipped ahead — nothing restored yet. Everything is still available below.</div>');
+  $('cLi').href=DATA.identity.linkedin;
+  $('cGh').href=DATA.identity.github;
+  $('cMail').href='mailto:'+DATA.identity.email;
+  $('cDl').href=DATA.identity.cvFile;
+  $('toast').classList.remove('on'); $('banner').classList.remove('on');
+  show($('final'));
+  setDread(0);
+  chord([440,660,880,1320],.22,'triangle',.05);
+}
+
+function sheet(html){ $('sheetCard').innerHTML=html; show($('sheet')); $('sheet').scrollTop=0; }
+function closeTop(){
+  if(!$('sheet').hidden){ hide($('sheet')); return; }
+  if(!$('artifact').hidden){ hide($('artifact')); S.mode='play'; return; }
+}
+$('bClose').addEventListener('click',function(){ hide($('sheet')); });
+
+function projectsHtml(){
+  var h='<div class="kick">PROJECT ARCHIVE</div><h2>AI PRODUCTS</h2>';
+  DATA.projects.forEach(function(p){
+    var unlocked=!!S.solved['proj-'+p.id];
+    h+='<div class="pcard" style="border-color:'+p.accent+'55">';
+    h+='<h4 style="color:'+p.accent+'">'+esc(p.name)+(unlocked?' ✓':'')+'</h4>';
+    h+='<div class="shot">'+(p.screenshot?'<img src="'+esc(p.screenshot)+'" alt="'+esc(p.name)+'">':'[ SCREENSHOT PLACEHOLDER ]<br>add projects.'+esc(p.id)+'.screenshot')+'</div>';
+    h+='<div class="tag">'+esc(p.tagline)+'</div>';
+    [['PROBLEM IT SOLVES',p.problem],['WHAT I BUILT',p.built],['MY ROLE',p.role],['AI TOOLS, WORKFLOWS & PRODUCT DECISIONS',p.aiApproach],['VALUE / EXPECTED OUTCOME',p.outcome]].forEach(function(f){
+      h+='<div class="pfield"><div class="lab">'+f[0]+'</div><div class="val'+(isTodo(f[1])?' todo':'')+'">'+esc(f[1])+'</div></div>';
+    });
+    if(p.link) h+='<div class="row"><a class="btn" href="'+esc(p.link)+'" target="_blank" rel="noopener">'+esc(p.linkLabel)+' ↗</a></div>';
+    h+='</div>';
+  });
+  return h;
+}
+function cvHtml(){
+  var i=DATA.identity;
+  var h='<div class="kick">FULL CV</div><h2>'+esc(i.name).toUpperCase()+'</h2>';
+  h+='<div class="tag" style="font-family:var(--mono);font-size:15px;color:var(--cyan);margin-bottom:6px">'+esc(i.title)+'</div>';
+  h+='<div class="body" style="margin-bottom:18px">'+esc(i.email)+' · '+esc(i.phone)+' · '+esc(i.location)+'</div>';
+  h+='<div class="sect"><h3>Professional Summary</h3><div class="body">'+esc(i.summary)+'</div></div>';
+  h+='<div class="sect"><h3>Areas of Expertise</h3><div class="pills">'+DATA.expertise.map(function(e){return '<span>'+esc(e)+'</span>';}).join('')+'</div></div>';
+  h+='<div class="sect"><h3>Professional Experience</h3>';
+  DATA.experience.forEach(function(j){
+    h+='<div class="cvjob"><div class="r">'+esc(j.role)+' | '+esc(j.company)+'</div><div class="m">'+esc(j.place)+' · '+esc(j.period)+'</div><ul>'+
+      j.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></div>';
+  });
+  h+='</div>';
+  h+='<div class="sect"><h3>Certifications</h3><ul style="list-style:none">'+DATA.certifications.map(function(c){return '<li class="fact">'+esc(c)+'</li>';}).join('')+'</ul></div>';
+  h+='<div class="sect"><h3>Education</h3>'+DATA.education.map(function(e){
+    return '<div class="cvjob"><div class="r">'+esc(e.school)+'</div><div class="m">'+esc(e.detail)+' · '+esc(e.period)+'</div></div>';
+  }).join('')+'</div>';
+  h+='<div class="row"><a class="btn" href="'+esc(i.cvFile)+'" download>Download CV (PDF)</a></div>';
+  return h;
+}
+$('cProj').addEventListener('click',function(){ sheet(projectsHtml()); });
+$('cCv').addEventListener('click',function(){ sheet(cvHtml()); });
+
+/* =========================== buttons =========================== */
+$('lBlurb').textContent=DATA.copy.intro;
+$('iText').textContent=DATA.copy.intro+'\n\nYou are on the night shift.\nWalk the lab. Read each record.\nAnswer what it asks, and the corruption clears.';
+
+$('bStart').addEventListener('click',function(){ hide($('landing')); show($('intro')); startDrone(); });
+$('bIntroGo').addEventListener('click',startGame);
+$('bArtGo').addEventListener('click',openBattle);
+function skipAll(){ hide($('landing')); hide($('intro')); hide($('artifact')); hide($('battle'));
+  $('hud').hidden=false; $('touch').classList.remove('on'); openFinal(); }
+function goHome(){ window.location.href = $('bHome2').getAttribute('href'); }
+$('bHome').addEventListener('click',goHome);
+$('bSkip').addEventListener('click',skipAll);
+$('bSkip2').addEventListener('click',skipAll);
+$('bReplay').addEventListener('click',function(){
+  S.solved={}; S.room=0; S.player.x=110; S.player.y=286; S.cam=0; save();
+  hide($('final')); hide($('sheet')); setDread(0); updHud();
+  if(hasTouch()) $('touch').classList.add('on');
+  S.mode='play'; banner(DATA.rooms[0].name, DATA.rooms[0].entryLine);
+});
+
+function syncToggles(){
+  var s=S.sound?'Sound On':'Sound Off';
+  $('bSound').textContent=s; $('bSound2').textContent=s;
+  $('bSound').setAttribute('aria-pressed',String(S.sound));
+  $('bSound2').setAttribute('aria-pressed',String(S.sound));
+  var m=S.reduced?'Reduced Motion On':'Reduced Motion Off';
+  $('bMotion').textContent=S.reduced?'Motion Off':'Motion On';
+  $('bMotion2').textContent=m;
+  $('bMotion').setAttribute('aria-pressed',String(S.reduced));
+  $('bMotion2').setAttribute('aria-pressed',String(S.reduced));
+  $('scan').style.opacity=S.reduced?0.05:0.16;
+}
+function toggleSound(){ S.sound=!S.sound; if(S.sound){ actx(); startDrone(); } setDrone(); syncToggles(); save(); beep(700,.07,'square',.04); }
+function toggleMotion(){ S.reduced=!S.reduced; syncToggles(); save(); }
+$('bSound').addEventListener('click',toggleSound);
+$('bSound2').addEventListener('click',toggleSound);
+$('bMotion').addEventListener('click',toggleMotion);
+$('bMotion2').addEventListener('click',toggleMotion);
+
+/* respect OS preference on first load */
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) S.reduced=true;
+
+/* make sibling links resolve inside the Aside artifact preview too */
+(function(){
+  var m=location.search.match(/[?&]path=([^&]+)/);
+  if(!m) return;
+  var dir=decodeURIComponent(m[1]).replace(/[^/]+$/,'');
+  var els=document.querySelectorAll('a[href$=".html"]');
+  for(var i=0;i<els.length;i++){
+    var f=els[i].getAttribute('href');
+    els[i].href=location.pathname+location.search.replace(/path=[^&]*/,'path='+encodeURIComponent(dir+f));
+  }
+})();
+
+load(); syncToggles(); updHud();
+if(hasTouch()) document.body.classList.add('touch');
+
+/* keep canvas crisp-ish on very wide screens */
+function fit(){
+  var w=$('wrap').clientWidth, h=$('wrap').clientHeight;
+  var portrait = (w/h) < 1.15;
+  var scale;
+  if(portrait){
+    /* portrait: keep a readable band and leave room for the touch controls */
+    scale = Math.min((h*0.54)/VH, (w/VW)*1.7);
+  } else {
+    scale = Math.max(w/VW, h/VH);
+  }
+  var cw=VW*scale, ch=VH*scale;
+  cvs.style.position='absolute';
+  cvs.style.width=Math.ceil(cw)+'px';
+  cvs.style.height=Math.ceil(ch)+'px';
+  cvs.style.left=Math.round((w-cw)/2)+'px';
+  cvs.style.top=Math.round(portrait ? h*0.13 : (h-ch)/2)+'px';
+}
+window.addEventListener('resize',fit); fit();
+</script>
+</body>
+</html>
