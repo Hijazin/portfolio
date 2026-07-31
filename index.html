@@ -734,6 +734,41 @@ body{background:#FFFFFF}
   #askPanel{right:10px;bottom:10px;width:calc(100vw - 20px);height:calc(100vh - 90px)}
 }
 
+
+/* ============================================================
+   AVAILABILITY BADGE
+   ============================================================ */
+.avail{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;
+  border:1px solid rgba(0,0,0,.14);background:rgba(255,255,255,.6);backdrop-filter:blur(8px);
+  font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-2)}
+.avail i{width:8px;height:8px;border-radius:50%;background:#12B76A;
+  box-shadow:0 0 0 0 rgba(18,183,106,.7);animation:availPulse 2.4s infinite}
+@keyframes availPulse{0%{box-shadow:0 0 0 0 rgba(18,183,106,.6)}70%{box-shadow:0 0 0 8px rgba(18,183,106,0)}100%{box-shadow:0 0 0 0 rgba(18,183,106,0)}}
+.hero-inner .avail{margin-top:26px}
+
+/* ============================================================
+   PRINT — Ctrl+P gives a clean CV, not a screenshot of a game
+   ============================================================ */
+@media print{
+  @page{margin:14mm}
+  #intro,#hero,#work,#workNav,#close,#foot,#nav,#askFab,#askPanel,#fastClose,
+  #prompt,.hud-corner,.hero-side,.hero-ticker,.avail{display:none!important}
+  body{background:#fff!important;color:#000!important}
+  /* gradient text prints as blank unless the fill is forced back */
+  h1,h2,h3,h4,em,b,.stat b,.role,#fast h2,.sec-head h2 em,.job .who .co{
+    -webkit-text-fill-color:#000!important;color:#000!important;background:none!important}
+  #fast{position:static!important;visibility:visible!important;opacity:1!important;
+    display:block!important;background:#fff!important;backdrop-filter:none!important;padding:0!important}
+  #fast .acts,#fast .three{page-break-inside:avoid}
+  #fast .acts button{display:none!important}
+  #story,#lead,#edge{background:#fff!important;padding:0!important;margin-top:18px}
+  .job,.lead-card,.row,.stat{page-break-inside:avoid;box-shadow:none!important}
+  .lead-card,.stat{border:1px solid #ccc!important;background:#fff!important}
+  .rv{opacity:1!important;transform:none!important}
+  a{text-decoration:none;color:#000!important}
+}
+
 /* ================= responsive ================= */
 @media(max-width:980px){
   /* --- capabilities rows: the copy block must span the full width --- */
@@ -887,6 +922,7 @@ body{background:#FFFFFF}
     <div class="kicker">Portfolio · 2026</div>
     <h1>Majd<br>Hijazin</h1>
     <h2>Marketing Manager &middot; Growth, Brand &amp; AI Products</h2>
+    <div class="avail"><i></i>Open to opportunities</div>
     <div class="line"></div>
   </div>
   <div class="hero-ticker" id="ticker">SCROLL TO DISCOVER</div>
@@ -1878,6 +1914,7 @@ body{background:#FFFFFF}
       <div>
         <h2>Majd<br>Hijazin</h2>
         <div class="role">Marketing Manager &middot; Growth, Brand &amp; AI Products</div>
+        <div style="margin-top:14px"><span class="avail"><i></i>Open to opportunities</span></div>
         <div class="meta">Amman, Jordan &nbsp;·&nbsp; mfhijazin@gmail.com &nbsp;·&nbsp; +962 7 9937 8732</div>
       </div>
     </div>
