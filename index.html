@@ -8,16 +8,82 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
+    /* ===== THEME VARIABLES ===== */
+    :root {
+      --bg-primary: #0C0C0C;
+      --bg-secondary: #FFFFFF;
+      --text-primary: #D7E2EA;
+      --text-secondary: #0C0C0C;
+      --heading-grad-start: #646973;
+      --heading-grad-end: #BBCCD7;
+      --border-primary: #D7E2EA;
+      --border-light: rgba(215, 226, 234, 0.1);
+      --border-services: rgba(12, 12, 12, 0.15);
+      --card-bg: #0C0C0C;
+      --img-bg: #1a1a2e;
+      --nav-hover: rgba(215, 226, 234, 0.1);
+      --contact-outline: white;
+    }
+    [data-theme="light"] {
+      --bg-primary: #F5F5F7;
+      --bg-secondary: #18181B;
+      --text-primary: #18181B;
+      --text-secondary: #E4E4E7;
+      --heading-grad-start: #A1A1AA;
+      --heading-grad-end: #27272A;
+      --border-primary: #27272A;
+      --border-light: rgba(12, 12, 12, 0.08);
+      --border-services: rgba(228, 228, 231, 0.2);
+      --card-bg: #27272A;
+      --img-bg: #3F3F46;
+      --nav-hover: rgba(24, 24, 27, 0.1);
+      --contact-outline: white;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: #0C0C0C; font-family: 'Kanit', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-    body { color: #D7E2EA; }
+    html, body { background: var(--bg-primary); font-family: 'Kanit', sans-serif; overflow-x: hidden; scroll-behavior: smooth; transition: background 0.4s, color 0.4s; }
+    body { color: var(--text-primary); }
 
     .hero-heading {
-      background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+      background: linear-gradient(180deg, var(--heading-grad-start) 0%, var(--heading-grad-end) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    /* ===== THEME SWITCHER ===== */
+    .theme-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(128,128,128,0.15);
+      border-radius: 9999px;
+      padding: 3px;
+      position: relative;
+      z-index: 30;
+    }
+    .theme-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      font-family: 'Kanit', sans-serif;
+      opacity: 0.5;
+    }
+    .theme-btn:hover { opacity: 0.8; }
+    .theme-btn.active {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      opacity: 1;
+    }
+    .theme-btn svg { width: 16px; height: 16px; }
 
     /* Fade-in animation */
     .fade-in {
@@ -51,7 +117,7 @@
     }
     @media (min-width: 768px) { .hero-nav { padding: 2rem 2.5rem 0; } }
     .hero-nav a {
-      color: #D7E2EA;
+      color: var(--text-primary);
       text-decoration: none;
       font-weight: 500;
       text-transform: uppercase;
@@ -99,7 +165,7 @@
     @media (min-width: 768px) { .hero-bottom { padding: 0 2.5rem 2.5rem; } }
 
     .hero-bottom-text {
-      color: #D7E2EA;
+      color: var(--text-primary);
       font-weight: 300;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -142,7 +208,7 @@
       display: inline-block;
       background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%);
       box-shadow: 0px 4px 4px rgba(181, 1, 167, 0.25), 4px 4px 12px #7721B1 inset;
-      outline: 2px solid white;
+      outline: 2px solid var(--contact-outline);
       outline-offset: -3px;
       border: none;
       border-radius: 9999px;
@@ -163,7 +229,7 @@
 
     /* ===== MARQUEE SECTION ===== */
     .marquee-section {
-      background: #0C0C0C;
+      background: var(--bg-primary);
       padding: 6rem 0 2.5rem;
       overflow: hidden;
     }
@@ -223,7 +289,7 @@
     @media (min-width: 768px) { .about-content { gap: 4rem; } }
 
     .about-text {
-      color: #D7E2EA;
+      color: var(--text-primary);
       font-weight: 500;
       text-align: center;
       line-height: 1.625;
@@ -267,10 +333,11 @@
 
     /* ===== SERVICES SECTION ===== */
     .services-section {
-      background: #FFFFFF;
+      background: var(--bg-secondary);
       border-radius: 40px 40px 0 0;
       padding: 5rem 1.25rem;
-      color: #0C0C0C;
+      color: var(--text-secondary);
+      transition: background 0.4s, color 0.4s;
     }
     @media (min-width: 640px) {
       .services-section { border-radius: 50px 50px 0 0; padding: 6rem 2rem; }
@@ -284,7 +351,7 @@
       text-transform: uppercase;
       text-align: center;
       font-size: clamp(3rem, 12vw, 160px);
-      color: #0C0C0C;
+      color: var(--text-secondary);
       margin-bottom: 4rem;
     }
     @media (min-width: 640px) { .services-section h2 { margin-bottom: 5rem; } }
@@ -300,17 +367,17 @@
       align-items: flex-start;
       gap: 1.5rem;
       padding: 2rem 0;
-      border-bottom: 1px solid rgba(12, 12, 12, 0.15);
+      border-bottom: 1px solid var(--border-services);
     }
     @media (min-width: 640px) { .service-item { padding: 2.5rem 0; gap: 2rem; } }
     @media (min-width: 768px) { .service-item { padding: 3rem 0; gap: 3rem; } }
-    .service-item:first-child { border-top: 1px solid rgba(12, 12, 12, 0.15); }
+    .service-item:first-child { border-top: 1px solid var(--border-services); }
 
     .service-num {
       font-weight: 900;
       font-size: clamp(3rem, 10vw, 140px);
       line-height: 1;
-      color: #0C0C0C;
+      color: var(--text-secondary);
       flex-shrink: 0;
     }
 
@@ -319,7 +386,7 @@
       font-weight: 500;
       text-transform: uppercase;
       font-size: clamp(1rem, 2.2vw, 2.1rem);
-      color: #0C0C0C;
+      color: var(--text-secondary);
       margin-bottom: 0.5rem;
     }
     .service-desc {
@@ -328,12 +395,12 @@
       max-width: 42rem;
       font-size: clamp(0.85rem, 1.6vw, 1.25rem);
       opacity: 0.6;
-      color: #0C0C0C;
+      color: var(--text-secondary);
     }
 
     /* ===== PROJECTS SECTION ===== */
     .projects-section {
-      background: #0C0C0C;
+      background: var(--bg-primary);
       border-radius: 40px 40px 0 0;
       margin-top: -2.5rem;
       position: relative;
@@ -370,8 +437,8 @@
 
     .project-card {
       border-radius: 40px;
-      border: 2px solid #D7E2EA;
-      background: #0C0C0C;
+      border: 2px solid var(--border-primary);
+      background: var(--card-bg);
       padding: 1rem;
       transform-origin: top center;
       transition: transform 0.1s linear;
@@ -398,7 +465,7 @@
       font-weight: 900;
       font-size: clamp(2rem, 6vw, 80px);
       line-height: 1;
-      color: #D7E2EA;
+      color: var(--text-primary);
     }
 
     .project-meta { display: flex; flex-direction: column; gap: 0.25rem; }
@@ -411,15 +478,15 @@
     .project-name {
       font-weight: 600;
       font-size: clamp(1rem, 2vw, 1.5rem);
-      color: #D7E2EA;
+      color: var(--text-primary);
     }
 
     .live-project-btn {
       display: inline-block;
       border-radius: 9999px;
-      border: 2px solid #D7E2EA;
+      border: 2px solid var(--border-primary);
       background: transparent;
-      color: #D7E2EA;
+      color: var(--text-primary);
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -431,7 +498,7 @@
       transition: background 0.2s;
     }
     @media (min-width: 640px) { .live-project-btn { padding: 0.875rem 2.5rem; font-size: 1rem; } }
-    .live-project-btn:hover { background: rgba(215, 226, 234, 0.1); }
+    .live-project-btn:hover { background: var(--nav-hover); }
 
     .project-images {
       display: grid;
@@ -446,7 +513,7 @@
     .project-img {
       border-radius: 40px;
       overflow: hidden;
-      background: #1a1a2e;
+      background: var(--img-bg);
     }
     @media (min-width: 640px) { .project-img { border-radius: 50px; } }
     @media (min-width: 768px) { .project-img { border-radius: 60px; } }
@@ -462,13 +529,14 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      background: #0C0C0C;
+      background: var(--bg-primary);
       padding: 4rem 1.5rem;
       text-align: center;
-      border-top: 1px solid rgba(215, 226, 234, 0.1);
+      border-top: 1px solid var(--border-light);
+      transition: background 0.4s;
     }
     .footer p {
-      color: #D7E2EA;
+      color: var(--text-primary);
       opacity: 0.5;
       font-weight: 300;
       font-size: 0.875rem;
@@ -491,6 +559,17 @@
         <a href="#services">Services</a>
         <a href="#projects">Projects</a>
         <a href="mailto:mfhijazin@gmail.com">Contact</a>
+        <div class="theme-switcher">
+          <button class="theme-btn" data-theme-set="light" title="Light mode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+          <button class="theme-btn" data-theme-set="system" title="System preference">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </button>
+          <button class="theme-btn" data-theme-set="dark" title="Dark mode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
       </nav>
 
       <div class="hero-heading-wrap">
@@ -857,6 +936,45 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // ===== THEME SWITCHER =====
+    (function() {
+      const html = document.documentElement;
+      const buttons = document.querySelectorAll('.theme-btn');
+      const STORAGE_KEY = 'majd-portfolio-theme';
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+
+      function applyTheme(preference) {
+        const resolved = preference === 'system' ? getSystemTheme() : preference;
+        html.setAttribute('data-theme', resolved);
+        buttons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.themeSet === preference);
+        });
+      }
+
+      // Init from localStorage or default to dark
+      const saved = localStorage.getItem(STORAGE_KEY) || 'dark';
+      applyTheme(saved);
+
+      // Button clicks
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pref = btn.dataset.themeSet;
+          localStorage.setItem(STORAGE_KEY, pref);
+          applyTheme(pref);
+        });
+      });
+
+      // Listen for system theme changes when in system mode
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+        if (localStorage.getItem(STORAGE_KEY) === 'system') {
+          applyTheme('system');
+        }
+      });
+    })();
   </script>
 </body>
 </html>
