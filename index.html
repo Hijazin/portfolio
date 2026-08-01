@@ -594,7 +594,12 @@ body.locked{overflow:hidden;height:100vh}
 body{background:#FFFFFF}
 
 /* nav: dark ink is now the default; it goes white only over the colour panels */
-#nav{text-shadow:none}
+#nav{text-shadow:none;transition:background .35s ease,backdrop-filter .35s ease,border-color .35s ease;
+  border-bottom:1px solid transparent}
+/* once you scroll off the hero the bar needs a surface, or text collides with content */
+#nav.solid{background:rgba(255,255,255,.84);backdrop-filter:saturate(1.4) blur(16px);
+  border-bottom-color:var(--line)}
+#nav.solid.dark{background:rgba(11,4,42,.55);border-bottom-color:rgba(255,255,255,.14)}
 #nav .brand .mh{border-color:#0A0A0C;color:#0A0A0C}
 #nav .brand .nm{color:#0A0A0C}
 #nav .right a{color:#0A0A0C;opacity:.72}
@@ -769,6 +774,55 @@ body{background:#FFFFFF}
   a{text-decoration:none;color:#000!important}
 }
 
+
+/* ============================================================
+   THE AI SIDE
+   ============================================================ */
+#ai{position:relative;z-index:53;background:var(--paper);
+  padding:clamp(70px,10vh,120px) clamp(24px,6vw,110px)}
+.ai-grid{max-width:1500px;margin:0 auto;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(16px,2vw,24px)}
+.ai-card{border:1px solid var(--line);border-radius:18px;padding:28px 26px;background:var(--paper-2);
+  transition:.45s cubic-bezier(.2,.8,.2,1)}
+.ai-card:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(20,10,60,.09);background:#fff}
+.ai-card .verb{font-family:var(--f-display);font-weight:700;font-size:11px;letter-spacing:.26em;
+  text-transform:uppercase;color:#6B21F0;margin-bottom:14px}
+.ai-card h4{font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(19px,1.9vw,25px);line-height:1.08;color:var(--ink-1);margin-bottom:11px}
+.ai-card p{font-size:15px;line-height:1.62;color:var(--ink-2)}
+.ai-card .prod{margin-top:14px;font-family:var(--f-display);font-weight:600;font-size:10.5px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+
+/* how it gets built */
+.pipe{max-width:1500px;margin:clamp(40px,6vh,70px) auto 0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.pipe div{position:relative;padding:22px 20px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.pipe div b{display:block;font-family:var(--f-display);font-weight:700;font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:#6B21F0;margin-bottom:9px}
+.pipe div span{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+
+/* the 18 */
+.all18{max-width:1500px;margin:clamp(46px,7vh,80px) auto 0}
+.all18 .lbl{font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:20px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.tile{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;
+  border:1px solid var(--line);background:var(--paper-2);display:block;text-decoration:none;
+  transition:.4s cubic-bezier(.2,.8,.2,1)}
+.tile:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,10,60,.12)}
+.tile img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.tile .nm{position:absolute;left:0;right:0;bottom:0;padding:20px 11px 9px;
+  background:linear-gradient(0deg,rgba(10,10,12,.88),transparent);
+  font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:#fff}
+.tile.txt{display:grid;place-items:center;background:#fff}
+.tile.txt .nm{position:static;background:none;color:var(--ink-2);text-align:center;padding:10px;
+  font-size:12px;letter-spacing:.14em}
+@media(max-width:980px){
+  .tiles{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:9px}
+  .tile .nm{font-size:9.5px;letter-spacing:.08em;padding:16px 8px 7px}
+}
+
 /* ================= responsive ================= */
 @media(max-width:980px){
   /* --- capabilities rows: the copy block must span the full width --- */
@@ -904,6 +958,7 @@ body{background:#FFFFFF}
     <button class="musicbtn" id="btnMusic2" style="margin-right:6px"><span class="bars"><i></i><i></i><i></i><i></i></span></button>
     <a href="#work">Work</a>
     <a href="games.html" id="navGames">Games</a>
+    <a href="#ai">AI</a>
     <a href="#story">Career</a>
     <a href="#" id="navFast">Quick CV</a>
     <a href="mailto:mfhijazin@gmail.com">Contact</a>
@@ -1036,6 +1091,89 @@ body{background:#FFFFFF}
       </div>
     </div>
   </article>
+</section>
+
+<!-- ============ THE AI SIDE ============ -->
+<section id="ai">
+  <div class="sec-head rv">
+    <div class="eyebrow">The AI side</div>
+    <h2>Eighteen products shipped. <em>Here is what the AI actually does inside them.</em></h2>
+  </div>
+
+  <div class="ai-grid">
+    <div class="ai-card rv">
+      <div class="verb">AI that retains</div>
+      <h4>Notices Who Is<br>Slipping Away</h4>
+      <p>Retainly watches customer behaviour for the moment someone starts drifting, then drafts the win-back campaign automatically. Segmentation, birthday and personalised reward automation, and delivery across email, SMS and push — the owner approves rather than authors.</p>
+      <div class="prod">Retainly &middot; retainly.dev</div>
+    </div>
+
+    <div class="ai-card rv">
+      <div class="verb">AI that designs</div>
+      <h4>Generates Inside<br>The Brand Rules</h4>
+      <p>Talabat Design Genie is an AI design generator with brand control: upload the brand guidelines and it enforces them automatically, so a marketing team can produce on-brand assets without a designer in the loop for every request.</p>
+      <div class="prod">Talabat Design Genie</div>
+    </div>
+
+    <div class="ai-card rv">
+      <div class="verb">AI that listens</div>
+      <h4>Turns Feedback<br>Into A Signal</h4>
+      <p>Rider Pulse is a sentiment tracker giving real-time insight into rider feedback and satisfaction — turning thousands of scattered comments into something a manager can act on this week rather than next quarter.</p>
+      <div class="prod">Rider Pulse &middot; Talabat</div>
+    </div>
+
+    <div class="ai-card rv">
+      <div class="verb">AI that answers</div>
+      <h4>Runs The Front<br>Desk At 3am</h4>
+      <p>Nurox is business automation for e-commerce: answer every call, message and visitor around the clock with zero downtime. Built for the operators who lose revenue in the hours nobody is staffing.</p>
+      <div class="prod">Nurox</div>
+    </div>
+
+    <div class="ai-card rv">
+      <div class="verb">AI that coaches</div>
+      <h4>Works The Job<br>Hunt For You</h4>
+      <p>Keavio is an AI career agent. It reads the role, rewrites the CV to match it and coaches the interview — compressing a months-long search into a conversation.</p>
+      <div class="prod">Keavio</div>
+    </div>
+
+    <div class="ai-card rv">
+      <div class="verb">AI on this page</div>
+      <h4>The Assistant<br>In The Corner</h4>
+      <p>The Ask about Majd button is not a widget I installed. It is a retrieval assistant built for this site, running entirely in your browser with no API and no data leaving the page — and it will tell you when it does not know something.</p>
+      <div class="prod">Built for this portfolio</div>
+    </div>
+  </div>
+
+  <div class="pipe">
+    <div class="rv"><b>01 · Idea</b><span>A real problem, usually one I hit while running a marketing function.</span></div>
+    <div class="rv"><b>02 · Prompt</b><span>Built through iterative prompting on Lovable rather than a hand-written codebase — React, TypeScript, Tailwind.</span></div>
+    <div class="rv"><b>03 · Prototype</b><span>A working thing the team can click within days, not a deck describing one.</span></div>
+    <div class="rv"><b>04 · Production</b><span>Deployed to a real domain. Retainly, Rider Hub and Raha all run live on retainly.dev.</span></div>
+  </div>
+
+  <div class="all18 rv">
+    <div class="lbl">Everything shipped</div>
+    <div class="tiles">
+      <a class="tile" href="https://retainly.dev" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="assets/proj/retainly.jpg" alt="Retainly"><span class="nm">Retainly</span></a>
+      <a class="tile" href="https://talabatrh.retainly.dev" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="assets/proj/riderhub.jpg" alt="Rider Hub"><span class="nm">Rider Hub</span></a>
+      <a class="tile" href="https://raha.retainly.dev" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="assets/proj/raha.jpg" alt="Raha"><span class="nm">Raha</span></a>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/boatify.jpg" alt="Boatify Rentals"><span class="nm">Boatify Rentals</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/nurox.jpg" alt="Nurox"><span class="nm">Nurox</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/designgenie.jpg" alt="Talabat Design Genie"><span class="nm">Design Genie</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/riderpulse.jpg" alt="Rider Pulse"><span class="nm">Rider Pulse</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/focusgroup.jpg" alt="Focus Group"><span class="nm">Focus Group</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/clinic.jpg" alt="Retainly Clinic"><span class="nm">Retainly Clinic</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/medpro.jpg" alt="MedPro"><span class="nm">MedPro</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/ibconnect.jpg" alt="IB Connect"><span class="nm">IB Connect</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/quizgo.jpg" alt="QuizGo"><span class="nm">QuizGo</span></div>
+      <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/aghani.jpg" alt="Aghani"><span class="nm">Aghani</span></div>
+      <div class="tile txt"><span class="nm">Keavio<br>AI Career Agent</span></div>
+      <div class="tile txt"><span class="nm">Talabat<br>Brand Studio</span></div>
+      <div class="tile txt"><span class="nm">Bright<br>Connections</span></div>
+      <div class="tile txt"><span class="nm">WonderHands</span></div>
+      <div class="tile txt"><span class="nm">BAPP</span></div>
+    </div>
+  </div>
 </section>
 
 <!-- ============ CAREER ============ -->
@@ -1845,7 +1983,10 @@ body{background:#FFFFFF}
       var nv=document.getElementById('nav');
       var wr=workEl.getBoundingClientRect();
       /* white ink only while the vivid project panels are under the nav */
-      if(nv) nv.classList.toggle('dark', wr.top<=64 && wr.bottom>64);
+      if(nv){
+        nv.classList.toggle('dark', wr.top<=64 && wr.bottom>64);
+        nv.classList.toggle('solid', window.scrollY > 60);
+      }
     }
 
     /* manifesto */
