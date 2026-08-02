@@ -816,6 +816,9 @@ body{background:#FFFFFF}
   font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.12em;
   text-transform:uppercase;color:#fff}
 .tile.txt{display:grid;place-items:center;background:#fff}
+.tile.brand{display:grid;place-items:center;background:linear-gradient(150deg,#00A55E,#00693C);border-color:transparent}
+.tile.brand .k{font-family:var(--f-display);font-weight:700;font-size:44px;color:rgba(255,255,255,.95);line-height:1}
+.tile.brand .nm{background:linear-gradient(0deg,rgba(0,0,0,.5),transparent)}
 .tile.txt .nm{position:static;background:none;color:var(--ink-2);text-align:center;padding:10px;
   font-size:12px;letter-spacing:.14em}
 @media(max-width:980px){
@@ -924,9 +927,8 @@ body{background:#FFFFFF}
     <h1><span>The Making Of</span><span class="accent">Majd Hijazin</span></h1>
     <div class="sub">Five chapters. Every number real.</div>
     <div class="gate-actions">
-      <button class="btn-ghost" id="btnStart"><span>Start Experience</span></button>
+      <button class="btn-ghost" id="btnStart"><span>Play My CV</span></button>
       <button class="musicbtn" id="btnMusic"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="musicLbl">Music off</span></button>
-      <button class="link-skip" id="btnFast">Just the facts &mdash; for recruiters</button>
       <button class="link-skip" id="btnSkip1">Skip &amp; see the work</button>
     </div>
   </div>
@@ -1152,7 +1154,7 @@ body{background:#FFFFFF}
   </div>
 
   <div class="all18 rv">
-    <div class="lbl">Everything shipped</div>
+    <div class="lbl">Shipped products</div>
     <div class="tiles">
       <a class="tile" href="https://retainly.dev" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="assets/proj/retainly.jpg" alt="Retainly"><span class="nm">Retainly</span></a>
       <a class="tile" href="https://talabatrh.retainly.dev" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="assets/proj/riderhub.jpg" alt="Rider Hub"><span class="nm">Rider Hub</span></a>
@@ -1167,11 +1169,7 @@ body{background:#FFFFFF}
       <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/ibconnect.jpg" alt="IB Connect"><span class="nm">IB Connect</span></div>
       <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/quizgo.jpg" alt="QuizGo"><span class="nm">QuizGo</span></div>
       <div class="tile"><img loading="lazy" decoding="async" src="assets/proj/aghani.jpg" alt="Aghani"><span class="nm">Aghani</span></div>
-      <div class="tile txt"><span class="nm">Keavio<br>AI Career Agent</span></div>
-      <div class="tile txt"><span class="nm">Talabat<br>Brand Studio</span></div>
-      <div class="tile txt"><span class="nm">Bright<br>Connections</span></div>
-      <div class="tile txt"><span class="nm">WonderHands</span></div>
-      <div class="tile txt"><span class="nm">BAPP</span></div>
+      <div class="tile brand"><span class="k">K</span><span class="nm">Keavio &middot; AI Career Agent</span></div>
     </div>
   </div>
 </section>
@@ -1265,7 +1263,7 @@ body{background:#FFFFFF}
 <section id="edge">
   <div class="sec-head rv">
     <div class="eyebrow">How I work</div>
-    <h2>Six years leading marketing teams across MENA. <em>And a habit of building the prototype myself, so the team has something real to react to instead of another deck.</em></h2>
+    <h2>Six years leading marketing teams across MENA. <em>And a habit of building the prototype myself.</em></h2>
   </div>
 
   <div class="rows">
