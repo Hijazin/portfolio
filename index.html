@@ -245,7 +245,7 @@ body.locked{overflow:hidden;height:100vh}
   color:rgba(0,0,0,.13);z-index:1;pointer-events:none;user-select:none}
 
 /* the object sits dead centre */
-.panel .obj{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+.panel .obj{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
   z-index:3;display:grid;place-items:center;width:min(1100px,72vw);pointer-events:none}
 .panel .obj img.cut{width:100%;display:block;
   filter:drop-shadow(0 48px 42px rgba(0,0,0,.4));animation:hover 8s ease-in-out infinite}
@@ -255,7 +255,7 @@ body.locked{overflow:hidden;height:100vh}
 
 /* bottom bar */
 .panel .foot{position:absolute;left:clamp(24px,5vw,64px);right:clamp(24px,5vw,64px);
-  bottom:clamp(30px,5.4vh,58px);z-index:6;
+  bottom:clamp(62px,11vh,116px);z-index:6;
   display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:30px}
 .panel .badge{display:inline-flex;align-items:center;gap:11px;margin-bottom:16px;
   padding:7px 15px 7px 8px;border:1px solid rgba(255,255,255,.32);border-radius:999px;
@@ -826,6 +826,49 @@ body{background:#FFFFFF}
   .tile .nm{font-size:9.5px;letter-spacing:.08em;padding:16px 8px 7px}
 }
 
+
+/* ============================================================
+   CONTACT CARD — no mail client, just the details
+   ============================================================ */
+#contact{position:fixed;inset:0;z-index:9400;display:grid;place-items:center;padding:22px;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(16px);overflow-y:auto;
+  opacity:0;visibility:hidden;transition:.38s}
+#contact.on{opacity:1;visibility:visible}
+#contact .cc{width:min(560px,100%);margin:auto;border-radius:24px;border:1px solid var(--line);
+  background:#fff;padding:clamp(26px,4vw,40px);box-shadow:0 40px 90px rgba(20,10,60,.14);
+  transform:translateY(16px) scale(.98);transition:.45s cubic-bezier(.2,.8,.2,1)}
+#contact.on .cc{transform:none}
+#contact .eyebrow{font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.5em;
+  text-transform:uppercase;color:#86868B;margin-bottom:16px}
+#contact h2{font-family:var(--f-display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(30px,5.2vw,52px);line-height:.94;color:var(--ink-1)}
+#contact .role{font-family:var(--f-display);font-weight:600;font-size:clamp(13px,1.5vw,17px);
+  letter-spacing:.05em;margin-top:10px;background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.crow{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.crow:first-of-type{border-top:1px solid var(--line);margin-top:26px}
+.crow .ci{width:38px;height:38px;flex:none;border-radius:11px;background:var(--paper-2);
+  display:grid;place-items:center;font-size:16px;color:#6B21F0}
+.crow .cv{flex:1;min-width:0;display:block}
+.crow .cl{display:block;font-family:var(--f-display);font-weight:600;font-size:9.5px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-3)}
+.crow .cd{display:block;font-family:var(--f-display);font-weight:600;font-size:clamp(16px,2vw,21px);
+  color:var(--ink-1);margin-top:3px;word-break:break-all;letter-spacing:.02em}
+.copy{flex:none;padding:9px 14px;border-radius:999px;border:1px solid rgba(0,0,0,.18);
+  font-family:var(--f-display);font-weight:600;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-2);transition:.28s;background:#fff}
+.copy:hover{border-color:#6B21F0;color:#6B21F0}
+.copy.done{background:#12B76A;border-color:#12B76A;color:#fff}
+#contact .links{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+#contact .links a{flex:1;min-width:140px;text-align:center;padding:14px 20px;border-radius:999px;
+  border:1px solid rgba(0,0,0,.18);text-decoration:none;color:var(--ink-1);
+  font-family:var(--f-display);font-weight:600;font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;transition:.3s}
+#contact .links a:hover{border-color:#6B21F0;color:#6B21F0}
+#contactClose{position:fixed;top:18px;right:20px;z-index:9500;font-family:var(--f-display);
+  font-weight:600;font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:11px 18px;
+  border-radius:999px;border:1px solid rgba(0,0,0,.2);background:#fff;color:var(--ink-1)}
+
 /* ================= responsive ================= */
 @media(max-width:980px){
   /* --- capabilities rows: the copy block must span the full width --- */
@@ -840,9 +883,9 @@ body{background:#FFFFFF}
   .stat{padding:22px 18px}
 
   /* --- project panels --- */
-  .panel .foot{grid-template-columns:1fr;gap:18px;bottom:22px;
+  .panel .foot{grid-template-columns:1fr;gap:16px;bottom:58px;
     left:clamp(18px,5vw,40px);right:clamp(18px,5vw,40px)}
-  .panel .obj{width:92vw;top:40%}
+  .panel .obj{width:92vw;top:34%}
   .panel .ghost{font-size:min(14vh,17vw);top:12%}
   .panel h3{font-size:clamp(34px,11vw,62px)}
   .panel .desc{font-size:15.5px;line-height:1.35;max-width:none}
@@ -963,7 +1006,7 @@ body{background:#FFFFFF}
     <a href="#ai">AI</a>
     <a href="#story">Career</a>
     <a href="#" id="navFast">Quick CV</a>
-    <a href="mailto:mfhijazin@gmail.com">Contact</a>
+    <a href="#" id="navContact">Contact</a>
   </div>
 </nav>
 
@@ -1323,7 +1366,7 @@ body{background:#FFFFFF}
   <div class="foot-in">
     <div>
       <h5>Let's build<br>the next one.</h5>
-      <a class="mail" href="mailto:mfhijazin@gmail.com">mfhijazin@gmail.com</a>
+      <a class="mail" href="#" id="footContact">mfhijazin@gmail.com</a>
     </div>
     <div class="foot-links">
       <a href="https://github.com/Hijazin" target="_blank" rel="noopener">GitHub</a>
@@ -1757,14 +1800,33 @@ body{background:#FFFFFF}
         arpGain=null, delay=null, fb=null, filter=null,
         playing=false, wanted=false, arpTimer=null, arpStep=0, chapter=0;
 
-    /* one chord per chapter — A minor family, resolving upward at the end */
-    var CHORDS=[
-      [110.00,164.81,220.00,261.63],  /* A minor      — The Crowd   */
-      [ 87.31,130.81,174.61,220.00],  /* F major      — The Founder */
-      [ 73.42,110.00,146.83,220.00],  /* D minor      — The Launch  */
-      [ 98.00,146.83,196.00,246.94],  /* G major      — The Network */
-      [110.00,164.81,246.94,329.63]   /* A minor add9 — The Builder */
+    /* Two tracks. Which one carries the intro and which carries the site is
+       shuffled on every visit, so a repeat visitor hears a different pairing. */
+    var TRACKS=[
+      { name:'Nightfall', wave:'triangle', arp:430, cut:1200, step:620,
+        chords:[
+          [110.00,164.81,220.00,261.63],  /* A minor      */
+          [ 87.31,130.81,174.61,220.00],  /* F major      */
+          [ 73.42,110.00,146.83,220.00],  /* D minor      */
+          [ 98.00,146.83,196.00,246.94],  /* G major      */
+          [110.00,164.81,246.94,329.63],  /* A minor add9 */
+          [ 82.41,123.47,164.81,246.94],  /* E minor      */
+          [110.00,174.61,220.00,329.63]   /* A sus        */
+        ]},
+      { name:'Daybreak', wave:'sine', arp:500, cut:1500, step:520,
+        chords:[
+          [130.81,196.00,261.63,329.63],  /* C major      */
+          [ 98.00,146.83,196.00,293.66],  /* G major add  */
+          [110.00,164.81,220.00,277.18],  /* A minor 7    */
+          [116.54,174.61,233.08,349.23],  /* B flat       */
+          [130.81,196.00,293.66,392.00],  /* C major 9    */
+          [ 87.31,130.81,174.61,261.63],  /* F major      */
+          [130.81,196.00,261.63,392.00]   /* C resolve    */
+        ]}
     ];
+    var order = Math.random()<0.5 ? [0,1] : [1,0];
+    var trackIdx = order[0];
+    var CHORDS = TRACKS[trackIdx].chords;
 
     function build(){
       if(ac) return true;
@@ -1832,7 +1894,7 @@ body{background:#FFFFFF}
         wanted=true;
         if(!build()) return;
         if(ac.state==='suspended'){ try{ ac.resume(); }catch(e){} }
-        if(!playing){ playing=true; arpTimer=setInterval(tick,430); }
+        if(!playing){ playing=true; arpTimer=setInterval(tick,TRACKS[trackIdx].arp); }
         fade(0.5,2.5);
         sync();
       },
@@ -1842,29 +1904,48 @@ body{background:#FFFFFF}
         sync();
       },
       isOn:function(){ return wanted; },
-      setChapter:function(i){
-        chapter=Math.max(0,Math.min(CHORDS.length-1,i));
-        if(!ac) return;
-        var ch=CHORDS[chapter], t=ac.currentTime;
-        for(var k=0;k<padOsc.length;k++){
-          try{ padOsc[k].o.frequency.setTargetAtTime(ch[k], t, 0.5); }catch(e){}
-        }
-        try{ subOsc.frequency.setTargetAtTime(ch[0]/2, t, 0.5); }catch(e){}
-        /* lift the filter as the story progresses */
-        try{ filter.frequency.setTargetAtTime(1200+chapter*620, t, 1.0); }catch(e){}
+      setChapter:function(i){ setChord(i); },
+      /* the site gets the other track, faded across so nothing jars */
+      ambient:function(){
+        if(!wanted) return;
+        var next=order[1];
+        if(next!==trackIdx && ac){
+          fade(0.06,0.9);
+          setTimeout(function(){
+            trackIdx=next; CHORDS=TRACKS[trackIdx].chords;
+            try{
+              filter.frequency.setTargetAtTime(TRACKS[trackIdx].cut, ac.currentTime, .6);
+              for(var k=0;k<padOsc.length;k++) padOsc[k].o.type = k%2 ? TRACKS[trackIdx].wave : 'sine';
+            }catch(e){}
+            if(arpTimer){ clearInterval(arpTimer); arpTimer=setInterval(tick,TRACKS[trackIdx].arp); }
+            chapter=0; arpStep=0;
+            setChord(0);
+            fade(0.28,2.2);
+          },950);
+        } else fade(0.28,2.5);
       },
-      /* softer once the visitor is reading the site */
-      ambient:function(){ if(wanted) fade(0.28,2.5); },
+      trackName:function(){ return TRACKS[trackIdx].name; },
       /* mobile browsers suspend the context whenever the tab/app loses focus.
          Any touch re-arms it, but only if the visitor asked for music. */
       resume:function(){
         if(!wanted||!ac) return;
         if(ac.state!=='running'){ try{ ac.resume(); }catch(e){} }
-        if(!playing){ playing=true; arpTimer=setInterval(tick,430); }
+        if(!playing){ playing=true; arpTimer=setInterval(tick,TRACKS[trackIdx].arp); }
         fade(0.5,1.2);
       },
       nudge:function(){ if(!ac) return; if(ac.state!=='running'){ try{ ac.resume(); }catch(e){} } }
     };
+
+    function setChord(i){
+      chapter=Math.max(0,Math.min(CHORDS.length-1,i));
+      if(!ac) return;
+      var ch=CHORDS[chapter], t=ac.currentTime, base=TRACKS[trackIdx];
+      for(var k=0;k<padOsc.length;k++){
+        try{ padOsc[k].o.frequency.setTargetAtTime(ch[k], t, 0.5); }catch(e){}
+      }
+      try{ subOsc.frequency.setTargetAtTime(ch[0]/2, t, 0.5); }catch(e){}
+      try{ filter.frequency.setTargetAtTime(base.cut + chapter*base.step, t, 1.0); }catch(e){}
+    }
 
     function sync(){
       var on=wanted;
@@ -2153,7 +2234,7 @@ body{background:#FFFFFF}
         <h2>Majd<br>Hijazin</h2>
         <div class="role">Marketing Manager &middot; Growth, Brand &amp; AI Products</div>
         <div style="margin-top:14px"><span class="avail"><i></i>Open to opportunities</span></div>
-        <div class="meta">Amman, Jordan &nbsp;·&nbsp; mfhijazin@gmail.com &nbsp;·&nbsp; +962 7 9937 8732</div>
+        <div class="meta">Amman, Jordan &nbsp;·&nbsp; mfhijazin@gmail.com &nbsp;·&nbsp; +962 793 7654 23</div>
       </div>
     </div>
     <p class="sum">Marketing Manager with 6+ years driving brand growth, digital strategy and large-scale campaign execution across MENA. Proven in scaling brands, go-to-market launches and building customer and rider engagement programmes — with a data-driven approach that ties marketing activity to measurable business outcomes. Currently building AI products alongside the marketing function.</p>
@@ -2164,10 +2245,41 @@ body{background:#FFFFFF}
     </div>
     <div class="acts">
       <a class="pri" href="./Majd_Hijazin_CV.pdf" download>Download CV</a>
-      <a href="mailto:mfhijazin@gmail.com">Email Majd</a>
+      <button id="fastContact">Contact details</button>
       <a href="https://www.linkedin.com/in/majd-hijazin/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/Hijazin" target="_blank" rel="noopener">GitHub</a>
       <button id="fastFull">See the full experience</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<div id="contact" role="dialog" aria-label="Contact Majd Hijazin">
+  <button id="contactClose">Close</button>
+  <div class="cc">
+    <div class="eyebrow">Get in touch</div>
+    <h2>Majd<br>Hijazin</h2>
+    <div class="role">Marketing Manager &middot; Growth, Brand &amp; AI Products</div>
+
+    <div class="crow">
+      <span class="ci">&#9993;</span>
+      <span class="cv"><span class="cl">Email</span><span class="cd" id="cEmail">mfhijazin@gmail.com</span></span>
+      <button class="copy" data-copy="cEmail">Copy</button>
+    </div>
+    <div class="crow">
+      <span class="ci">&#9742;</span>
+      <span class="cv"><span class="cl">Phone</span><span class="cd" id="cPhone">+962 793 7654 23</span></span>
+      <button class="copy" data-copy="cPhone">Copy</button>
+    </div>
+    <div class="crow">
+      <span class="ci">&#9678;</span>
+      <span class="cv"><span class="cl">Based in</span><span class="cd">Amman, Jordan</span></span>
+    </div>
+
+    <div class="links">
+      <a href="https://www.linkedin.com/in/majd-hijazin/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Hijazin" target="_blank" rel="noopener">GitHub</a>
+      <a href="./Majd_Hijazin_CV.pdf" download>Download CV</a>
     </div>
   </div>
 </div>
@@ -2252,7 +2364,7 @@ body{background:#FFFFFF}
      a:"Digital marketing and SEO, data and performance analysis, go-to-market strategy, brand management, content strategy and storytelling, campaign planning and execution, event management and product launches, team leadership and development, stakeholder and partner management, and budget management with ROI tracking."},
 
     {k:['contact','email','reach him','hire','get in touch','phone','call','available'],
-     a:"Email mfhijazin@gmail.com or call +962 7 9937 8732. He is on LinkedIn at linkedin.com/in/majd-hijazin and GitHub at github.com/Hijazin. His CV is downloadable from the closing section of this site."},
+     a:"Email mfhijazin@gmail.com or call +962 793 7654 23. He is on LinkedIn at linkedin.com/in/majd-hijazin and GitHub at github.com/Hijazin. His CV is downloadable from the closing section of this site."},
 
     {k:['location','where','based','city','country','jordan','amman','relocate'],
      a:"He is based in Amman, Jordan. His work spans Jordan, Qatar and the UAE — he ran launches in Qatar with Mannai Trading and operated Boatify across both Jordan and the UAE."},
@@ -2273,7 +2385,7 @@ body{background:#FFFFFF}
      a:"He built two playable pieces for this site. Meet Majd: The Night Shift is a cinematic 2D suspense game where you restore his career records across five rooms. Prompt Runner is an arcade endless runner through five of his shipped products. Both are in the Games tab."},
 
     {k:['salary','notice period','availability','available','start date','when can he start','package','compensation','expectations'],
-     a:"That is best answered directly rather than by a portfolio. Email him at mfhijazin@gmail.com or call +962 7 9937 8732 and he will give you a straight answer."},
+     a:"That is best answered directly rather than by a portfolio. Email him at mfhijazin@gmail.com or call +962 793 7654 23 and he will give you a straight answer."},
 
     {k:['cv','resume','download','pdf'],
      a:"His CV is available as a PDF — use the Download CV button in the closing section, or the Quick CV link in the navigation for the short version."}
@@ -2368,6 +2480,38 @@ body{background:#FFFFFF}
   closeBtn.addEventListener('click',closeAsk);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && panel.classList.contains('on')) closeAsk(); });
 
+  /* ---------------- contact card ---------------- */
+  var contact=document.getElementById('contact');
+  function openContact(e){ if(e){ e.preventDefault(); e.stopPropagation(); }
+    if(contact){ contact.classList.add('on'); document.body.style.overflow='hidden'; } }
+  function closeContact(){ if(contact){ contact.classList.remove('on'); document.body.style.overflow=''; } }
+  ['navContact','footContact','fastContact'].forEach(function(id){
+    var el=document.getElementById(id); if(el) el.addEventListener('click',openContact);
+  });
+  var cxb=document.getElementById('contactClose'); if(cxb) cxb.addEventListener('click',closeContact);
+  if(contact) contact.addEventListener('click',function(e){ if(e.target===contact) closeContact(); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && contact && contact.classList.contains('on')) closeContact();
+  });
+  /* copy to clipboard with a fallback for older browsers */
+  document.addEventListener('click',function(e){
+    var b=e.target.closest && e.target.closest('.copy'); if(!b) return;
+    var el=document.getElementById(b.dataset.copy); if(!el) return;
+    var txt=el.textContent.trim(), done=function(){
+      var old=b.textContent; b.textContent='Copied'; b.classList.add('done');
+      setTimeout(function(){ b.textContent=old; b.classList.remove('done'); },1600);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done,function(){ legacy(); });
+    } else legacy();
+    function legacy(){
+      var ta=document.createElement('textarea'); ta.value=txt;
+      ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
+      ta.select(); try{ document.execCommand('copy'); done(); }catch(err){}
+      document.body.removeChild(ta);
+    }
+  });
+
   /* ---------------- recruiter fast path ---------------- */
   var fast=document.getElementById('fast');
   function openFast(e){ if(e) e.preventDefault(); fast.classList.add('on'); document.body.style.overflow='hidden'; }
@@ -2386,6 +2530,8 @@ body{background:#FFFFFF}
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && fast.classList.contains('on')) closeFast(); });
 })();
 </script>
+
+
 
 </body>
 </html>
