@@ -1813,8 +1813,8 @@ body{background:#FFFFFF}
         arpGain=null, delay=null, fb=null, filter=null,
         playing=false, wanted=false, arpTimer=null, arpStep=0, chapter=0;
 
-    /* Two tracks. Which one carries the intro and which carries the site is
-       shuffled on every visit, so a repeat visitor hears a different pairing. */
+    /* Three tracks, shuffled every visit. One carries the intro; the site then
+       rotates through the rest so nothing loops long enough to grate. */
     var TRACKS=[
       { name:'Nightfall', wave:'triangle', arp:430, cut:1200, step:620,
         chords:[
@@ -1835,11 +1835,29 @@ body{background:#FFFFFF}
           [130.81,196.00,293.66,392.00],  /* C major 9    */
           [ 87.31,130.81,174.61,261.63],  /* F major      */
           [130.81,196.00,261.63,392.00]   /* C resolve    */
+        ]},
+      { name:'Undercurrent', wave:'sine', arp:560, cut:1050, step:460,
+        chords:[
+          [ 73.42,110.00,146.83,220.00],  /* D minor      */
+          [ 82.41,123.47,164.81,246.94],  /* E minor      */
+          [ 87.31,130.81,174.61,261.63],  /* F major      */
+          [ 98.00,146.83,196.00,293.66],  /* G major      */
+          [ 73.42,116.54,146.83,233.08],  /* D minor add  */
+          [110.00,164.81,220.00,329.63],  /* A minor      */
+          [ 73.42,110.00,164.81,220.00]   /* D sus        */
         ]}
     ];
-    var order = Math.random()<0.5 ? [0,1] : [1,0];
+    /* Fisher-Yates so all three orderings are possible */
+    var order=[0,1,2];
+    for(var _s=order.length-1;_s>0;_s--){
+      var _j=Math.floor(Math.random()*(_s+1)), _t=order[_s]; order[_s]=order[_j]; order[_j]=_t;
+    }
+    var orderPos = 0;
     var trackIdx = order[0];
     var CHORDS = TRACKS[trackIdx].chords;
+    var auto=false, autoBars=0, patIdx=0, rotTimer=null;
+    /* several arpeggio shapes so a single chord never sounds like one loop */
+    var PATS=[[0,2,1,3,2,0,3,1],[0,3,2,1,3,0,2,3],[1,2,3,2,0,1,2,0],[0,1,2,3,2,1,0,2],[2,0,3,1,2,3,0,1]];
 
     function build(){
       if(ac) return true;
@@ -1890,11 +1908,34 @@ body{background:#FFFFFF}
 
     function tick(){
       var ch=CHORDS[chapter]||CHORDS[0];
-      var pat=[0,2,1,3,2,0,3,1];
-      var n=ch[pat[arpStep%pat.length]]*2;
-      if(arpStep%2===0 || Math.random()<0.6) note(n, 1.1, 0.45);
-      if(arpStep%8===0) note(ch[0]/2, 1.6, 0.5);   /* soft pulse on the one */
+      if(arpStep%32===0) patIdx=(patIdx+1)%PATS.length;      /* new shape every 32 steps */
+      var pat=PATS[patIdx];
+      var oct = (Math.floor(arpStep/24)%2) ? 4 : 2;          /* lift an octave, then drop */
+      var n=ch[pat[arpStep%pat.length]]*oct;
+      /* leave gaps so it breathes rather than chatters */
+      if(arpStep%2===0 || Math.random()<0.45) note(n, 1.1, 0.42);
+      if(arpStep%16===7) note(ch[3]*2, 1.8, 0.28);           /* occasional high answer */
+      if(arpStep%8===0) note(ch[0]/2, 1.6, 0.5);             /* soft pulse on the one */
       arpStep++;
+      /* once the intro is over the harmony moves on its own */
+      if(auto && ++autoBars>=16){ autoBars=0; setChord((chapter+1)%CHORDS.length); }
+    }
+
+    /* swap to another track without a hard cut */
+    function rotateTrack(i){
+      if(!ac || i===trackIdx) return;
+      fade(0.05,0.9);
+      setTimeout(function(){
+        trackIdx=i; CHORDS=TRACKS[trackIdx].chords;
+        try{
+          filter.frequency.setTargetAtTime(TRACKS[trackIdx].cut, ac.currentTime, .6);
+          for(var k=0;k<padOsc.length;k++) padOsc[k].o.type = k%2 ? TRACKS[trackIdx].wave : 'sine';
+        }catch(e){}
+        if(arpTimer){ clearInterval(arpTimer); arpTimer=setInterval(tick,TRACKS[trackIdx].arp); }
+        chapter=0; arpStep=0; autoBars=0; patIdx=0;
+        setChord(0);
+        fade(0.26,2.2);
+      },950);
     }
 
     function fade(to,secs){
@@ -1921,21 +1962,17 @@ body{background:#FFFFFF}
       /* the site gets the other track, faded across so nothing jars */
       ambient:function(){
         if(!wanted) return;
-        var next=order[1];
-        if(next!==trackIdx && ac){
-          fade(0.06,0.9);
-          setTimeout(function(){
-            trackIdx=next; CHORDS=TRACKS[trackIdx].chords;
-            try{
-              filter.frequency.setTargetAtTime(TRACKS[trackIdx].cut, ac.currentTime, .6);
-              for(var k=0;k<padOsc.length;k++) padOsc[k].o.type = k%2 ? TRACKS[trackIdx].wave : 'sine';
-            }catch(e){}
-            if(arpTimer){ clearInterval(arpTimer); arpTimer=setInterval(tick,TRACKS[trackIdx].arp); }
-            chapter=0; arpStep=0;
-            setChord(0);
-            fade(0.28,2.2);
-          },950);
-        } else fade(0.28,2.5);
+        auto=true;                       /* harmony now moves by itself */
+        orderPos=1;
+        rotateTrack(order[1]);
+        if(!rotTimer){
+          rotTimer=setInterval(function(){
+            if(!wanted) return;
+            orderPos=(orderPos+1)%order.length;
+            rotateTrack(order[orderPos]);
+          }, 115000);                    /* a fresh track just under every two minutes */
+        }
+        setTimeout(function(){ fade(0.26,2.2); },1000);
       },
       trackName:function(){ return TRACKS[trackIdx].name; },
       /* mobile browsers suspend the context whenever the tab/app loses focus.
