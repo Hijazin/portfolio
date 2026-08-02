@@ -1351,30 +1351,40 @@ body{background:#FFFFFF}
      `local` points at a real file. `start` = seconds to skip in.
      ========================================================================= */
   var INTRO_CHAPTERS = [
-    { label:'The Crowd',   num:'2021 — The Crowd',   dur:4000,
+    { label:'The Crowd',   num:'2021 — The Crowd',   dur:3400,
       title:'I Built<br>A Crowd',
       line:"I led the work that turned Desert Fox Racing into the number one esports brand in the Middle East, and we hosted TGR Esports MENA four years running. Half a million people online came with us.",
       scene:'crowd' },
 
-    { label:'The Founder', num:'2022 — The Founder', dur:4000,
+    { label:'The Founder', num:'2022 — The Founder', dur:3400,
       title:'Then I Built<br>My Own',
       line:"Then I founded Boatify Rentals and ran it end to end. 150+ boats onboarded, 1,500+ clients, and a team launching new services across Jordan and the UAE.",
       scene:'founder' },
 
-    { label:'The Launch',  num:'2023 — The Launch',  dur:4000,
+    { label:'The Launch',  num:'2023 — The Launch',  dur:3400,
       title:'I Put Brands<br>On The Road',
       line:"I led cross-functional teams to launch BYD and JAC Motors in Qatar, managing timelines, budgets and agencies. Before that, 40,000+ people through the Toyota GR86 launch in Jordan.",
       scene:'launch' },
 
-    { label:'The Network', num:'2025 — The Network', dur:4200,
+    { label:'The Network', num:'2025 — The Network', dur:3600,
       title:'Now I Build<br>For 10,000',
       line:"Marketing Manager at Talabat. I built a rider engagement function from nothing — team structures, frameworks and platforms for 10,000+ frontline workers. Monthly reach went from low thousands to over 2 million.",
       scene:'network' },
 
-    { label:'The Builder', num:'Today — The Builder', dur:5200,
+    { label:'The Builder', num:'Today — The Builder', dur:4400,
       title:'And I Learned<br>To Build',
       line:"And I learned to build the things I used to brief. Retainly, Rider Hub and Raha are live products — so I can prototype an idea with the team rather than just describe it, and brief engineers in their own language.",
-      scene:'builder' }
+      scene:'builder' },
+
+    { label:'The Method',  num:'The Method \u2014 How I Build', dur:4600,
+      title:'I Don\u2019t Use<br>One AI',
+      line:"No single model is good at everything, so I stopped asking one to be. One plans, another builds, a third tears it apart \u2014 and the work keeps passing between them until it survives its own critique.",
+      scene:'orchestra' },
+
+    { label:'The Proof',   num:'The Proof \u2014 What It Does', dur:5000,
+      title:'And It Ships<br>Real Work',
+      line:"AI that notices a customer drifting and writes the win-back. AI that designs inside the brand rules. AI that turns thousands of rider comments into a signal. Not demos \u2014 products people use every day.",
+      scene:'proof' }
   ];
 
   (function buildChapters(){
@@ -1438,10 +1448,100 @@ body{background:#FFFFFF}
     var w=im.naturalWidth*s, h=im.naturalHeight*s;
     x.drawImage(im, cx0-w/2, cy0-h/2, w, h);
   }
+  function rr(x,X,Y,W,H,R){
+    x.beginPath(); x.moveTo(X+R,Y); x.lineTo(X+W-R,Y); x.quadraticCurveTo(X+W,Y,X+W,Y+R);
+    x.lineTo(X+W,Y+H-R); x.quadraticCurveTo(X+W,Y+H,X+W-R,Y+H); x.lineTo(X+R,Y+H);
+    x.quadraticCurveTo(X,Y+H,X,Y+H-R); x.lineTo(X,Y+R); x.quadraticCurveTo(X,Y,X+R,Y); x.closePath();
+  }
   function grad(x,h,c1,c2){ var g=x.createLinearGradient(0,0,0,h); g.addColorStop(0,c1); g.addColorStop(1,c2); return g; }
   function num(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
 
   var SCENES = {
+
+    /* the method — several models passing work between them */
+    orchestra: function(x,w,h,t){
+      x.fillStyle=grad(x,h,'#F3F0FF','#FFFFFF'); x.fillRect(0,0,w,h);
+      var cxp=w*0.66, cyp=h*0.50, R=Math.min(w,h)*0.26;
+      var nodes=[
+        {a:-1.25, l:'PLAN'},   {a:-0.15, l:'BUILD'},
+        {a:1.05,  l:'REVIEW'}, {a:2.25,  l:'REFINE'}, {a:3.5, l:'SHIP'}
+      ];
+      nodes.forEach(function(n){ n.x=cxp+Math.cos(n.a+t*0.12)*R; n.y=cyp+Math.sin(n.a+t*0.12)*R*0.82; });
+
+      /* links */
+      for(var i=0;i<nodes.length;i++){
+        for(var j=i+1;j<nodes.length;j++){
+          x.beginPath(); x.moveTo(nodes[i].x,nodes[i].y); x.lineTo(nodes[j].x,nodes[j].y);
+          x.strokeStyle='rgba(107,33,240,'+(j===i+1?0.28:0.09)+')'; x.lineWidth=j===i+1?1.6:1; x.stroke();
+        }
+      }
+      /* packets travelling the ring — the work being handed on */
+      for(var p=0;p<nodes.length;p++){
+        var a=nodes[p], b=nodes[(p+1)%nodes.length];
+        var pr=((t*0.5+p*0.2)%1);
+        var px0=a.x+(b.x-a.x)*pr, py0=a.y+(b.y-a.y)*pr;
+        var g=x.createRadialGradient(px0,py0,0,px0,py0,11);
+        g.addColorStop(0,'rgba(255,45,142,.95)'); g.addColorStop(1,'rgba(255,45,142,0)');
+        x.fillStyle=g; x.beginPath(); x.arc(px0,py0,11,0,6.283); x.fill();
+        x.fillStyle='#FF2D8E'; x.beginPath(); x.arc(px0,py0,3,0,6.283); x.fill();
+      }
+      /* nodes */
+      nodes.forEach(function(n,i){
+        var pulse=0.5+Math.sin(t*2.2+i)*0.5;
+        var rg=x.createRadialGradient(n.x,n.y,0,n.x,n.y,30);
+        rg.addColorStop(0,'rgba(107,33,240,'+(0.22+pulse*0.18)+')'); rg.addColorStop(1,'rgba(107,33,240,0)');
+        x.fillStyle=rg; x.beginPath(); x.arc(n.x,n.y,30,0,6.283); x.fill();
+        x.fillStyle='#FFFFFF'; x.beginPath(); x.arc(n.x,n.y,13,0,6.283); x.fill();
+        x.strokeStyle='rgba(107,33,240,'+(0.55+pulse*0.4)+')'; x.lineWidth=2;
+        x.beginPath(); x.arc(n.x,n.y,13,0,6.283); x.stroke();
+        x.font='600 '+Math.round(h*0.028)+'px Rajdhani, sans-serif';
+        x.fillStyle='rgba(10,10,12,.6)'; x.textAlign='center';
+        x.fillText(n.l, n.x, n.y+30);
+      });
+      x.textAlign='left';
+      x.font='700 '+Math.round(h*0.15)+'px Rajdhani, sans-serif';
+      x.fillStyle='rgba(10,10,12,.08)'; x.textAlign='right';
+      x.fillText('ORCHESTRATED', w-30, h*0.20);
+      x.textAlign='left';
+    },
+
+    /* the proof — what the AI actually does, lighting up in turn */
+    proof: function(x,w,h,t){
+      x.fillStyle=grad(x,h,'#F0F6FF','#FFFFFF'); x.fillRect(0,0,w,h);
+      var items=[
+        {v:'NOTICES CHURN',  p:'Retainly',      c:'#6B21F0'},
+        {v:'DESIGNS ON-BRAND',p:'Design Genie', c:'#0052FF'},
+        {v:'READS SENTIMENT',p:'Rider Pulse',   c:'#FF2D8E'},
+        {v:'ANSWERS AT 3AM', p:'Nurox',         c:'#FF6A2B'}
+      ];
+      var live=Math.floor(t*1.1)%items.length;
+      var bx=w*0.44, bw=w*0.5, bh=h*0.13, gap=h*0.045;
+      var top=h*0.5-((bh*items.length+gap*(items.length-1))/2);
+      items.forEach(function(it,i){
+        var y=top+i*(bh+gap), on=(i===live);
+        var glow=on?(0.5+Math.sin(t*6)*0.2):0;
+        x.save();
+        x.shadowColor=on?it.c:'rgba(0,0,0,0)'; x.shadowBlur=on?26:0; x.shadowOffsetY=on?8:0;
+        x.fillStyle= on? 'rgba(255,255,255,1)' : 'rgba(255,255,255,.75)';
+        rr(x,bx,y,bw,bh,14); x.fill();
+        x.restore();
+        x.strokeStyle= on? it.c : 'rgba(10,10,12,.10)'; x.lineWidth= on?2:1;
+        rr(x,bx,y,bw,bh,14); x.stroke();
+        /* status dot */
+        x.fillStyle=on?it.c:'rgba(10,10,12,.16)';
+        x.beginPath(); x.arc(bx+22,y+bh/2,on?6+glow*2:5,0,6.283); x.fill();
+        x.font='700 '+Math.round(h*0.042)+'px Rajdhani, sans-serif';
+        x.fillStyle= on? '#0A0A0C' : 'rgba(10,10,12,.45)';
+        x.fillText(it.v, bx+42, y+bh*0.46);
+        x.font='600 '+Math.round(h*0.028)+'px Rajdhani, sans-serif';
+        x.fillStyle= on? it.c : 'rgba(10,10,12,.3)';
+        x.fillText(it.p, bx+42, y+bh*0.78);
+      });
+      x.font='700 '+Math.round(h*0.16)+'px Rajdhani, sans-serif';
+      x.fillStyle='rgba(10,10,12,.07)'; x.textAlign='right';
+      x.fillText('IN PRODUCTION', w-30, h*0.16);
+      x.textAlign='left';
+    },
 
     /* 2021 — esports arena, half a million people */
     crowd: function(x,w,h,t){
