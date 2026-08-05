@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============ TOKENS ============ */
 :root{
@@ -131,6 +132,20 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 @keyframes popIn{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
 @keyframes ringDraw{from{stroke-dashoffset:220}}
 @keyframes confettiFall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(120px) rotate(280deg);opacity:0}}
+
+/* ============ LANGUAGE SWITCH ============ */
+.langsw{position:absolute;top:24px;right:18px;z-index:55;display:flex;gap:2px;align-items:center;padding:3px;border-radius:100px;border:1px solid rgba(255,255,255,.28);background:rgba(20,13,5,.42);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;font-family:var(--body)}
+.langsw span{font-size:11px;font-weight:800;letter-spacing:.04em;color:rgba(255,255,255,.65);padding:5px 9px;border-radius:100px;transition:all .2s}
+.langsw span.on{background:#F3EADB;color:#221A10}
+.status>span:last-child{display:none}
+
+/* ============ RTL (Arabic) ============ */
+[dir="rtl"]{--disp:'IBM Plex Sans Arabic',sans-serif;--body:'IBM Plex Sans Arabic',sans-serif;--hand:'IBM Plex Sans Arabic',sans-serif}
+[dir="rtl"] .h-display,[dir="rtl"] .kicker,[dir="rtl"] b,[dir="rtl"] .onb-copy h1,[dir="rtl"] .wcard-top b{letter-spacing:0}
+[dir="rtl"] .onb-copy h1{font-size:40px}
+[dir="rtl"] .onb-title{font-size:29px}
+[dir="rtl"] .biz-story .hand{font-size:15px;font-weight:700}
+[dir="rtl"] .pp-cover-inner b{letter-spacing:0}
 
 /* ============ MOBILE: the phone IS the phone ============ */
 @media (max-width:760px){
@@ -1304,6 +1319,8 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 
 <div class="toast" id="toast"><span id="toastIc">🎉</span><span id="toastMsg">Welcome to Dawwar</span><span class="xp" id="toastXp">+40 XP</span></div>
 
+<button class="langsw" id="langSw" title="Language"><span id="lsEn" class="on">EN</span><span id="lsAr">AR</span></button>
+
 <style>
 .rs-head{text-align:center}
 .rs-qr{display:flex;flex-direction:column;align-items:center;gap:10px;margin:20px 0 6px}
@@ -1443,6 +1460,212 @@ veil.addEventListener('click', closeSheet);
 
 /* ---------- initial pbar animation for first screen ---------- */
 setTimeout(() => document.querySelectorAll('#onb1 .pbar > i').forEach(b => b.style.width = b.dataset.w || '0%'), 300);
+
+/* ============================================================
+   i18n — EN / AR (Jordanian Arabic), full RTL
+   ============================================================ */
+const AR = {
+// onboarding 1
+'Your city,':'مدينتك،','collected.':'اجمعها.',
+'Every coffee, every haircut, every late breakfast in Amman counts for something now. Collect stamps, unlock the city.':'كل قهوة، كل قصّة شعر، وكل فطور متأخر في عمّان صار إله قيمة. اجمع الطوابع وافتح المدينة.',
+'Start exploring':'ابدأ الاستكشاف','I already have an account':'عندي حساب',
+// onboarding 2
+'What does a good':'شو شكل اليوم','day look like?':'الحلو بالنسبة إلك؟',
+'Pick a few. The city reshapes itself around you.':'اختار كم وحدة. المدينة بتترتب حواليك.',
+'☕️ Specialty coffee':'☕️ قهوة مختصة','🍔 Burgers':'🍔 برجر','🥞 Slow breakfasts':'🥞 فطور على مهل','🥙 Street food':'🥙 أكل شوارع','🍰 Dessert runs':'🍰 حلويات','🏋️ Training':'🏋️ تمرين','💈 Fresh cuts':'💈 حلاقة','🌸 Flowers':'🌸 ورد','📚 Study spots':'📚 أماكن دراسة','🌙 Late nights':'🌙 سهرات','🎨 Galleries':'🎨 معارض','🫖 Tea houses':'🫖 شاي',
+'Continue':'كمّل',
+// onboarding 3
+'Nothing to scan.':'بدون مسح.','Nothing to remember.':'بدون ما تتذكر إشي.',
+'Dawwar listens to places you already pay at.':'دوّار بيتعرّف على الأماكن اللي أصلاً بتدفع فيها.',
+'Live your day as usual':'عيش يومك عادي','Buy the coffee. Get the haircut. Pay however you pay.':'اشرب قهوتك، احلق شعرك، وادفع زي ما بتدفع.',
+'The stamp lands on its own':'الطابع بينزل لحاله','Participating places recognise you at the till — the visit appears in your passport in seconds.':'المحلات المشاركة بتتعرّف عليك عند الكاشير — والزيارة بتظهر بجوازك خلال ثواني.',
+'The city opens up':'المدينة بتنفتح إلك','XP, badges, collections and each place\u0027s own rewards — all stacking quietly in your pocket.':'نقاط خبرة، أوسمة، مجموعات، ومكافآت كل محل لحاله — كلها بتتجمع بهدوء بجيبتك.',
+'Phone number':'رقم الهاتف','Location while exploring':'الموقع أثناء الاستكشاف',
+'Your visits are private by default. You choose what friends see.':'زياراتك خاصة تلقائياً. إنت بتقرر شو بيشوفوا أصحابك.',
+'Yalla, let\u0027s go':'يلا نبدأ',
+// home
+'Tuesday · Weibdeh':'الثلاثاء · اللويبدة','Sabah el kheir, Majd':'صباح الخير يا مجد',
+'City Insider':'خبير المدينة','2,840 / 3,200 XP — 360 to Level 8':'2,840 / 3,200 نقطة — باقي 360 للمستوى 8',
+'Your morning ritual':'طقسك الصباحي','200 m':'200 م','Qamar Roasters':'محمصة قمر',
+'One stamp away from a free pour-over. Sabah would be proud.':'طابع واحد وبتاخد V60 ببلاش. صباح الخير فعلاً.',
+'Today\u0027s dawra · ends 11:59 pm':'دورة اليوم · بتخلص 11:59 مساءً',
+'Order something you\u0027ve never tried at a place you already love':'اطلب إشي عمرك ما جربته من مكان أصلاً بتحبه',
+'Layla and Omar are in · 2,114 explorers today':'ليلى وعمر مشتركين · 2,114 مستكشف اليوم','XP':'نقطة',
+'Trending in Amman':'الترند في عمّان','This week':'هذا الأسبوع',
+'Sitti\u0027s Kitchen':'مطبخ ستي','Levantine breakfast · Jabal Amman':'فطور شامي · جبل عمّان','▲ 214 visits this week':'▲ 214 زيارة هالأسبوع',
+'Bunduq Burger':'بندق برجر','Smash burgers · Sweifieh':'سماش برجر · الصويفية','▲ 187 visits':'▲ 187 زيارة',
+'Fern & Fig':'فيرن آند فيغ','Brunch · Abdoun':'برانش · عبدون','▲ 156 visits':'▲ 156 زيارة',
+'Friends were here':'أصحابك كانوا هون','See all':'عرض الكل',
+'Layla finished':'ليلى خلّصت','Coffee Hunter':'صيّاد القهوة','Her 20th café was Maqha al-Fann, last night':'مقهاها العشرين كان مقهى الفن، مبارح بالليل',
+'Omar stamped Dar al-Toot':'عمر ختم دار التوت','"the tahini swirl bun. trust me." · Weibdeh':'«كعكة الطحينية. صدقني.» · اللويبدة',
+'Rania started Summer Passport':'رانيا بلّشت جواز الصيف','3 friends are in this season\u0027s event':'3 من أصحابك بفعالية هالموسم',
+'2h':'2س','5h':'5س','1d':'1ي',
+'Ends soon':'بتخلص قريباً','Rewards':'المكافآت',
+'⏳ 2 days':'⏳ يومين','Halab Sweets':'حلويات حلب','Double stamps on knafeh, all week':'طوابع مضاعفة على الكنافة طول الأسبوع',
+'⏳ 5 hrs':'⏳ 5 ساعات','Maqha al-Fann':'مقهى الفن','Free mint lemonade after 8 pm today':'ليمون بنعنع ببلاش بعد 8 المسا اليوم',
+'⏳ Fri':'⏳ الجمعة','The Fade Room':'غرفة الفيد','Visit #5 unlocks a hot-towel shave':'الزيارة الخامسة بتفتح حلاقة بالمنشفة السخنة',
+'New in Weibdeh':'جديد في اللويبدة','Map':'الخريطة','Opened 9 days ago':'فتح من 9 أيام','Warsheh — Coffee & Print':'ورشة — قهوة وطباعة',
+'A risograph studio that serves flat whites. First stamp earns the':'ستوديو ريزوغراف بيقدم فلات وايت. أول طابع بيعطيك وسام','Early Believer':'المؤمن الأول','badge.':'.',
+// city
+'The City':'المدينة','Places, cravings, neighbourhoods…':'أماكن، مزاجات، أحياء…',
+'All of Amman':'كل عمّان','Weibdeh':'اللويبدة','Jabal Amman':'جبل عمّان','Al-Balad':'البلد','Abdoun':'عبدون','Sweifieh':'الصويفية',
+'WEIBDEH':'اللويبدة','JABAL AMMAN':'جبل عمّان','AL-BALAD':'البلد','4 unstamped places within 500 m':'4 أماكن بدون طابع ضمن 500 م',
+'Curated dawras':'دورات مختارة','All routes':'كل المسارات',
+'5 stops · ~2 km':'5 محطات · ~2 كم','Weibdeh on foot':'اللويبدة مشي','Gallery → coffee → print shop → sunset stairs':'معرض ← قهوة ← مطبعة ← درج الغروب',
+'4 stops · night':'4 محطات · ليلي','Balad after dark':'البلد بالليل','Kunafa, tea on the stairs, old vinyl':'كنافة، شاي عالدرج، فينيل قديم',
+'3 stops · slow':'3 محطات · على مهل','Study-day circuit':'جولة يوم الدراسة','Quiet corners with serious espresso':'زوايا هادية وإسبريسو محترم',
+'Hidden gems':'جواهر مخفية','Why these?':'ليش هدول؟','Dar al-Toot':'دار التوت','💎 Gem':'💎 جوهرة',
+'Third-generation bakery. Only 41 Dawwar members have its stamp.':'مخبز جيل ثالث. بس 41 عضو بدوّار معهم طابعه.',
+'650 m':'650 م','+35 XP first visit':'+35 نقطة أول زيارة','Warda Flower Studio':'ستوديو وردة',
+'Buy a Friday bouquet, feed the':'اشتري بوكيه الجمعة وكمّل مجموعة','Support Local':'ادعم المحلي','collection.':'.',
+'1.2 km':'1.2 كم','+35 XP':'+35 نقطة','Iron District':'آيرون ديستريكت','New':'جديد',
+'First gym on Dawwar. Ten visits in a month unlocks':'أول جيم على دوّار. 10 زيارات بالشهر بتفتح','Healthy Week':'أسبوع صحي','×2.':'×2.','3.1 km':'3.1 كم',
+// business
+'Specialty coffee · Weibdeh · Open till 11 pm':'قهوة مختصة · اللويبدة · مفتوح لـ 11 بالليل',
+'★ 4.8 · 312 reviews':'★ 4.8 · 312 تقييم','200 m away':'على بعد 200 م','Lively right now':'الجو حلو هلأ',
+'Your standing here':'مكانتك هون','Regular · 12 visits since March':'زبون دايم · 12 زيارة من آذار',
+'Next visit →':'الزيارة الجاي ←','free pour-over of the week':'V60 الأسبوع ببلاش','· Qamar\u0027s own reward, on them':'· مكافأة من قمر نفسها، على حسابهم',
+'In your Wallet':'بمحفظتك','The story':'القصة',
+'Roasting on Sharia\u0027 Baouniyya since 2019. Farah and Seif started with a 1-kg roaster on a balcony; the neighbourhood kept showing up. The single-origin Yirgacheffe is the thing —':'بيحمصوا بشارع الباعونية من 2019. فرح وسيف بلشوا بمحمصة كيلو عالبلكونة، والحارة ضلت تيجي. اليرغاشيف هو النجم —',
+'"ask for it as a pour-over"':'«اطلبه V60»',
+'Earn here':'اكسب هون','All':'الكل','This café counts · 14/20':'هالمقهى بينحسب · 14/20','Morning Person':'صباحي','5 visits before 9 am · 3/5':'5 زيارات قبل 9 الصبح · 3/5',
+'This week at Qamar':'هالأسبوع عند قمر','Cupping night — Thursday 7 pm':'ليلة تذوق — الخميس 7 المسا',
+'Taste three new Ethiopian lots. Free for anyone with 5+ stamps. 12 seats left.':'ذوق ثلاث محاصيل إثيوبية جديدة. ببلاش لأي حدا معه +5 طوابع. ضل 12 كرسي.',
+'Reserve a seat':'احجز كرسي','What people love':'شو الناس بتحب',
+'Flat white':'فلات وايت','ordered by 68% of regulars':'بيطلبه 68% من الزباين','V60 · Yirgacheffe':'V60 · يرغاشيف','the famous one':'المشهور','Pistachio croissant':'كرواسون فستق','sells out by 11':'بيخلص قبل 11',
+'From the neighbourhood':'من الحارة','312 reviews':'312 تقييم','Layla H.':'ليلى ح.','Coffee Hunter · Lv 9':'صيّاد القهوة · مستوى 9',
+'"The only place in Amman where the barista remembers your ratio. Stamp #20 for me — Coffee Hunter complete here."':'«المكان الوحيد بعمّان اللي الباريستا بيتذكر نسبتك. الطابع رقم 20 إلي — كملت صيّاد القهوة هون.»',
+'Omar K.':'عمر ك.','Weibdeh local · Lv 6':'ابن اللويبدة · مستوى 6','"Gets loud on Fridays but that\u0027s half the point."':'«بصير في دوشة يوم الجمعة، بس هاد نص الجو.»',
+'Today':'اليوم','Open · closes 11 pm':'مفتوح · بسكر 11 بالليل','Fri – Sat':'الجمعة – السبت','8 am – midnight':'8 الصبح – 12 بالليل','Sun – Thu':'الأحد – الخميس','7 am – 11 pm':'7 الصبح – 11 بالليل',
+// passport
+'Amman Edition · Vol. 1':'نسخة عمّان · المجلد 1','Passport':'الجواز','stamps':'طابع','MAJD HIJAZIN':'مجد حجازين',
+'Exploring since March 2026 · 4 districts':'بستكشف من آذار 2026 · 4 أحياء',
+'Weibdeh · 9 of 14 stamped':'اللويبدة · 9 من 14 مختومة','Complete the district →':'كمّل الحي ←','Weibdeh Wanderer':'جوّاب اللويبدة','trophy + Qamar partner reward':'كأس + مكافأة شراكة من قمر',
+'Qamar':'قمر','Warsheh':'ورشة','Gallery 14':'جاليري 14','Shai w Nana':'شاي ونعنع','Warda':'وردة','Forno 7':'فورنو 7','Abu Said':'أبو سعيد','Sukkar':'سكّر','Beit Sitti':'بيت ستي','Nol Books':'كتب نول','Zajal':'زجل',
+'Album pages':'صفحات الألبوم','Collections':'المجموعات','Specialty Coffee of Amman':'القهوة المختصة بعمّان','14 of 20 pages inked':'14 من 20 صفحة مختومة',
+'Ramadan Nights \u002726':'ليالي رمضان ٢٦','Sealed · reopens next Ramadan · 8/8 ✓':'مختوم · بيفتح رمضان الجاي · 8/8 ✓',
+// collections
+'In progress':'شغّال عليها',
+'Stamp 20 cafés across Amman. Six left — and two of them are within a ten-minute walk of you right now.':'اختم 20 مقهى بعمّان. ضل 6 — واثنين منهم على بعد 10 دقايق مشي منك هلأ.',
+'🏆 Unlocks: gold profile frame · free bag of beans from any partner roaster':'🏆 بتفتح: إطار ذهبي لبروفايلك · كيس بن ببلاش من أي محمصة شريكة',
+'Open albums':'ألبومات مفتوحة','Burger Explorer':'مستكشف البرجر','6 of 12 joints':'6 من 12 مطعم','Breakfast Club':'نادي الفطور','5 of 8 mornings':'5 من 8 صبحيات',
+'9 of 15 independents':'9 من 15 محل مستقل','Night Owl':'بومة الليل','2 of 10 after-10pm':'2 من 10 بعد 10 بالليل','Sweet Tooth':'سن الحلو','7 of 10 dessert spots':'7 من 10 محلات حلو','Weekend Warrior':'بطل الويكند','3 of 6 day-trips':'3 من 6 رحلات',
+'Sealed albums':'ألبومات مختومة','2 complete':'2 مكتملة','Ramadan Explorer \u002726':'مستكشف رمضان ٢٦','8/8 · sealed April 2026 — trophy on your shelf':'8/8 · ختم نيسان 2026 — الكأس على رفّك',
+'Christmas Markets \u002725':'أسواق الميلاد ٢٥','5/5 · sealed December 2025':'5/5 · ختم كانون الأول 2025',
+// achievements
+'Achievements':'الإنجازات','So close':'قربت!','Two more sunrise coffees. Qamar opens at 7 — tomorrow counts.':'قهوتين شروق كمان. قمر بيفتح 7 — بكرة بتنحسب.',
+'Explorer':'استكشاف','Taste':'ذوق','Social':'اجتماعي','Seasonal':'موسمي',
+'First Sip':'أول رشفة','Common · Mar 12':'عادي · 12 آذار','Dawwir!':'دوّر!','Rare · May 3':'نادر · 3 أيار','Week One Streak':'ستريك أول أسبوع','Common · Mar 19':'عادي · 19 آذار',
+'Ramadan Explorer':'مستكشف رمضان','Seasonal · Apr 20':'موسمي · 20 نيسان','Epic · only 41 have it':'أسطوري · بس 41 معهم',
+'Butter Believer':'مؤمن بالزبدة','Common · Jun 2':'عادي · 2 حزيران','Birthday Round':'جولة عيد الميلاد','Rare · Jul 11':'نادر · 11 تموز',
+'Brought a Friend':'جاب صاحبه','Rare · Jul 28':'نادر · 28 تموز','3/5 sunrise visits':'3/5 زيارات شروق','2/10 late visits':'2/10 زيارات ليلية',
+'All Eight Circles':'كل الدواوير الثمانية','Visit every dawwar':'زور كل دوّار','6/12 joints':'6/12 مطعم','14/20 cafés':'14/20 مقهى','Secret · keep exploring':'سري · ضل استكشف',
+// rewards
+'Every reward is the business\u0027s own. Dawwar just keeps score.':'كل مكافأة من المحل نفسه. دوّار بس بيحسب.',
+'Ready to redeem':'جاهزة للاستخدام','Dar al-Toot · Weibdeh':'دار التوت · اللويبدة','Free tahini swirl bun':'كعكة طحينية ببلاش',
+'Earned with 8 visits · never expires':'كسبتها بـ 8 زيارات · ما بتنتهي','Redeem':'استخدم',
+'Sitti\u0027s Kitchen · Jabal Amman':'مطبخ ستي · جبل عمّان','Breakfast for two — 25% off':'فطور لشخصين — خصم 25%','Completed Breakfast Club tier 1':'كملت المستوى الأول من نادي الفطور',
+'Almost there':'قربت توصل','Qamar Roasters — free pour-over':'محمصة قمر — V60 ببلاش','9 of 10 stamps · 200 m away right now':'9 من 10 طوابع · على بعد 200 م هلأ',
+'visit left':'زيارة باقية','visits left':'زيارات باقية','The Fade Room — hot-towel shave':'غرفة الفيد — حلاقة بالمنشفة السخنة','3 of 5 cuts':'3 من 5 قصّات',
+'Iron District — free PT session':'آيرون ديستريكت — جلسة تدريب ببلاش','6 of 10 check-ins this month':'6 من 10 تسجيلات هالشهر',
+'Because you\u0027re Level 7':'لأنك مستوى 7','Status perks':'مزايا المستوى','Early access: Warsheh launch party':'دخول مبكر: حفلة افتتاح ورشة',
+'Insider-level members can RSVP before it opens to everyone Friday.':'أعضاء مستوى خبير بيقدروا يحجزوا قبل ما تفتح للكل يوم الجمعة.','RSVP':'احجز',
+// wallet
+'8 loyalty cards':'8 بطاقات ولاء','Wallet':'المحفظة',
+'Each card belongs to the business — their design, their rules, their rewards.':'كل بطاقة للمحل نفسه — تصميمهم، قوانينهم، مكافآتهم.',
+'QAMAR ROASTERS':'محمصة قمر','REGULAR':'زبون دايم','☕️ 9 / 10 — free pour-over next visit':'☕️ 9 / 10 — V60 ببلاش الزيارة الجاي','MAJD H. · member since MAR 26':'مجد ح. · عضو من آذار 26',
+'SITTI\u0027S KITCHEN':'مطبخ ستي','FRIEND OF THE HOUSE':'صديق البيت','🥞 Breakfast for two — 25% ready':'🥞 فطور لشخصين — 25% جاهز','5 visits · JABAL AMMAN':'5 زيارات · جبل عمّان',
+'DAR AL-TOOT':'دار التوت','SWEET REGULAR':'زبون الحلو','🥐 1 reward waiting — tahini swirl bun':'🥐 مكافأة مستنياك — كعكة الطحينية','8 visits · WEIBDEH':'8 زيارات · اللويبدة',
+'THE FADE ROOM':'غرفة الفيد','CHAIR №3':'كرسي رقم 3','💈 3 / 5 — hot-towel shave at five':'💈 3 / 5 — حلاقة بالمنشفة عند الخامسة','NEXT CUT: BOOKED FRI 6PM':'القصّة الجاي: محجوزة الجمعة 6',
+'IRON DISTRICT':'آيرون ديستريكت','MEMBER':'عضو','🏋️ 6 / 10 check-ins this month':'🏋️ 6 / 10 تسجيلات هالشهر','HEALTHY WEEK ×1 DONE':'أسبوع صحي ×1 ✓',
+'Tap a card to open it · your code works at the till even offline':'اكبس على البطاقة لتفتحها · رمزك بيشتغل عند الكاشير حتى بدون نت',
+// profile
+'Majd Hijazin':'مجد حجازين','City Insider · Weibdeh chapter':'خبير المدينة · فصل اللويبدة','360 XP to Lv 8':'باقي 360 نقطة للمستوى 8',
+'visits':'زيارة','places':'مكان','districts':'أحياء','badges':'وسام',
+'July recap is ready':'ملخص تموز جاهز','Your month in Amman':'شهرك في عمّان',
+'19 visits · 3 new places · top spot: Qamar (7×) · you out-explored 84% of Weibdeh':'19 زيارة · 3 أماكن جديدة · الأول: قمر (7×) · استكشفت أكثر من 84% من أهل اللويبدة',
+'Watch & share →':'شاهد وشارك ←','Trophy shelf':'رف الكؤوس','All badges':'كل الأوسمة',
+'Ramadan \u002726':'رمضان ٢٦','Markets \u002725':'الأسواق ٢٥','Summer \u002726':'صيف ٢٦',
+'Your places':'أماكنك','Your #1 · 12 visits':'رقم 1 عندك · 12 زيارة','Friday ritual · 5 visits':'طقس الجمعة · 5 زيارات',
+'Share profile card':'شارك بطاقة بروفايلك','Invite friends · both get +200 XP':'اعزم أصحابك · كل واحد بياخد +200 نقطة',
+// seasonal
+'Ends in 26 days':'بتخلص بعد 26 يوم','SEASON 02 · SUMMER 2026':'الموسم 02 · صيف 2026','Summer Passport':'جواز الصيف',
+'One city, 40 nights. Iced drinks, rooftop plans, and a trophy that only this summer can give you.':'مدينة وحدة، 40 ليلة. مشروبات مثلجة، سهرات سطوح، وكأس ما بيعطيك ياه غير هالصيف.',
+'Your season':'موسمك','Tier 2 of 4 · Rooftop Regular':'المرحلة 2 من 4 · زبون السطوح',
+'Iced':'مثلج','Rooftop':'سطوح','Wanderer':'جوّاب','Legend':'أسطورة',
+'12 of 26 summer stamps · finish Tier 3 for the Amman Rooftops partner pass':'12 من 26 طابع صيفي · خلص المرحلة 3 لتاخد بطاقة سطوح عمّان',
+'Season challenges':'تحديات الموسم','Iced Week':'أسبوع المثلج','5 different iced drinks, 5 different cafés · 3/5':'5 مشروبات مثلجة مختلفة من 5 مقاهي · 3/5',
+'Layali Amman':'ليالي عمّان','3 late-night spots after 10 pm · 1/3':'3 أماكن بعد 10 بالليل · 1/3',
+'Sponsored · Watermelon Week by Halab Sweets':'برعاية · أسبوع البطيخ من حلويات حلب','Taste of the season':'طعم الموسم','Any watermelon special counts, city-wide · 0/2':'أي سبيشل بطيخ بينحسب، بكل المدينة · 0/2',
+'Friends this season':'أصحابك هالموسم','Layla':'ليلى','19 summer stamps':'19 طابع صيفي','You':'إنت','12 summer stamps':'12 طابع صيفي','Omar':'عمر','11 summer stamps':'11 طابع صيفي',
+'Friendly race · resets in 26 days · no one loses anything':'سباق ودّي · بينعاد بعد 26 يوم · ما حدا بيخسر إشي',
+// notifications
+'Notifications':'الإشعارات','Mark all read':'عيّن الكل كمقروء',
+'One stamp from your free pour-over':'طابع واحد عن الـ V60 المجاني','Qamar Roasters · you\u0027re 200 m away, they close at 11':'محمصة قمر · إنت على بعد 200 م، بسكروا الساعة 11','20 min ago':'قبل 20 دقيقة',
+'Layla completed Coffee Hunter':'ليلى كملت صيّاد القهوة','Send her a 👏 — or race her to Burger Explorer':'ابعتلها 👏 — أو سابقها على مستكشف البرجر','2 h ago':'قبل ساعتين',
+'Watermelon Week started':'أسبوع البطيخ بلّش','Halab Sweets sponsors this one · +100 XP, ends Sunday':'برعاية حلويات حلب · +100 نقطة، بيخلص الأحد','9 h ago':'قبل 9 ساعات',
+'Sitti\u0027s Kitchen remembered your birthday month':'مطبخ ستي متذكرين شهر عيد ميلادك','A table gift is loaded on your card for any visit in August':'في هدية طاولة على بطاقتك لأي زيارة بآب','Mon':'الاثنين',
+'New in Weibdeh: Warsheh':'جديد باللويبدة: ورشة','First 100 stamps earn Early Believer · 41 claimed':'أول 100 طابع بياخدوا المؤمن الأول · 41 انحجزوا','Sun':'الأحد',
+'Streak saved':'الستريك محفوظ','Rain day — we held your 12-day streak. Gentle mode is on.':'يوم شتا — حفظنالك ستريك الـ 12 يوم. الوضع اللطيف شغّال.','Sat':'السبت',
+// settings
+'Settings':'الإعدادات','+962 79 ··· ··42 · Weibdeh chapter':'+962 79 ··· ··42 · فصل اللويبدة','Edit':'تعديل','Privacy':'الخصوصية',
+'Friends can see my visits':'أصحابي بيشوفوا زياراتي','Off by default — you share moments, not movements':'مطفي تلقائياً — بتشارك لحظات، مش تحركات',
+'Show me on leaderboards':'اعرضني على لوحات الترتيب','Seasonal races with friends only':'سباقات موسمية مع الأصحاب بس',
+'Share achievements automatically':'شارك إنجازاتي تلقائياً','Ask every time instead':'اسألني كل مرة','Rhythm':'الإيقاع','Gentle mode':'الوضع اللطيف',
+'Streaks pause on quiet weeks. No guilt, ever.':'الستريك بيتوقف بالأسابيع الهادية. بدون ذنب، أبداً.',
+'Morning nudges':'تذكيرات الصبح','Only when a ritual reward is close':'بس لما تكون مكافأة طقسك قريبة','Weekend ideas':'أفكار الويكند','Thursday evening, once':'الخميس مساءً، مرة وحدة',
+'General':'عام','Language':'اللغة','Linked payment recognition':'ربط التعرف على الدفع','Active ✓':'شغّال ✓','Help & about':'مساعدة وحول','Sign out':'تسجيل خروج',
+'Dawwar is free for explorers, always. Businesses run their own rewards through Retainly.':'دوّار مجاني للمستكشفين، دايماً. المحلات بتدير مكافآتها عبر ريتينلي.',
+// tabbar + sheet
+'City':'المدينة',
+'Show this at the counter. The team taps once on their Retainly till — done. Valid any time, it\u0027s yours.':'فرجي هاد عند الكاشير. الفريق بيكبس كبسة وحدة على نظامهم — خلص. صالح بأي وقت، إلك.',
+'Done':'تم',
+// toasts
+'Ahlan, Majd — Amman is yours':'أهلاً مجد — عمّان صارت إلك','+40 XP':'+40 نقطة',
+'Maqha al-Fann — stamp #24 collected':'مقهى الفن — الطابع رقم 24','+25 XP':'+25 نقطة',
+'Enjoy it — say hi to the Toot team':'صحتين — سلملنا على فريق التوت'
+};
+
+let lang = 'en';
+const I18N_NODES = [];
+(function collect(){
+  const shell = document.getElementById('shell');
+  const walker = document.createTreeWalker(shell, NodeFilter.SHOW_TEXT, {
+    acceptNode(n){
+      const p = n.parentElement;
+      if (!p || p.closest('style,script')) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  let n;
+  while ((n = walker.nextNode())) {
+    const key = n.textContent.replace(/\s+/g,' ').trim();
+    if (key && Object.prototype.hasOwnProperty.call(AR, key)) {
+      const lead = (n.textContent.match(/^\s*/) || [''])[0];
+      const trail = (n.textContent.match(/\s*$/) || [''])[0];
+      I18N_NODES.push({ node: n, en: n.textContent, ar: lead + AR[key] + trail });
+    }
+  }
+})();
+function setLang(l){
+  lang = l;
+  document.getElementById('shell').setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+  I18N_NODES.forEach(o => { o.node.textContent = l === 'ar' ? o.ar : o.en; });
+  document.getElementById('lsEn').classList.toggle('on', l === 'en');
+  document.getElementById('lsAr').classList.toggle('on', l === 'ar');
+  try { localStorage.setItem('dawwar-lang', l); } catch(e) {}
+}
+document.getElementById('langSw').addEventListener('click', e => {
+  e.stopPropagation();
+  setLang(lang === 'en' ? 'ar' : 'en');
+});
+// translate toasts too
+const _toast = toast;
+toast = function(ic, msg, xp){
+  if (lang === 'ar') { msg = AR[msg] || msg; xp = AR[xp] || xp; }
+  _toast(ic, msg, xp);
+};
+try { if (localStorage.getItem('dawwar-lang') === 'ar') setLang('ar'); } catch(e) {}
 </script>
 </body>
 </html>
