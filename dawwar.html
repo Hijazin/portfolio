@@ -236,7 +236,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 <section class="scr" id="onb2">
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
-    <div class="onb-dots"><i class="on"></i><i class="on"></i><i></i></div>
+    <div class="onb-dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
     <h1 class="h-display onb-title">What does a good<br>day look like?</h1>
     <p class="onb-sub">Pick a few. The city reshapes itself around you.</p>
     <div class="taste-grid">
@@ -263,7 +263,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 <section class="scr" id="onb3">
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
-    <div class="onb-dots"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <div class="onb-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
     <h1 class="h-display onb-title">Nothing to scan.<br>Nothing to remember.</h1>
     <p class="onb-sub">Dawwar listens to places you already pay at.</p>
     <div class="how-list">
@@ -271,14 +271,8 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">2</div><div><b>The stamp lands on its own</b><span>Participating places recognise you at the till — the visit appears in your passport in seconds.</span></div></div>
       <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">3</div><div><b>The city opens up</b><span>Stamps, seals, albums and one points balance — all stacking quietly in your pocket.</span></div></div>
     </div>
-    <div class="link-card card">
-      <div class="link-row"><b>Phone number</b><span class="linked">+962 79 ··· ··42 ✓</span></div>
-      <div class="link-div"></div>
-      <div class="link-row"><b>Location while exploring</b><span class="tgl on"><i></i></span></div>
-    </div>
-    <p class="onb-fine">Your visits are private by default. You choose what friends see.</p>
     <div class="onb-foot">
-      <button class="cta press" id="finishOnb">Yalla, let's go</button>
+      <button class="cta press" data-go="onb4">Create my account</button>
     </div>
   </div>
 </section>
@@ -319,6 +313,90 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 .tgl.on{background:var(--teal)}
 .tgl.on i{transform:translateX(18px)}
 .onb-fine{font-size:12px;color:var(--ink-3);margin-top:14px;line-height:1.5}
+</style>
+
+<!-- ================= ONBOARDING 4 : SECURE ACCOUNT ================= -->
+<section class="scr" id="onb4">
+  <div class="status"><span>9:41</span><span></span></div>
+  <div class="pad">
+    <div class="onb-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+
+    <!-- phone -->
+    <div id="acStPhone">
+      <h1 class="h-display onb-title">Create your account</h1>
+      <p class="onb-sub">Your number is your account. No passwords to forget.</p>
+      <label class="vlab">Phone number</label>
+      <div class="phone-row"><span class="cc-chip">+962</span><input class="vin" type="tel" id="acPhoneIn" placeholder="7X XXX XXXX" style="flex:1"></div>
+      <p class="vhint">We'll text you a one-time code. Standard SMS rates apply.</p>
+      <button class="cta press" id="acSend" style="margin-top:8px">Send code</button>
+    </div>
+
+    <!-- otp -->
+    <div id="acStOtp" class="vhide">
+      <h1 class="h-display onb-title">Enter the 6-digit code</h1>
+      <p class="onb-sub">Sent by SMS to <b id="acMaskNum">+962 79 ··· ··42</b></p>
+      <div class="otp-row">
+        <input class="otp" type="tel" maxlength="1"><input class="otp" type="tel" maxlength="1"><input class="otp" type="tel" maxlength="1"><input class="otp" type="tel" maxlength="1"><input class="otp" type="tel" maxlength="1"><input class="otp" type="tel" maxlength="1">
+      </div>
+      <button class="ghost2" id="acResend">Resend in 0:30</button>
+    </div>
+
+    <!-- name -->
+    <div id="acStName" class="vhide">
+      <h1 class="h-display onb-title">What do your friends call you?</h1>
+      <p class="onb-sub">This is how you'll appear if you ever choose to share.</p>
+      <label class="vlab">Your name</label>
+      <input class="vin" type="text" id="acNameIn" placeholder="Majd">
+      <button class="cta press" id="acNameBtn" style="margin-top:16px">Continue</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING 5 : LINK CARD + LOCATION ================= -->
+<section class="scr" id="onb5">
+  <div class="status"><span>9:41</span><span></span></div>
+  <div class="pad">
+    <div class="onb-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+
+    <div id="cardStage">
+      <h1 class="h-display onb-title">Link your card</h1>
+      <p class="onb-sub">This is how stamps land automatically when you pay.</p>
+      <div class="how-list" style="margin-bottom:18px">
+        <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">🔒</div><div><b>Tokenized by Mastercard</b><span>We never see or store your card number.</span></div></div>
+        <div class="how-row"><div class="how-ic" style="background:var(--amber-soft);color:var(--amber-deep)">👁️</div><div><b>Partner purchases only</b><span>We only see purchases at Dawwar partner places. Nothing else.</span></div></div>
+        <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">🗑️</div><div><b>You stay in control</b><span>Unlink anytime from Settings.</span></div></div>
+      </div>
+      <label class="vlab">Card number</label>
+      <input class="vin" type="tel" id="cardNumIn" placeholder="5412 •••• •••• ••••" autocomplete="off">
+      <div class="vadd-row" style="margin-top:2px">
+        <div style="flex:1"><label class="vlab">Expiry</label><input class="vin" type="tel" id="cardExpIn" placeholder="MM/YY" autocomplete="off"></div>
+        <div style="flex:1.6;display:flex;align-items:flex-end;padding-bottom:4px"><span class="vhint" style="margin:0">No CVC needed — we can't charge your card, only recognise it.</span></div>
+      </div>
+      <button class="cta press" id="cardLinkBtn" style="margin-top:14px">Link card securely</button>
+      <button class="ghost2" id="cardSkip">Skip for now — earn with your code at the till</button>
+    </div>
+
+    <div id="cardDoneChip" class="cardchip vhide"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><b>Mastercard ·· 4417</b><span style="margin-left:auto">✓</span></div>
+
+    <div id="locStage" class="vhide">
+      <h2 class="h-display" style="font-size:22px;margin:6px 0 8px">One last thing — location</h2>
+      <p class="onb-sub" style="margin-bottom:14px">Only while the app is open — used to show stamps and places near you. Never shared with vendors.</p>
+      <p class="onb-fine" style="margin-bottom:16px">Your visits are private by default. You choose what friends see.</p>
+      <button class="cta press" id="locAllow">Allow while exploring</button>
+      <button class="ghost2" id="locSkip">Not now</button>
+    </div>
+  </div>
+</section>
+
+<style>
+/* secure account flow */
+.phone-row{display:flex;gap:9px;align-items:center}
+.cc-chip{height:48px;display:flex;align-items:center;padding:0 14px;border-radius:14px;background:var(--paper-2);border:1px solid var(--line-2);font-family:var(--disp);font-weight:700;font-size:14px}
+.otp-row{display:flex;gap:8px;justify-content:center;margin:18px 0 6px}
+.otp{width:46px;height:56px;border-radius:14px;border:1.5px solid var(--line-2);background:var(--card);text-align:center;font-family:var(--disp);font-weight:800;font-size:21px;color:var(--ink)}
+.otp:focus{outline:none;border-color:var(--amber)}
+.otp.ok{border-color:var(--teal);background:var(--teal-soft)}
+.cardchip{display:flex;align-items:center;gap:10px;background:var(--teal-soft);color:var(--teal);border-radius:14px;padding:13px 15px;font-weight:800;font-size:14px;margin-bottom:16px}
 </style>
 
 <!-- ================= HOME ================= -->
@@ -1733,6 +1811,8 @@ const NOTES = {
   onb1:'<b>Onboarding.</b> A promise, not a form. The Amman Citadel, the name in Arabic, one line of intent. Three screens, zero typing.',
   onb2:'<b>Tastes.</b> Selection here trains the whole city feed. Notice the tone — cravings, not "categories."',
   onb3:'<b>The trick.</b> No QR scanning, no receipts. Retainly tills recognise the member — the stamp just lands. This screen sells the magic honestly.',
+  onb4:'<b>Secure account.</b> Phone + real SMS OTP (auto-advancing boxes, resend timer), then your name. No passwords, no magic pre-linked numbers.',
+  onb5:'<b>Card linking, consent-first.</b> Tokenization explained in plain words, no CVC collected, skippable — and location is an explicit choice, not a pre-checked toggle.',
   home:'<b>Home = Today.</b> Radar to your nearest missing stamp, the one Weekly Dawra (not ten quests), duo stamps with a friend, trending, expiring rewards. One loop: visit → stamp → points.',
   city:'<b>Discover.</b> The map shows unstamped places as dashed pins — collection instinct does the marketing. Curated walking routes ("dawras") replace product grids.',
   biz:'<b>Business page.</b> "Your standing here" leads — relationship before menu. Hours, photos and Google reviews sync automatically from the vendor\'s Google Business link at registration; campaigns come from Retainly.',
@@ -1799,11 +1879,89 @@ function toast(ic, msg, xp){
   toastT = setTimeout(() => t.classList.remove('on'), 3200);
 }
 
-/* ---------- onboarding finish ---------- */
-document.getElementById('finishOnb').addEventListener('click', () => {
+/* ---------- secure account creation ---------- */
+const acPhoneIn = document.getElementById('acPhoneIn');
+let resendT = null;
+function startResend(){
+  let s = 30; const el = document.getElementById('acResend');
+  clearInterval(resendT);
+  resendT = setInterval(() => {
+    s--;
+    if (s <= 0) { clearInterval(resendT); el.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'إعادة الإرسال' : 'Resend code'; return; }
+    el.textContent = ((typeof lang !== 'undefined' && lang === 'ar') ? 'إعادة الإرسال بعد 0:' : 'Resend in 0:') + String(s).padStart(2,'0');
+  }, 1000);
+}
+document.getElementById('acSend').addEventListener('click', () => {
+  const digits = acPhoneIn.value.replace(/\D/g, '');
+  if (digits.length < 9) {
+    acPhoneIn.style.borderColor = 'var(--rose)';
+    toast('⚠️', (typeof lang !== 'undefined' && lang === 'ar') ? 'أدخل رقم موبايل صحيح' : 'Enter a valid mobile number', '');
+    return;
+  }
+  acPhoneIn.style.borderColor = '';
+  document.getElementById('acMaskNum').textContent = '+962 ' + digits.slice(0,2) + ' ··· ··' + digits.slice(-2);
+  document.getElementById('acStPhone').classList.add('vhide');
+  document.getElementById('acStOtp').classList.remove('vhide');
+  document.querySelector('.otp').focus();
+  startResend();
+});
+const otps = [...document.querySelectorAll('.otp')];
+otps.forEach((o, i) => {
+  o.addEventListener('input', () => {
+    o.value = o.value.replace(/\D/g, '').slice(0, 1);
+    if (o.value && i < 5) otps[i + 1].focus();
+    if (otps.every(x => x.value)) {
+      otps.forEach(x => x.classList.add('ok'));
+      clearInterval(resendT);
+      setTimeout(() => {
+        document.getElementById('acStOtp').classList.add('vhide');
+        document.getElementById('acStName').classList.remove('vhide');
+        document.getElementById('acNameIn').focus();
+      }, 650);
+    }
+  });
+  o.addEventListener('keydown', e => { if (e.key === 'Backspace' && !o.value && i > 0) otps[i - 1].focus(); });
+});
+document.getElementById('acNameBtn').addEventListener('click', () => {
+  const n = document.getElementById('acNameIn').value.trim();
+  if (!n) { document.getElementById('acNameIn').style.borderColor = 'var(--rose)'; return; }
+  show('onb5', false);
+});
+/* card linking */
+const cnIn = document.getElementById('cardNumIn'), exIn = document.getElementById('cardExpIn');
+cnIn.addEventListener('input', () => { const d = cnIn.value.replace(/\D/g, '').slice(0, 16); cnIn.value = d.replace(/(.{4})/g, '$1 ').trim(); });
+exIn.addEventListener('input', () => { const d = exIn.value.replace(/\D/g, '').slice(0, 4); exIn.value = d.length > 2 ? d.slice(0,2) + '/' + d.slice(2) : d; });
+document.getElementById('cardLinkBtn').addEventListener('click', () => {
+  const d = cnIn.value.replace(/\D/g, '');
+  if (d.length < 16) {
+    cnIn.style.borderColor = 'var(--rose)';
+    toast('⚠️', (typeof lang !== 'undefined' && lang === 'ar') ? 'أدخل رقم بطاقة كامل' : 'Enter a full card number', '');
+    return;
+  }
+  cnIn.style.borderColor = '';
+  const b = document.getElementById('cardLinkBtn');
+  b.disabled = true;
+  b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'عم نأمنها مع ماستركارد…' : 'Securing with Mastercard…';
+  setTimeout(() => {
+    document.getElementById('cardStage').classList.add('vhide');
+    const chip = document.getElementById('cardDoneChip');
+    chip.classList.remove('vhide');
+    chip.querySelector('b').textContent = 'Mastercard ·· ' + d.slice(-4);
+    document.getElementById('locStage').classList.remove('vhide');
+    toast('🔒', (typeof lang !== 'undefined' && lang === 'ar') ? 'انربطت البطاقة بأمان' : 'Card linked securely', '');
+  }, 1600);
+});
+document.getElementById('cardSkip').addEventListener('click', () => {
+  document.getElementById('cardStage').classList.add('vhide');
+  document.getElementById('locStage').classList.remove('vhide');
+  toast('ℹ️', (typeof lang !== 'undefined' && lang === 'ar') ? 'بتقدر تربط بطاقة بأي وقت من الإعدادات' : 'You can link a card anytime in Settings', '');
+});
+function finishAccount(){
   show('home', false);
   setTimeout(() => toast('🧭','Ahlan, Majd — Amman is yours','+100 pts'), 500);
-});
+}
+document.getElementById('locAllow').addEventListener('click', finishAccount);
+document.getElementById('locSkip').addEventListener('click', finishAccount);
 
 /* ---------- taste chips toggle ---------- */
 document.querySelectorAll('.taste').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
@@ -2053,6 +2211,8 @@ document.getElementById('scratchDone').addEventListener('click', () => {
   function backTargetOf(id){
     if (id === 'onb2') return 'onb1';
     if (id === 'onb3') return 'onb2';
+    if (id === 'onb4') return 'onb3';
+    if (id === 'onb5') return 'onb4';
     if (id === 'profile') return 'home';
     if (STACKS.includes(id)) return stackFrom[id] || 'home';
     return null;
@@ -2395,7 +2555,20 @@ const AR = {
 '23 places stamped':'23 مكان مختوم','Weibdeh 64% complete · 4 districts':'اللويبدة 64% مكتملة · 4 أحياء',
 'Weibdeh chapter · exploring since March 2026':'فصل اللويبدة · بستكشف من آذار 2026',
 'Weibdeh local':'ابن اللويبدة','Extras':'إضافات','For regulars':'للزباين الدايمين',
-'Dawwar members RSVP before doors open to everyone Friday.':'أعضاء دوّار بيحجزوا قبل ما تفتح للكل يوم الجمعة.'
+'Dawwar members RSVP before doors open to everyone Friday.':'أعضاء دوّار بيحجزوا قبل ما تفتح للكل يوم الجمعة.',
+// secure account creation
+'Create my account':'أنشئ حسابي','Create your account':'أنشئ حسابك','Your number is your account. No passwords to forget.':'رقمك هو حسابك. بدون كلمات سر تنساها.',
+"We'll text you a one-time code. Standard SMS rates apply.":'رح نبعتلك رمز لمرة وحدة برسالة.','Send code':'ابعت الرمز',
+'Enter the 6-digit code':'أدخل الرمز المكون من 6 أرقام','Sent by SMS to':'انبعت برسالة إلى','Resend in 0:30':'إعادة الإرسال بعد 0:30',
+'What do your friends call you?':'شو بينادوك أصحابك؟',"This is how you'll appear if you ever choose to share.":'هيك رح تظهر إذا اخترت تشارك بأي وقت.','Your name':'اسمك',
+'Link your card':'اربط بطاقتك','This is how stamps land automatically when you pay.':'هيك بينزل الختم تلقائياً لما تدفع.',
+'Tokenized by Mastercard':'مشفّرة برموز من ماستركارد','We never see or store your card number.':'عمرنا ما منشوف أو منخزن رقم بطاقتك.',
+'Partner purchases only':'مشتريات الشركاء بس','We only see purchases at Dawwar partner places. Nothing else.':'منشوف بس مشترياتك عند شركاء دوّار. ولا إشي غير هيك.',
+'You stay in control':'التحكم بإيدك','Unlink anytime from Settings.':'افصلها بأي وقت من الإعدادات.',
+'Card number':'رقم البطاقة','Expiry':'تاريخ الانتهاء',"No CVC needed — we can't charge your card, only recognise it.":'بدون CVC — ما منقدر نخصم من بطاقتك، بس منتعرف عليها.',
+'Link card securely':'اربط البطاقة بأمان','Skip for now — earn with your code at the till':'تخطى هلأ — اكسب برمزك عند الكاشير',
+'One last thing — location':'آخر إشي — الموقع','Only while the app is open — used to show stamps and places near you. Never shared with vendors.':'بس والتطبيق مفتوح — لنعرضلك الأختام والأماكن القريبة. ولا بتنشارك مع المحلات.',
+'Allow while exploring':'اسمح أثناء الاستكشاف'
 };
 
 let lang = 'en';
