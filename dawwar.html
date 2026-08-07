@@ -87,6 +87,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .avatar{border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;overflow:hidden;flex-shrink:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
+.avatar.me{background:linear-gradient(135deg,#EB001B 0%,#FF5F00 50%,#F79E1B 100%)!important}
 .pbar{height:7px;border-radius:10px;background:rgba(34,26,16,.1);overflow:hidden}
 .pbar>i{display:block;height:100%;border-radius:10px;background:var(--amber);width:0;transition:width 1s cubic-bezier(.3,.8,.3,1)}
 .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block}
@@ -1109,7 +1110,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="prof-id">
       <div class="prof-ava">
         <svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="44" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="5"/><circle cx="48" cy="48" r="44" fill="none" stroke="#F5A462" stroke-width="5" stroke-linecap="round" stroke-dasharray="276" stroke-dashoffset="30" transform="rotate(-90 48 48)"/></svg>
-        <span class="avatar" style="width:76px;height:76px;background:#C24E12;font-size:26px;font-family:var(--disp)">MH</span>
+        <span class="avatar me" style="width:76px;height:76px;font-size:26px;font-family:var(--disp)">MH</span>
         <em class="prof-lvl">LV 7</em>
       </div>
       <h1 class="h-display">Majd Hijazin</h1>
@@ -1233,7 +1234,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="sec-head"><h3>Friends this season</h3></div>
     <div class="card lb">
       <div class="lb-row"><span class="lb-n">1</span><span class="avatar" style="width:36px;height:36px;background:#1E6E66;font-size:13px">LH</span><div class="lb-c"><b>Layla</b><span>19 summer stamps</span></div><span class="lb-xp">2,140</span></div>
-      <div class="lb-row me"><span class="lb-n">2</span><span class="avatar" style="width:36px;height:36px;background:#C24E12;font-size:13px">MH</span><div class="lb-c"><b>You</b><span>12 summer stamps</span></div><span class="lb-xp">1,480</span></div>
+      <div class="lb-row me"><span class="lb-n">2</span><span class="avatar me" style="width:36px;height:36px;font-size:13px">MH</span><div class="lb-c"><b>You</b><span>12 summer stamps</span></div><span class="lb-xp">1,480</span></div>
       <div class="lb-row"><span class="lb-n">3</span><span class="avatar" style="width:36px;height:36px;background:#B98A2C;font-size:13px">OK</span><div class="lb-c"><b>Omar</b><span>11 summer stamps</span></div><span class="lb-xp">1,310</span></div>
       <div class="lb-foot">Friendly race · resets in 26 days · no one loses anything</div>
     </div>
@@ -1316,7 +1317,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="stack-head"><button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><h2>Settings</h2></div>
   <div class="pad">
-    <div class="set-user card"><span class="avatar" style="width:48px;height:48px;background:#C24E12;font-size:17px">MH</span><div style="flex:1"><b style="font-size:15px">Majd Hijazin</b><span style="display:block;font-size:12px;color:var(--ink-2)">+962 79 ··· ··42 · Weibdeh chapter</span></div><span class="more" id="setEdit" style="cursor:pointer">Edit</span></div>
+    <div class="set-user card"><span class="avatar me" style="width:48px;height:48px;font-size:17px">MH</span><div style="flex:1"><b style="font-size:15px">Majd Hijazin</b><span style="display:block;font-size:12px;color:var(--ink-2)">+962 79 ··· ··42 · Weibdeh chapter</span></div><span class="more" id="setEdit" style="cursor:pointer">Edit</span></div>
 
     <div class="kicker set-k">Privacy</div>
     <div class="card set-group">
