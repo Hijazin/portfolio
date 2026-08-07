@@ -144,6 +144,13 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 #edgeL{left:0}
 #edgeR{right:0}
 .scr.under{opacity:1;transform:none;pointer-events:none;z-index:1}
+/* retainly footer */
+.rt-foot{display:flex;align-items:center;justify-content:center;gap:8px;padding:26px 0 4px}
+.rt-foot span{font-size:11px;font-weight:600;color:var(--ink-3)}
+.rt-foot b{font-family:var(--disp);font-weight:800;font-size:16.5px;letter-spacing:-.02em;color:var(--ink);opacity:.85}
+.rt-foot b i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-left:2.5px}
+[dir="rtl"] .rt-foot b{letter-spacing:0}
+[dir="rtl"] .rt-foot b i{margin-left:0;margin-right:2.5px}
 
 /* ============ RTL (Arabic) ============ */
 [dir="rtl"]{--disp:'IBM Plex Sans Arabic',sans-serif;--body:'IBM Plex Sans Arabic',sans-serif;--hand:'IBM Plex Sans Arabic',sans-serif}
@@ -1764,6 +1771,18 @@ document.getElementById('contactClose').addEventListener('click', closeContact);
 /* ---------- initial pbar animation for first screen ---------- */
 setTimeout(() => document.querySelectorAll('#onb1 .pbar > i').forEach(b => b.style.width = b.dataset.w || '0%'), 300);
 
+/* ---------- "Powered by retainly." footer on every screen ---------- */
+['home','city','passport','rewards','wallet','profile','biz','collections','achievements','seasonal','notifications','settings'].forEach(id => {
+  const scr = document.getElementById(id);
+  if (!scr) return;
+  const spacers = scr.querySelectorAll('div[style*="height:120px"], div[style*="height:40px"]');
+  const last = spacers.length ? spacers[spacers.length - 1] : null;
+  const f = document.createElement('div');
+  f.className = 'rt-foot';
+  f.innerHTML = '<span>Powered by</span><b>retainly<i></i></b>';
+  if (last) last.parentNode.insertBefore(f, last); else scr.appendChild(f);
+});
+
 /* ============================================================
    i18n — EN / AR (Jordanian Arabic), full RTL
    ============================================================ */
@@ -1967,7 +1986,8 @@ const AR = {
 'Sami K.':'سامي ك.','via Google · 1 month ago':'عبر جوجل · قبل شهر',
 '"Cozy, great beans, parking is tricky on Fridays."':'«مكان دافي وبن ممتاز، بس الباركنج صعب يوم الجمعة.»',
 'Updated daily · reviews stay on Google, Dawwar just mirrors them':'بتتحدث يومياً · التقييمات بتظل على جوجل، دوّار بس بيعكسها',
-'From Dawwar explorers':'من مستكشفين دوّار'
+'From Dawwar explorers':'من مستكشفين دوّار',
+'Powered by':'بدعم من'
 };
 
 let lang = 'en';
