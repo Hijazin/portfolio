@@ -1378,31 +1378,81 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <!-- form -->
     <div id="vForm">
       <label class="vlab">Business name</label>
-      <input class="vin" type="text" placeholder="Qamar Roasters">
+      <input class="vin" type="text" id="vInName" placeholder="e.g. Bayt Zaman Café">
       <label class="vlab">Category</label>
-      <select class="vin"><option>Coffee</option><option>Food</option><option>Dessert</option><option>Clothing</option><option>Barber</option><option>Fitness</option><option>Flowers</option></select>
+      <select class="vin" id="vInCat"><option value="coffee">Coffee</option><option value="food">Food</option><option value="dessert">Dessert</option><option value="clothing">Clothing</option><option value="beauty">Barbers</option><option value="fitness">Fitness</option><option value="flowers">Flowers</option></select>
       <label class="vlab">Phone</label>
-      <input class="vin" type="tel" placeholder="+962 6 465 1234">
+      <input class="vin" type="tel" id="vInPhone" placeholder="+962 6 465 1234">
       <label class="vlab">Google Business link</label>
-      <input class="vin" type="url" placeholder="https://maps.app.goo.gl/...">
+      <input class="vin" type="url" id="vInLink" placeholder="https://maps.app.goo.gl/...">
       <p class="vhint">We'll pull your rating, reviews, hours and photos automatically.</p>
-      <button class="cta press" id="vendorCta" style="margin-top:6px">Create my business</button>
+      <button class="cta press" id="vendorCta" style="margin-top:6px">Request to join Dawwar</button>
     </div>
 
-    <!-- success -->
+    <!-- staged google sync -->
+    <div id="vSync" class="vhide">
+      <div class="card sync-card">
+        <div class="sync-row" id="sy0"><i class="sy-dot"></i><span>Resolving your Google link…</span><em>✓</em></div>
+        <div class="sync-row" id="sy1"><i class="sy-dot"></i><span>Found your business · <b id="vSyncName">Bayt Zaman Café</b></span><em>✓</em></div>
+        <div class="sync-row" id="sy2"><i class="sy-dot"></i><span>Attaching rating, reviews, hours & photos…</span><em>✓</em></div>
+      </div>
+      <div class="pbar" style="margin-top:14px"><i id="vSyncBar"></i></div>
+    </div>
+
+    <!-- success: curated request received -->
     <div id="vSuccess" class="vhide">
       <div class="rs-check">✓</div>
-      <h2 class="h-display" style="font-size:22px;text-align:center">Your page is ready 🎉</h2>
-      <p class="rs-note" style="margin-bottom:10px">Pulled from your Google link in seconds:</p>
+      <h2 class="h-display" style="font-size:22px;text-align:center"><span id="vNameOut">Bayt Zaman Café</span> <span>— request received 🎉</span></h2>
+      <p class="rs-note" style="margin-bottom:12px">Dawwar is curated. Our team reviews every place so explorers trust every stamp.</p>
+      <div class="how-list" style="margin-bottom:16px">
+        <div class="how-row"><div class="how-ic" style="background:var(--amber-soft);color:var(--amber-deep)">1</div><div><b>We call you this week</b><span>A quick chat about your place and your regulars.</span></div></div>
+        <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">2</div><div><b>One visit sets up your till with Retainly</b><span>Stamps, points and rewards — working before we leave.</span></div></div>
+        <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">3</div><div><b>You go live with a Founding Partner badge</b><span>Early explorers hunt new stamps — launch is your busiest week.</span></div></div>
+      </div>
+      <p class="rs-note" style="margin-bottom:10px">Already attached to your request:</p>
       <div class="card vpulled">
         <div class="vp-row"><b>★ 4.8 rating · 312 reviews</b><span>✓</span></div>
         <div class="vp-row"><b>Opening hours</b><span>✓</span></div>
         <div class="vp-row"><b>14 photos</b><span>✓</span></div>
         <div class="vp-row"><b>Location pin in Weibdeh</b><span>✓</span></div>
       </div>
-      <p class="vhint" style="text-align:center">Manage stamps, rewards and campaigns from your Retainly dashboard.</p>
-      <button class="cta press" id="vendorDash">Open Retainly dashboard</button>
-      <button class="ghost2" id="vendorPreview">Preview my page</button>
+      <button class="cta press" id="vendorDone">Done</button>
+      <button class="ghost2" id="vendorDemoDash">Preview what you'll manage after setup</button>
+    </div>
+    <div style="height:40px"></div>
+  </div>
+</section>
+
+<!-- ================= RETAINLY VENDOR DASHBOARD (stack) ================= -->
+<section class="scr stack" id="vdash">
+  <div class="status"><span>9:41</span><span></span></div>
+  <div class="stack-head"><button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><h2>Retainly dashboard</h2></div>
+  <div class="pad">
+    <div class="vd-brand"><b class="rt-word">retainly<i></i></b><span class="vd-chip">Live demo data</span></div>
+    <div class="vd-name" id="vdName">Bayt Zaman Café</div>
+
+    <div class="statgrid">
+      <div class="stat card"><em>214</em><span>visits this week</span></div>
+      <div class="stat card"><em>1,120</em><span>stamps given</span></div>
+      <div class="stat card"><em>48.3k</em><span>pts issued</span></div>
+      <div class="stat card"><em>96</em><span>redemptions</span></div>
+    </div>
+
+    <div class="sec-head"><h3>Your reward items</h3><span class="more" data-go="rewards">View it in the Store</span></div>
+    <div id="vItems">
+      <div class="vitem card"><div class="vitem-c"><b>Free V60 pour-over</b><span>1,200 pts</span></div><span class="vlive">Live in Store</span></div>
+      <div class="vitem card"><div class="vitem-c"><b>Bag of house beans</b><span>6,000 pts</span></div><span class="vlive">Live in Store</span></div>
+    </div>
+
+    <div class="card vadd">
+      <label class="vlab" style="margin-top:2px">Item name</label>
+      <input class="vin" type="text" id="vItName" placeholder="e.g. Free knafeh slice">
+      <div class="vadd-row">
+        <div style="flex:1"><label class="vlab">Points price</label><input class="vin" type="number" id="vItPts" placeholder="1500"></div>
+        <div style="flex:1"><label class="vlab">Category</label><select class="vin" id="vItCat"><option value="coffee">Coffee</option><option value="food">Food</option><option value="dessert">Dessert</option><option value="clothing">Clothing</option><option value="beauty">Barbers</option><option value="fitness">Fitness</option><option value="flowers">Flowers</option></select></div>
+      </div>
+      <p class="vhint">Anything you add appears in the Dawwar Store instantly.</p>
+      <button class="cta press" id="vAddBtn" style="height:48px">Add reward item</button>
     </div>
     <div style="height:40px"></div>
   </div>
@@ -1423,6 +1473,32 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
 .vp-row:last-child{border-bottom:none}
 .vp-row span{color:var(--teal);font-weight:800}
 .set-row.link{cursor:pointer}
+/* staged sync */
+.sync-card{padding:6px 16px}
+.sync-row{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--ink-3);transition:color .3s}
+.sync-row:last-child{border-bottom:none}
+.sync-row .sy-dot{width:9px;height:9px;border-radius:50%;background:var(--line-2);flex-shrink:0}
+.sync-row.on{color:var(--ink)}
+.sync-row.on .sy-dot{background:var(--amber);animation:flamePulse 1s infinite}
+.sync-row em{font-style:normal;color:var(--teal);font-weight:800;margin-left:auto;opacity:0;transition:opacity .3s}
+.sync-row.done{color:var(--ink)}
+.sync-row.done .sy-dot{background:var(--teal);animation:none}
+.sync-row.done em{opacity:1}
+#vSyncBar{background:var(--amber);transition:width .9s linear}
+/* vendor dashboard */
+.vd-brand{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+.rt-word{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.02em}
+.rt-word i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-left:2.5px}
+.vd-chip{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--gold-soft);color:var(--gold);padding:5px 10px;border-radius:100px}
+.vd-name{font-family:var(--disp);font-weight:700;font-size:16px;margin:8px 0 14px;color:var(--ink-2)}
+.vitem{display:flex;align-items:center;gap:12px;padding:12px 15px;margin-bottom:9px}
+.vitem-c{flex:1}
+.vitem-c b{font-size:14px;display:block;letter-spacing:-.01em}
+.vitem-c span{font-size:12px;color:var(--ink-2)}
+.vlive{font-size:10.5px;font-weight:700;background:var(--teal-soft);color:var(--teal);padding:5px 10px;border-radius:100px}
+.vadd{padding:14px 16px;margin-top:4px}
+.vadd-row{display:flex;gap:10px}
+.prev-chip{position:absolute;top:112px;left:50%;transform:translateX(-50%);background:rgba(20,13,5,.6);backdrop-filter:blur(8px);color:#F5C97F;font-size:11px;font-weight:800;letter-spacing:.06em;padding:7px 14px;border-radius:100px;z-index:5;white-space:nowrap}
 </style>
 
 <!-- ================= CHROME: tabbar, sheet, toast ================= -->
@@ -1612,6 +1688,7 @@ let current = 'onb1';
 const stackFrom = {};
 function show(id, isStack){
   if (id === current) return;
+  if (current === 'biz' && id !== 'biz' && window._bizRestore) { try { window._bizRestore(); } catch(e){} window._bizRestore = null; }
   const prev = document.getElementById(current);
   const next = document.getElementById(id);
   if (isStack) stackFrom[id] = current;
@@ -1776,28 +1853,102 @@ document.getElementById('setHelpRow').addEventListener('click', () => toast('�
 document.getElementById('setEdit').addEventListener('click', () => toast('✏️','Profile editing lands in beta',''));
 document.getElementById('signoutBtn').addEventListener('click', () => { show('onb1', false); toast('👋','Signed out — see you soon',''); });
 
-/* ---------- vendor signup flow ---------- */
+/* ---------- vendor signup flow (staged, validated, personalised) ---------- */
+let vendorName = 'Bayt Zaman Café', vendorCatText = 'Coffee';
+const isAr = () => (typeof lang !== 'undefined' && lang === 'ar');
 document.getElementById('vendorCta').addEventListener('click', () => {
-  const b = document.getElementById('vendorCta');
-  b.disabled = true;
-  b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'عم نسحب من جوجل…' : 'Pulling from Google…';
+  const nameIn = document.getElementById('vInName'), linkIn = document.getElementById('vInLink');
+  const name = nameIn.value.trim(), link = linkIn.value.trim();
+  if (!name || !link) {
+    [nameIn, linkIn].forEach(el => { if (!el.value.trim()) el.style.borderColor = 'var(--rose)'; });
+    toast('⚠️', isAr() ? 'أضف اسم محلك ورابط جوجل أولاً' : 'Add your business name and Google link first', '');
+    return;
+  }
+  nameIn.style.borderColor = ''; linkIn.style.borderColor = '';
+  vendorName = name;
+  const catSel = document.getElementById('vInCat');
+  vendorCatText = catSel.selectedOptions[0].textContent;
+  document.getElementById('vSyncName').textContent = vendorName;
+  document.getElementById('vForm').classList.add('vhide');
+  document.getElementById('vSync').classList.remove('vhide');
+  document.getElementById('vendor').scrollTop = 0;
+  const bar = document.getElementById('vSyncBar');
+  bar.style.width = '0%';
+  const steps = ['sy0','sy1','sy2'];
+  steps.forEach((id, i) => {
+    setTimeout(() => {
+      document.getElementById(id).classList.add('on');
+      bar.style.width = Math.round((i + 1) * 100 / 3) + '%';
+    }, i * 950);
+    setTimeout(() => {
+      const r = document.getElementById(id);
+      r.classList.remove('on'); r.classList.add('done');
+    }, i * 950 + 850);
+  });
   setTimeout(() => {
-    document.getElementById('vForm').classList.add('vhide');
+    document.getElementById('vSync').classList.add('vhide');
     document.getElementById('vSuccess').classList.remove('vhide');
+    document.getElementById('vNameOut').textContent = vendorName;
+    document.getElementById('vdName').textContent = vendorName;
     document.getElementById('vendor').scrollTop = 0;
-    toast('⭐','Google sync complete','');
-    b.disabled = false;
-    b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'أنشئ صفحة محلي' : 'Create my business';
-  }, 1400);
+    toast('📨', isAr() ? 'انبعت الطلب — منحكي قريباً' : 'Request sent — talk soon', '');
+  }, steps.length * 950 + 350);
 });
-document.getElementById('vendorDash').addEventListener('click', () => toast('🟠','Retainly dashboard — the vendor side of this demo',''));
-document.getElementById('vendorPreview').addEventListener('click', () => show('biz', true));
+document.getElementById('vendorDone').addEventListener('click', () => show('onb1', false));
+document.getElementById('vendorDemoDash').addEventListener('click', () => {
+  document.getElementById('vdName').textContent = vendorName;
+  show('vdash', true);
+});
+
+/* ---------- vendor reward items → live in Store ---------- */
+const CAT_IMG = {
+  coffee: 'photo-1495474472287-4d71bcdd2085', food: 'photo-1568901346375-23c9450c58cd',
+  dessert: 'photo-1551024506-0bccd828d307', clothing: 'photo-1521017432531-fbd92d768814',
+  beauty: 'photo-1585747860715-2ba37e788b70', fitness: 'photo-1534438327276-14e5300c3a48',
+  flowers: 'photo-1487530811176-3780de880c2d'
+};
+function storeInject(name, pts, cat){
+  const first = document.querySelector('#rewards .sitem');
+  const el = document.createElement('div');
+  el.className = 'sitem card';
+  el.dataset.cat = cat;
+  el.innerHTML = '<img alt=""><div class="sitem-c"><span class="ready-from"></span><b></b><span class="sprice"></span></div><button class="redeem-btn press">Redeem</button>';
+  el.querySelector('img').src = 'https://images.unsplash.com/' + (CAT_IMG[cat] || CAT_IMG.coffee) + '?w=440&q=70&auto=format&fit=crop';
+  el.querySelector('.ready-from').textContent = vendorName + ' · ' + (isAr() ? 'جديد' : 'New');
+  el.querySelector('b').textContent = name;
+  el.querySelector('.sprice').textContent = pts.toLocaleString() + (isAr() ? ' نقطة' : ' pts');
+  el.querySelector('.redeem-btn').textContent = isAr() ? 'استخدم' : 'Redeem';
+  el.querySelector('.redeem-btn').addEventListener('click', e => { e.stopPropagation(); rsStage(1); resetSlider(); openSheet(); });
+  first.parentNode.insertBefore(el, first);
+}
+document.getElementById('vAddBtn').addEventListener('click', () => {
+  const nIn = document.getElementById('vItName'), pIn = document.getElementById('vItPts');
+  const n = nIn.value.trim(), p = parseInt(pIn.value, 10);
+  if (!n || !p || p <= 0) {
+    if (!n) nIn.style.borderColor = 'var(--rose)';
+    if (!p) pIn.style.borderColor = 'var(--rose)';
+    toast('⚠️', isAr() ? 'أضف اسم الصنف وسعره بالنقاط' : 'Add an item name and points price', '');
+    return;
+  }
+  nIn.style.borderColor = ''; pIn.style.borderColor = '';
+  const cat = document.getElementById('vItCat').value;
+  const row = document.createElement('div');
+  row.className = 'vitem card';
+  row.innerHTML = '<div class="vitem-c"><b></b><span></span></div><span class="vlive"></span>';
+  row.querySelector('b').textContent = n;
+  row.querySelector('.vitem-c span').textContent = p.toLocaleString() + (isAr() ? ' نقطة' : ' pts');
+  row.querySelector('.vlive').textContent = isAr() ? 'ظاهر بالمتجر' : 'Live in Store';
+  document.getElementById('vItems').appendChild(row);
+  storeInject(n, p, cat);
+  nIn.value = ''; pIn.value = '';
+  toast('🛍️', isAr() ? 'صار ظاهر بمتجر دوّار' : 'Now live in the Dawwar Store', '');
+});
 
 /* ---------- swipe-right to go back (Instagram/iOS style) ---------- */
 (function(){
   const shell = document.getElementById('shell');
   const isRtl = () => shell.getAttribute('dir') === 'rtl';
-  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings','vendor'];
+  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings','vendor','vdash'];
   function backTargetOf(id){
     if (id === 'onb2') return 'onb1';
     if (id === 'onb3') return 'onb2';
@@ -1864,7 +2015,7 @@ document.getElementById('vendorPreview').addEventListener('click', () => show('b
 setTimeout(() => document.querySelectorAll('#onb1 .pbar > i').forEach(b => b.style.width = b.dataset.w || '0%'), 300);
 
 /* ---------- "Powered by retainly." footer on every screen ---------- */
-['home','city','passport','rewards','wallet','profile','biz','collections','achievements','seasonal','notifications','settings','vendor'].forEach(id => {
+['home','city','passport','rewards','wallet','profile','biz','collections','achievements','seasonal','notifications','settings','vendor','vdash'].forEach(id => {
   const scr = document.getElementById(id);
   if (!scr) return;
   const spacers = scr.querySelectorAll('div[style*="height:120px"], div[style*="height:40px"]');
@@ -2095,7 +2246,26 @@ const AR = {
 'Open Retainly dashboard':'افتح لوحة ريتينلي','Preview my page':'شوف صفحتي',
 'Google sync complete':'اكتمل السحب من جوجل','Retainly dashboard — the vendor side of this demo':'لوحة ريتينلي — جزء التاجر من الديمو',
 'Linked · Mastercard ·· 4417':'مربوطة · ماستركارد ·· 4417','Dawwar support — help@dawwar.app':'دعم دوّار — help@dawwar.app',
-'Profile editing lands in beta':'تعديل البروفايل جاي بالبيتا','Signed out — see you soon':'سجلت خروج — منشوفك قريباً'
+'Profile editing lands in beta':'تعديل البروفايل جاي بالبيتا','Signed out — see you soon':'سجلت خروج — منشوفك قريباً',
+// staged sync + vendor dashboard
+'Resolving your Google link…':'عم نتحقق من رابط جوجل…','Pulling rating & 312 reviews…':'عم نسحب التقييم و312 مراجعة…',
+'Importing hours, photos & location…':'عم نستورد الدوام والصور والموقع…','Building your Dawwar page…':'عم نبني صفحتك على دوّار…',
+'— your page is ready 🎉':'— صفحتك جاهزة 🎉','Pulled from your Google link:':'انسحب من رابط جوجل:',
+'Retainly dashboard':'لوحة ريتينلي','Live demo data':'بيانات تجريبية',
+'visits this week':'زيارة هالأسبوع','stamps given':'ختم منحوها','pts issued':'نقطة صادرة','redemptions':'استخدام',
+'Your reward items':'مكافآتك','View it in the Store':'شوفه بالمتجر','Live in Store':'ظاهر بالمتجر',
+'Bag of house beans':'كيس بن البيت','6,000 pts':'6,000 نقطة',
+'Item name':'اسم الصنف','Points price':'السعر بالنقاط','Add reward item':'أضف مكافأة',
+'Anything you add appears in the Dawwar Store instantly.':'أي إشي بتضيفه بيظهر بمتجر دوّار فوراً.',
+'Found your business ·':'لقينا محلك ·',
+// curated request flow
+'Request to join Dawwar':'اطلب الانضمام لدوّار','Attaching rating, reviews, hours & photos…':'عم نرفق التقييم والمراجعات والدوام والصور…',
+'— request received 🎉':'— استلمنا طلبك 🎉',
+'Dawwar is curated. Our team reviews every place so explorers trust every stamp.':'دوّار منتقى بعناية. فريقنا بيراجع كل مكان ليضل المستكشفين واثقين بكل ختم.',
+'We call you this week':'منتصل فيك هالأسبوع','A quick chat about your place and your regulars.':'حكي سريع عن محلك وزباينك.',
+'One visit sets up your till with Retainly':'زيارة وحدة بتجهز كاشيرك مع ريتينلي','Stamps, points and rewards — working before we leave.':'طوابع، نقاط ومكافآت — شغّالة قبل ما نطلع.',
+'You go live with a Founding Partner badge':'بتصير لايف مع وسام شريك مؤسس','Early explorers hunt new stamps — launch is your busiest week.':'المستكشفين بيطاردوا الأختام الجديدة — أسبوع الإطلاق أكثر أسبوع شغل.',
+'Already attached to your request:':'مرفق بطلبك جاهز:',"Preview what you'll manage after setup":'شوف شو رح تدير بعد التجهيز'
 };
 
 let lang = 'en';
