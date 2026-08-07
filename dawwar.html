@@ -138,6 +138,12 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 .langsw span{font-size:11px;font-weight:800;letter-spacing:.04em;color:rgba(255,255,255,.65);padding:5px 9px;border-radius:100px;transition:all .2s}
 .langsw span.on{background:#F3EADB;color:#221A10}
 .status>span:last-child{display:none}
+/* swipe-back edge zones */
+.edge{position:absolute;top:0;bottom:0;width:22px;z-index:46;touch-action:none;user-select:none;-webkit-user-select:none}
+body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none!important}
+#edgeL{left:0}
+#edgeR{right:0}
+.scr.under{opacity:1;transform:none;pointer-events:none;z-index:1}
 
 /* ============ RTL (Arabic) ============ */
 [dir="rtl"]{--disp:'IBM Plex Sans Arabic',sans-serif;--body:'IBM Plex Sans Arabic',sans-serif;--hand:'IBM Plex Sans Arabic',sans-serif}
@@ -1386,6 +1392,8 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 <div class="toast" id="toast"><span id="toastIc">🎉</span><span id="toastMsg">Welcome to Dawwar</span><span class="xp" id="toastXp">+40 XP</span></div>
 
 <button class="langsw" id="langSw" title="Language"><span id="lsEn" class="on">EN</span><span id="lsAr">AR</span></button>
+<div class="edge" id="edgeL"></div>
+<div class="edge" id="edgeR"></div>
 
 <style>
 /* mastercard / one-world store */
@@ -1646,6 +1654,73 @@ function openContact(){ veil.classList.add('on'); cSheet.classList.add('on'); }
 function closeContact(){ cSheet.classList.remove('on'); veil.classList.remove('on'); }
 document.getElementById('reserveBtn').addEventListener('click', e => { e.stopPropagation(); openContact(); });
 document.getElementById('contactClose').addEventListener('click', closeContact);
+
+/* ---------- swipe-right to go back (Instagram/iOS style) ---------- */
+(function(){
+  const shell = document.getElementById('shell');
+  const isRtl = () => shell.getAttribute('dir') === 'rtl';
+  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings'];
+  function backTargetOf(id){
+    if (id === 'onb2') return 'onb1';
+    if (id === 'onb3') return 'onb2';
+    if (id === 'profile') return 'home';
+    if (STACKS.includes(id)) return stackFrom[id] || 'home';
+    return null;
+  }
+  let active = false, horiz = null, dragged = false, startX = 0, startY = 0, dx = 0, scrEl = null, underEl = null, tgt = null;
+  function begin(e, edge){
+    if (document.getElementById('veil').classList.contains('on')) return;
+    if ((edge === 'L') === isRtl()) return; // LTR: left edge · RTL: right edge
+    tgt = backTargetOf(current);
+    if (!tgt) return;
+    e.preventDefault();
+    document.body.classList.add('swiping');
+    active = true; horiz = null; dragged = false; dx = 0;
+    startX = e.clientX; startY = e.clientY;
+    scrEl = document.getElementById(current);
+    underEl = document.getElementById(tgt);
+    scrEl.style.transition = 'none';
+    scrEl.style.zIndex = '60';
+    underEl.classList.add('under');
+  }
+  document.getElementById('edgeL').addEventListener('pointerdown', e => begin(e, 'L'));
+  document.getElementById('edgeR').addEventListener('pointerdown', e => begin(e, 'R'));
+  window.addEventListener('pointermove', e => {
+    if (!active) return;
+    const mx = e.clientX - startX, my = e.clientY - startY;
+    if (horiz === null && (Math.abs(mx) > 6 || Math.abs(my) > 6)) horiz = Math.abs(mx) > Math.abs(my);
+    if (!horiz) return;
+    dx = isRtl() ? Math.min(0, mx) : Math.max(0, mx);
+    dragged = dragged || Math.abs(dx) > 8;
+    scrEl.style.transform = 'translateX(' + dx + 'px)';
+    e.preventDefault();
+  }, { passive: false });
+  function finish(){
+    if (!active) return;
+    active = false;
+    document.body.classList.remove('swiping');
+    const el = scrEl, un = underEl, t = tgt;
+    const commit = Math.abs(dx) > 90;
+    el.style.transition = 'transform .28s cubic-bezier(.3,.9,.3,1), opacity .28s';
+    if (commit) {
+      const w = shell.getBoundingClientRect().width;
+      el.style.transform = 'translateX(' + (isRtl() ? -w : w) + 'px)';
+      el.style.opacity = '0';
+      setTimeout(() => {
+        un.classList.remove('under');
+        show(t, false);
+        setTimeout(() => { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; el.style.zIndex = ''; }, 80);
+      }, 200);
+    } else {
+      el.style.transform = '';
+      setTimeout(() => { el.style.transition = ''; el.style.zIndex = ''; un.classList.remove('under'); }, 300);
+    }
+    dx = 0;
+  }
+  window.addEventListener('pointerup', finish);
+  window.addEventListener('pointercancel', finish);
+  shell.addEventListener('click', e => { if (dragged) { e.stopPropagation(); e.preventDefault(); dragged = false; } }, true);
+})();
 
 /* ---------- initial pbar animation for first screen ---------- */
 setTimeout(() => document.querySelectorAll('#onb1 .pbar > i').forEach(b => b.style.width = b.dataset.w || '0%'), 300);
