@@ -628,8 +628,25 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="dish"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=440&q=70&auto=format&fit=crop" alt=""><b>Pistachio croissant</b><span>sells out by 11</span></div>
   </div>
   <div class="pad">
-    <!-- reviews -->
-    <div class="sec-head"><h3>From the neighbourhood</h3><span class="more">312 reviews</span></div>
+    <!-- reviews: auto-synced from Google -->
+    <div class="sec-head"><h3>Reviews</h3><span class="more">See all on Google</span></div>
+    <div class="grev card">
+      <div class="grev-top">
+        <span class="g-badge">G</span>
+        <div class="grev-score"><b>4.8</b><span>★★★★★</span></div>
+        <div class="grev-meta"><b>312 Google reviews</b><span>Synced automatically from Qamar's Google Business profile</span></div>
+      </div>
+      <div class="grev-bars">
+        <div class="gbar"><span>5</span><div class="pbar"><i data-w="78%" style="background:var(--gold)"></i></div><em>78%</em></div>
+        <div class="gbar"><span>4</span><div class="pbar"><i data-w="16%" style="background:var(--gold)"></i></div><em>16%</em></div>
+        <div class="gbar"><span>≤3</span><div class="pbar"><i data-w="6%" style="background:var(--gold)"></i></div><em>6%</em></div>
+      </div>
+      <div class="grev-item"><div class="grev-head"><b>Lina M.</b><span>Local Guide · 2 weeks ago</span><em>★★★★★</em></div><p>"Best pour-over in Amman, no contest. Ask for the Yirgacheffe."</p></div>
+      <div class="grev-item"><div class="grev-head"><b>Sami K.</b><span>via Google · 1 month ago</span><em>★★★★☆</em></div><p>"Cozy, great beans, parking is tricky on Fridays."</p></div>
+      <div class="grev-foot">Updated daily · reviews stay on Google, Dawwar just mirrors them</div>
+    </div>
+
+    <div class="sec-head"><h3>From Dawwar explorers</h3></div>
     <div class="rev card"><div class="rev-head"><span class="avatar" style="width:34px;height:34px;background:#1E6E66;font-size:12px">LH</span><div><b>Layla H.</b><span>Coffee Hunter · Lv 9</span></div><span class="rev-stars">★★★★★</span></div><p>"The only place in Amman where the barista remembers your ratio. Stamp #20 for me — Coffee Hunter complete here."</p></div>
     <div class="rev card"><div class="rev-head"><span class="avatar" style="width:34px;height:34px;background:#B98A2C;font-size:12px">OK</span><div><b>Omar K.</b><span>Weibdeh local · Lv 6</span></div><span class="rev-stars">★★★★☆</span></div><p>"Gets loud on Fridays but that's half the point."</p></div>
 
@@ -683,6 +700,28 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 .dish img{width:150px;height:110px;object-fit:cover;border-radius:var(--r-md);box-shadow:var(--sh-1)}
 .dish b{display:block;font-size:13.5px;margin-top:8px;letter-spacing:-.01em}
 .dish span{font-size:11.5px;color:var(--ink-2)}
+/* google-synced reviews */
+.grev{padding:16px;margin-bottom:14px}
+.grev-top{display:flex;align-items:center;gap:12px}
+.g-badge{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:19px;color:#4285F4;flex-shrink:0;box-shadow:var(--sh-1)}
+.grev-score{text-align:center}
+.grev-score b{font-family:var(--disp);font-weight:800;font-size:22px;display:block;line-height:1}
+.grev-score span{font-size:10px;color:var(--gold);letter-spacing:.08em}
+.grev-meta{flex:1}
+.grev-meta b{font-size:13.5px;display:block}
+.grev-meta span{font-size:11.5px;color:var(--ink-2);line-height:1.4;display:block;margin-top:2px}
+.grev-bars{display:flex;flex-direction:column;gap:5px;margin:13px 0 4px}
+.gbar{display:flex;align-items:center;gap:9px}
+.gbar span{font-size:11px;font-weight:700;color:var(--ink-2);width:16px;text-align:center}
+.gbar .pbar{flex:1;height:6px}
+.gbar em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--ink-3);width:30px}
+.grev-item{border-top:1px solid var(--line);padding:11px 0 2px;margin-top:9px}
+.grev-head{display:flex;align-items:baseline;gap:8px}
+.grev-head b{font-size:13px}
+.grev-head span{font-size:10.5px;color:var(--ink-3);flex:1}
+.grev-head em{font-style:normal;font-size:10px;color:var(--gold);letter-spacing:.06em}
+.grev-item p{font-size:12.5px;line-height:1.5;color:var(--ink-2);margin-top:4px}
+.grev-foot{font-size:10.5px;color:var(--ink-3);margin-top:12px;text-align:center}
 .rev{padding:14px;margin-bottom:10px}
 .rev-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .rev-head b{font-size:13.5px;display:block}
@@ -1484,7 +1523,7 @@ const NOTES = {
   onb3:'<b>The trick.</b> No QR scanning, no receipts. Retainly tills recognise the member — the stamp just lands. This screen sells the magic honestly.',
   home:'<b>Home = Today.</b> Time-aware ritual card, one daily quest, trending, friends, expiring rewards. Dense but each block answers "what should I do today?"',
   city:'<b>Discover.</b> The map shows unstamped places as dashed pins — collection instinct does the marketing. Curated walking routes ("dawras") replace product grids.',
-  biz:'<b>Business page.</b> "Your standing here" leads — relationship before menu. The stamps, reward and campaign are the business\'s own, synced from Retainly.',
+  biz:'<b>Business page.</b> "Your standing here" leads — relationship before menu. Hours, photos and Google reviews sync automatically from the vendor\'s Google Business link at registration; campaigns come from Retainly.',
   passport:'<b>Passport.</b> The emotional core. Real ink-stamp texture, district chapters, sealed seasonal albums. Think Pokémon, not loyalty.',
   collections:'<b>Collections.</b> Albums with clear prizes: profile flair + partner rewards. Completed ones seal — collecting has an ending, and that feels good.',
   achievements:'<b>Achievements.</b> Rarity tiers, secret badges, and a "so close" card that names the exact next action (tomorrow, 7am, Qamar).',
@@ -1919,7 +1958,16 @@ const AR = {
 'Reserve at Qamar Roasters':'احجز عند محمصة قمر','Cupping night · Thursday 7 pm':'ليلة تذوق · الخميس 7 المسا',
 'Website':'الموقع','qamarroasters.com · book a table':'qamarroasters.com · احجز طاولة','Call':'اتصل',
 'Google Maps':'خرائط جوجل','Directions · Baouniyya St., Weibdeh':'الاتجاهات · شارع الباعونية، اللويبدة',
-'Google Reviews':'تقييمات جوجل','Close':'إغلاق'
+'Google Reviews':'تقييمات جوجل','Close':'إغلاق',
+// google-synced reviews
+'Reviews':'التقييمات','See all on Google':'شوف الكل على جوجل','312 Google reviews':'312 تقييم على جوجل',
+"Synced automatically from Qamar's Google Business profile":'بتتسحب تلقائياً من صفحة قمر على جوجل',
+'Lina M.':'لينا م.','Local Guide · 2 weeks ago':'مرشدة محلية · قبل أسبوعين',
+'"Best pour-over in Amman, no contest. Ask for the Yirgacheffe."':'«أحسن V60 بعمّان بلا منازع. اطلبوا اليرغاشيف.»',
+'Sami K.':'سامي ك.','via Google · 1 month ago':'عبر جوجل · قبل شهر',
+'"Cozy, great beans, parking is tricky on Fridays."':'«مكان دافي وبن ممتاز، بس الباركنج صعب يوم الجمعة.»',
+'Updated daily · reviews stay on Google, Dawwar just mirrors them':'بتتحدث يومياً · التقييمات بتظل على جوجل، دوّار بس بيعكسها',
+'From Dawwar explorers':'من مستكشفين دوّار'
 };
 
 let lang = 'en';
