@@ -170,7 +170,8 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
   <aside class="rail">
     <div>
       <div class="rail-logo">Dawwar <span class="ar">دوّار</span></div>
-      <div class="rail-tag">The daily companion for your city. Powered by Retainly, invisible to the user.</div>
+      <div class="rail-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg> for Mastercard</div>
+      <div class="rail-tag">The daily companion for your city. One points balance on Mastercard rails, powered by Retainly.</div>
     </div>
     <div class="rail-sec">Flow</div>
     <nav class="rail-nav">
@@ -181,7 +182,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <button class="rail-item" data-go="passport"><span class="n">05</span>Passport</button>
       <button class="rail-item" data-go="collections"><span class="n">06</span>Collections</button>
       <button class="rail-item" data-go="achievements"><span class="n">07</span>Achievements</button>
-      <button class="rail-item" data-go="rewards"><span class="n">08</span>Rewards</button>
+      <button class="rail-item" data-go="rewards"><span class="n">08</span>Store — Points</button>
       <button class="rail-item" data-go="wallet"><span class="n">09</span>Wallet</button>
       <button class="rail-item" data-go="profile"><span class="n">10</span>Profile</button>
       <button class="rail-item" data-go="seasonal"><span class="n">11</span>Seasonal — Summer Passport</button>
@@ -212,6 +213,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <p>Every coffee, every haircut, every late breakfast in Amman counts for something now. Collect stamps, unlock the city.</p>
       <button class="cta press" data-go="onb2">Start exploring</button>
       <button class="ghost-link">I already have an account</button>
+      <div class="mc-powered"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>A Mastercard experience</span></div>
     </div>
   </div>
 </section>
@@ -253,7 +255,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
     <div class="how-list">
       <div class="how-row"><div class="how-ic" style="background:var(--amber-soft);color:var(--amber-deep)">1</div><div><b>Live your day as usual</b><span>Buy the coffee. Get the haircut. Pay however you pay.</span></div></div>
       <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">2</div><div><b>The stamp lands on its own</b><span>Participating places recognise you at the till — the visit appears in your passport in seconds.</span></div></div>
-      <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">3</div><div><b>The city opens up</b><span>XP, badges, collections and each place's own rewards — all stacking quietly in your pocket.</span></div></div>
+      <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">3</div><div><b>The city opens up</b><span>XP, badges, collections and one points balance — all stacking quietly in your pocket.</span></div></div>
     </div>
     <div class="link-card card">
       <div class="link-row"><b>Phone number</b><span class="linked">+962 79 ··· ··42 ✓</span></div>
@@ -328,7 +330,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <div class="lvl-copy"><b>City Insider</b><span>2,840 / 3,200 XP — 360 to Level 8</span>
         <div class="pbar"><i data-w="89%"></i></div>
       </div>
-      <svg class="icon sm" viewBox="0 0 24 24" style="color:var(--ink-3)"><path d="m9 18 6-6-6-6"/></svg>
+      <span class="pts-chip"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg>12,450 <em>pts</em></span>
     </button>
 
     <!-- morning ritual -->
@@ -338,7 +340,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <div class="ritual-top"><span class="ritual-tag">Your morning ritual</span><span class="ritual-dist">200 m</span></div>
       <div class="ritual-body">
         <h2 class="h-display">Qamar Roasters</h2>
-        <p>One stamp away from a free pour-over. Sabah would be proud.</p>
+        <p>One stamp away from a 2,000-pt bonus. Sabah would be proud.</p>
         <div class="ritual-stamps">
           <i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s on"></i><i class="s last">☕️</i>
           <span>9 / 10</span>
@@ -371,12 +373,12 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <div class="friend-row" data-stack="biz"><span class="avatar" style="width:40px;height:40px;background:#C14E4E;font-size:14px">RN</span><div class="friend-c"><b>Rania started Summer Passport</b><span>3 friends are in this season's event</span></div><span class="friend-t">1d</span></div>
     </div>
 
-    <div class="sec-head"><h3>Ends soon</h3><span class="more" data-go="rewards">Rewards</span></div>
+    <div class="sec-head"><h3>Ends soon</h3><span class="more" data-go="rewards">Store</span></div>
   </div>
   <div class="hrow">
-    <button class="ltd press" data-go="rewards"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=520&q=70&auto=format&fit=crop" alt=""><div class="ltd-c"><span class="ltd-timer">⏳ 2 days</span><b>Halab Sweets</b><span>Double stamps on knafeh, all week</span></div></button>
+    <button class="ltd press" data-go="rewards"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=520&q=70&auto=format&fit=crop" alt=""><div class="ltd-c"><span class="ltd-timer">⏳ 2 days</span><b>Halab Sweets</b><span>Double points on knafeh, all week</span></div></button>
     <button class="ltd press" data-go="rewards"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=520&q=70&auto=format&fit=crop" alt=""><div class="ltd-c"><span class="ltd-timer">⏳ 5 hrs</span><b>Maqha al-Fann</b><span>Free mint lemonade after 8 pm today</span></div></button>
-    <button class="ltd press" data-go="rewards"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=520&q=70&auto=format&fit=crop" alt=""><div class="ltd-c"><span class="ltd-timer">⏳ Fri</span><b>The Fade Room</b><span>Visit #5 unlocks a hot-towel shave</span></div></button>
+    <button class="ltd press" data-go="rewards"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=520&q=70&auto=format&fit=crop" alt=""><div class="ltd-c"><span class="ltd-timer">⏳ Fri</span><b>The Fade Room</b><span>Visit #5 drops a 3,500-pt bonus</span></div></button>
   </div>
   <div class="pad">
     <div class="sec-head"><h3>New in Weibdeh</h3><span class="more" data-go="city">Map</span></div>
@@ -588,7 +590,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <div class="stamp-track" id="stampTrack">
         <i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st on"></i><i class="st goal">🎁</i>
       </div>
-      <div class="standing-foot">Next visit → <b>free pour-over of the week</b> · Qamar's own reward, on them</div>
+      <div class="standing-foot">Next visit → <b>2,000-pt stamp bonus</b> · spend it anywhere on Dawwar</div>
       <button class="wallet-add press" data-go="wallet"><svg class="icon sm" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>In your Wallet</button>
     </div>
 
@@ -719,7 +721,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
     </div>
 
     <div class="pp-meter card">
-      <div class="pp-meter-l"><b>Weibdeh · 9 of 14 stamped</b><span>Complete the district → <em>Weibdeh Wanderer</em> trophy + Qamar partner reward</span></div>
+      <div class="pp-meter-l"><b>Weibdeh · 9 of 14 stamped</b><span>Complete the district → <em>Weibdeh Wanderer</em> trophy + 3,000-pt bonus</span></div>
       <div class="pp-ring"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="var(--line)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="var(--olive)" stroke-width="4" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="40" transform="rotate(-90 22 22)"/></svg><span>64%</span></div>
     </div>
 
@@ -803,7 +805,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
           <div class="pbar" style="flex:1;background:rgba(255,255,255,.25)"><i data-w="70%" style="background:#F5C97F"></i></div>
           <b>14/20</b>
         </div>
-        <div class="col-prize">🏆 Unlocks: gold profile frame · free bag of beans from any partner roaster</div>
+        <div class="col-prize">🏆 Unlocks: gold profile frame · 6,000-pt bonus</div>
       </div>
     </div>
 
@@ -918,33 +920,35 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 <section class="scr" id="rewards">
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
-    <h1 class="h-display city-title" style="margin-top:8px">Rewards</h1>
-    <p class="rew-sub">Every reward is the business's own. Dawwar just keeps score.</p>
+    <div class="store-head"><h1 class="h-display city-title" style="margin-top:8px">Store</h1><svg class="mc-logo" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div>
+    <p class="rew-sub">One balance, every place. Earn points with every purchase, spend them anywhere on Dawwar.</p>
 
-    <div class="sec-head" style="margin-top:18px"><h3>Ready to redeem</h3><span class="badge-dot" style="margin-left:-4px"></span></div>
-    <div class="ready card" id="readyReward">
-      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=520&q=70&auto=format&fit=crop" alt="">
-      <div class="ready-c">
-        <span class="ready-from">Dar al-Toot · Weibdeh</span>
-        <b>Free tahini swirl bun</b>
-        <span class="ready-note">Earned with 8 visits · never expires</span>
-      </div>
-      <button class="redeem-btn press" id="openRedeem">Redeem</button>
-    </div>
-    <div class="ready card">
-      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=520&q=70&auto=format&fit=crop" alt="">
-      <div class="ready-c">
-        <span class="ready-from">Sitti's Kitchen · Jabal Amman</span>
-        <b>Breakfast for two — 25% off</b>
-        <span class="ready-note">Completed Breakfast Club tier 1</span>
-      </div>
-      <button class="redeem-btn press">Redeem</button>
+    <div class="balcard">
+      <div class="bal-l"><span class="kicker" style="color:#C9A97F">Your balance</span><b>12,450 <em>pts</em></b><span class="bal-sub">Earned across 23 places · spend it anywhere</span></div>
+      <svg class="mc-logo big" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg>
     </div>
 
-    <div class="sec-head"><h3>Almost there</h3></div>
-    <div class="almost card"><div class="almost-l"><b>Qamar Roasters — free pour-over</b><span>9 of 10 stamps · 200 m away right now</span><div class="pbar" style="margin-top:8px"><i data-w="90%"></i></div></div><span class="almost-n">1<em>visit left</em></span></div>
-    <div class="almost card"><div class="almost-l"><b>The Fade Room — hot-towel shave</b><span>3 of 5 cuts</span><div class="pbar" style="margin-top:8px"><i data-w="60%" style="background:var(--teal)"></i></div></div><span class="almost-n">2<em>visits left</em></span></div>
-    <div class="almost card"><div class="almost-l"><b>Iron District — free PT session</b><span>6 of 10 check-ins this month</span><div class="pbar" style="margin-top:8px"><i data-w="60%" style="background:var(--olive)"></i></div></div><span class="almost-n">4<em>visits left</em></span></div>
+    <div class="sec-head"><h3>Shop by category</h3></div>
+    <div class="catgrid">
+      <button class="cat on press" data-cat="all"><i>✨</i><span>All</span></button>
+      <button class="cat press" data-cat="coffee"><i>☕️</i><span>Coffee</span></button>
+      <button class="cat press" data-cat="food"><i>🍔</i><span>Food</span></button>
+      <button class="cat press" data-cat="clothing"><i>👕</i><span>Clothing</span></button>
+      <button class="cat press" data-cat="dessert"><i>🍰</i><span>Dessert</span></button>
+      <button class="cat press" data-cat="beauty"><i>💈</i><span>Barbers</span></button>
+      <button class="cat press" data-cat="fitness"><i>🏋️</i><span>Fitness</span></button>
+      <button class="cat press" data-cat="flowers"><i>🌸</i><span>Flowers</span></button>
+    </div>
+
+    <div class="sec-head"><h3>Ready near you</h3></div>
+    <div class="sitem card" data-cat="coffee"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Qamar Roasters · Weibdeh</span><b>Free V60 pour-over</b><span class="sprice">1,200 pts</span></div><button class="redeem-btn press" id="openRedeem">Redeem</button></div>
+    <div class="sitem card" data-cat="food"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Bunduq Burger · Sweifieh</span><b>Free smash burger</b><span class="sprice">2,800 pts</span></div><button class="redeem-btn press">Redeem</button></div>
+    <div class="sitem card" data-cat="dessert"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Halab Sweets · Al-Balad</span><b>Knafeh plate on the house</b><span class="sprice">1,500 pts</span></div><button class="redeem-btn press">Redeem</button></div>
+    <div class="sitem card" data-cat="clothing"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Thread & Co · Sweifieh</span><b>5 JOD off anything</b><span class="sprice">5,000 pts</span></div><button class="redeem-btn press">Redeem</button></div>
+    <div class="sitem card" data-cat="flowers"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Warda Flower Studio · Jabal Amman</span><b>Friday bouquet</b><span class="sprice">4,500 pts</span></div><button class="redeem-btn press">Redeem</button></div>
+    <div class="sitem card" data-cat="beauty"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">The Fade Room · Weibdeh</span><b>Hot-towel shave</b><span class="sprice">3,500 pts</span></div><button class="redeem-btn press">Redeem</button></div>
+    <div class="sitem card" data-cat="fitness"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Iron District · Sweifieh</span><b>Day pass + coffee</b><span class="sprice">2,000 pts</span></div><button class="redeem-btn press">Redeem</button></div>
+    <div class="sitem card" data-cat="coffee"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Warsheh · Weibdeh</span><b>Flat white + print</b><span class="sprice">1,100 pts</span></div><button class="redeem-btn press">Redeem</button></div>
 
     <div class="sec-head"><h3>Because you're Level 7</h3><span class="more">Status perks</span></div>
     <div class="perk card-dark"><span class="perk-ic">🎟️</span><div class="perk-c"><b>Early access: Warsheh launch party</b><span>Insider-level members can RSVP before it opens to everyone Friday.</span></div><button class="camp-btn press" style="margin:0">RSVP</button></div>
@@ -980,30 +984,36 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
     <header class="pp-head">
-      <div><div class="kicker">8 loyalty cards</div><h1 class="h-display city-title">Wallet</h1></div>
+      <div><div class="kicker">One balance · 5 places</div><h1 class="h-display city-title">Wallet</h1></div>
       <button class="bell press" style="position:static"><svg class="icon sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
     </header>
-    <p class="rew-sub">Each card belongs to the business — their design, their rules, their rewards.</p>
+    <p class="rew-sub">One Mastercard balance on top — your standing with each place below.</p>
+
+    <div class="mccard press">
+      <div class="wcard-top"><b>DAWWAR POINTS</b><svg class="mc-logo" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div>
+      <div class="mc-bal">12,450 <em>pts</em></div>
+      <div class="wcard-bot"><span>MAJD H. ·· 4417</span><span class="wqr"></span></div>
+    </div>
 
     <div class="wstack" id="wstack">
       <button class="wcard press" style="--bg:linear-gradient(140deg,#3E2B18,#241708);--i:0" data-stack="biz">
         <div class="wcard-top"><b>QAMAR ROASTERS</b><span>REGULAR</span></div>
-        <div class="wcard-mid">☕️ 9 / 10 — free pour-over next visit</div>
+        <div class="wcard-mid">☕️ 9 / 10 — 2,000-pt bonus next visit</div>
         <div class="wcard-bot"><span>MAJD H. · member since MAR 26</span><span class="wqr"></span></div>
       </button>
       <button class="wcard press" style="--bg:linear-gradient(140deg,#7A4020,#4E2410);--i:1">
         <div class="wcard-top"><b>SITTI'S KITCHEN</b><span>FRIEND OF THE HOUSE</span></div>
-        <div class="wcard-mid">🥞 Breakfast for two — 25% ready</div>
+        <div class="wcard-mid">🥞 Friend tier — 1.5× points here</div>
         <div class="wcard-bot"><span>5 visits · JABAL AMMAN</span><span class="wqr"></span></div>
       </button>
       <button class="wcard press" style="--bg:linear-gradient(140deg,#1E4E48,#0F2C28);--i:2">
         <div class="wcard-top"><b>DAR AL-TOOT</b><span>SWEET REGULAR</span></div>
-        <div class="wcard-mid">🥐 1 reward waiting — tahini swirl bun</div>
+        <div class="wcard-mid">🥐 Bonus ready — 1,500 pts</div>
         <div class="wcard-bot"><span>8 visits · WEIBDEH</span><span class="wqr"></span></div>
       </button>
       <button class="wcard press" style="--bg:linear-gradient(140deg,#54331F,#2E1A0D);--i:3">
         <div class="wcard-top"><b>THE FADE ROOM</b><span>CHAIR №3</span></div>
-        <div class="wcard-mid">💈 3 / 5 — hot-towel shave at five</div>
+        <div class="wcard-mid">💈 3 / 5 — 3,500-pt bonus at five</div>
         <div class="wcard-bot"><span>NEXT CUT: BOOKED FRI 6PM</span><span class="wqr"></span></div>
       </button>
       <button class="wcard press" style="--bg:linear-gradient(140deg,#41411F,#26260F);--i:4">
@@ -1225,7 +1235,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
   <div class="stack-head"><button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><h2>Notifications</h2><span class="more" style="margin-left:auto">Mark all read</span></div>
   <div class="pad">
     <div class="kicker" style="margin:10px 0 10px">Today</div>
-    <div class="notif card unread"><span class="nf-ic" style="background:var(--amber-soft)">☕️</span><div class="nf-c"><b>One stamp from your free pour-over</b><span>Qamar Roasters · you're 200 m away, they close at 11</span><em>20 min ago</em></div><i class="nf-dot"></i></div>
+    <div class="notif card unread"><span class="nf-ic" style="background:var(--amber-soft)">☕️</span><div class="nf-c"><b>One stamp from a 2,000-pt bonus</b><span>Qamar Roasters · you're 200 m away, they close at 11</span><em>20 min ago</em></div><i class="nf-dot"></i></div>
     <div class="notif card unread"><span class="nf-ic" style="background:var(--teal-soft)">🏆</span><div class="nf-c"><b>Layla completed Coffee Hunter</b><span>Send her a 👏 — or race her to Burger Explorer</span><em>2 h ago</em></div><i class="nf-dot"></i></div>
     <div class="notif card"><span class="nf-ic" style="background:var(--gold-soft)">🍉</span><div class="nf-c"><b>Watermelon Week started</b><span>Halab Sweets sponsors this one · +100 XP, ends Sunday</span><em>9 h ago</em></div></div>
     <div class="kicker" style="margin:16px 0 10px">This week</div>
@@ -1276,7 +1286,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
       <div class="set-row link"><b>Help & about</b><span class="set-val">›</span></div>
     </div>
     <button class="signout">Sign out</button>
-    <p class="set-fine">Dawwar is free for explorers, always. Businesses run their own rewards through Retainly.</p>
+    <p class="set-fine">Dawwar is free for explorers, always. One balance, powered by Mastercard and Retainly.</p>
     <div style="height:40px"></div>
   </div>
 </section>
@@ -1301,19 +1311,20 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
   <button class="tab on" data-tab="home"><svg class="icon" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 22V12h6v10"/></svg><span>Today</span></button>
   <button class="tab" data-tab="city"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/></svg><span>City</span></button>
   <button class="tab center" data-tab="passport"><span class="orb"><svg class="icon" viewBox="0 0 24 24" style="stroke:#fff"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M8 17h8"/></svg></span><span>Passport</span></button>
-  <button class="tab" data-tab="rewards"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span>Rewards</span><i class="dot"></i></button>
+  <button class="tab" data-tab="rewards"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span>Store</span><i class="dot"></i></button>
   <button class="tab" data-tab="profile"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg><span>You</span></button>
 </nav>
 
 <div class="sheet-veil" id="veil"></div>
 <div class="sheet" id="redeemSheet">
   <div class="grab"></div>
-  <div class="rs-head"><span class="ready-from">Dar al-Toot · Weibdeh</span><h2 class="h-display" style="font-size:22px;margin-top:4px">Free tahini swirl bun</h2></div>
+  <div class="rs-head"><span class="ready-from">Qamar Roasters · Weibdeh</span><h2 class="h-display" style="font-size:22px;margin-top:4px">Free V60 pour-over</h2></div>
   <div class="rs-qr">
     <div class="rs-qr-box"></div>
     <span class="rs-code">DWR·8214</span>
+    <div class="rs-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>Dawwar points</span></div>
   </div>
-  <p class="rs-note">Show this at the counter. The team taps once on their Retainly till — done. Valid any time, it's yours.</p>
+  <p class="rs-note">1,200 pts will come off your balance when they scan this. New balance: 11,250 pts.</p>
   <button class="cta press" id="closeRedeem" style="box-shadow:none">Done</button>
 </div>
 
@@ -1322,6 +1333,34 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 <button class="langsw" id="langSw" title="Language"><span id="lsEn" class="on">EN</span><span id="lsAr">AR</span></button>
 
 <style>
+/* mastercard / one-world store */
+.mc-logo{width:36px;height:23px;flex-shrink:0}
+.mc-logo.sm{width:27px;height:17px}
+.mc-logo.big{width:52px;height:33px}
+.mc-powered{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:18px;color:rgba(247,239,226,.78);font-size:12.5px;font-weight:600}
+.rail-mc{display:flex;align-items:center;gap:8px;margin-top:12px;color:#C9BBA5;font-size:12.5px;font-weight:700}
+.pts-chip{display:flex;align-items:center;gap:7px;background:var(--night);color:#F3EADB;border-radius:100px;padding:7px 12px;font-family:var(--disp);font-weight:700;font-size:14px}
+.pts-chip em{font-style:normal;font-size:10px;color:#A8977F;font-weight:600}
+.store-head{display:flex;align-items:center;justify-content:space-between}
+.balcard{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(140deg,#2B2118,#171006);border-radius:var(--r-lg);padding:20px;margin-top:16px;color:#F6EDDD;box-shadow:var(--sh-2)}
+.bal-l b{display:block;font-family:var(--disp);font-weight:800;font-size:32px;letter-spacing:-.02em;margin:4px 0 2px}
+.bal-l b em{font-style:normal;font-size:14px;color:#C9A97F;font-weight:600}
+.bal-sub{font-size:12px;color:#A8977F}
+.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 4px 11px;border-radius:16px;background:var(--card);border:1px solid var(--line);cursor:pointer;font-family:var(--body);box-shadow:var(--sh-1)}
+.cat i{font-size:22px;font-style:normal}
+.cat span{font-size:10.5px;font-weight:700;color:var(--ink-2)}
+.cat.on{background:var(--ink);border-color:var(--ink)}
+.cat.on span{color:var(--paper)}
+.sitem{display:flex;align-items:center;gap:12px;padding:10px;margin-bottom:10px}
+.sitem img{width:56px;height:56px;border-radius:12px;object-fit:cover}
+.sitem-c{flex:1}
+.sitem-c b{display:block;font-size:14px;letter-spacing:-.01em;margin:2px 0}
+.sprice{font-family:var(--disp);font-weight:800;font-size:13px;color:var(--amber-deep)}
+.mccard{width:100%;border:none;border-radius:22px;background:linear-gradient(140deg,#26221F,#0E0C0A);color:#F6EDDD;padding:18px 20px;display:flex;flex-direction:column;gap:10px;cursor:pointer;font-family:var(--body);text-align:left;box-shadow:0 14px 34px rgba(10,8,5,.4),inset 0 1px 0 rgba(255,255,255,.12);margin-top:16px;position:relative;z-index:2}
+.mc-bal{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.02em}
+.mc-bal em{font-style:normal;font-size:13px;color:#C9A97F;font-weight:600}
+.rs-mc{display:flex;align-items:center;gap:7px;margin-top:4px;color:var(--ink-2);font-size:12px;font-weight:700}
 .rs-head{text-align:center}
 .rs-qr{display:flex;flex-direction:column;align-items:center;gap:10px;margin:20px 0 6px}
 .rs-qr-box{width:170px;height:170px;border-radius:18px;background:
@@ -1361,8 +1400,8 @@ const NOTES = {
   passport:'<b>Passport.</b> The emotional core. Real ink-stamp texture, district chapters, sealed seasonal albums. Think Pokémon, not loyalty.',
   collections:'<b>Collections.</b> Albums with clear prizes: profile flair + partner rewards. Completed ones seal — collecting has an ending, and that feels good.',
   achievements:'<b>Achievements.</b> Rarity tiers, secret badges, and a "so close" card that names the exact next action (tomorrow, 7am, Qamar).',
-  rewards:'<b>Rewards.</b> Strictly per-business — no universal currency anywhere. "Almost there" converts progress into tonight\'s plan.',
-  wallet:'<b>Wallet.</b> Apple-Wallet-style cards, each in the business\'s own brand. Tap to redeem at the till, works offline.',
+  rewards:'<b>Store.</b> One Mastercard points balance — earned anywhere, spent anywhere. Categories first, like a food app, then redeem at the till.',
+  wallet:'<b>Wallet.</b> The Mastercard balance on top, your standing with each place below. Tap to pay or redeem, works offline.',
   profile:'<b>Profile.</b> A gaming profile: level ring, stat grid, trophy shelf, monthly recap built for sharing. Status is the currency.',
   seasonal:'<b>Seasonal.</b> Tiered summer event with sponsored challenges (revenue!) and a friends race that resets — competition without punishment.',
   notifications:'<b>Notifications.</b> Every one is a reason to go outside, written like a friend. Never "we miss you."',
@@ -1455,7 +1494,15 @@ const veil = document.getElementById('veil'), sheet = document.getElementById('r
 function openSheet(){ veil.classList.add('on'); sheet.classList.add('on'); }
 function closeSheet(){ veil.classList.remove('on'); sheet.classList.remove('on'); }
 document.getElementById('openRedeem').addEventListener('click', e => { e.stopPropagation(); openSheet(); });
-document.getElementById('closeRedeem').addEventListener('click', () => { closeSheet(); toast('🥐','Enjoy it — say hi to the Toot team','') });
+document.getElementById('closeRedeem').addEventListener('click', () => { closeSheet(); toast('✅','Redeemed — enjoy your V60','-1,200 pts') });
+
+/* ---------- store category filter ---------- */
+document.querySelectorAll('.cat').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.cat').forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  const f = c.dataset.cat;
+  document.querySelectorAll('.sitem').forEach(it => { it.style.display = (f === 'all' || it.dataset.cat === f) ? 'flex' : 'none'; });
+}));
 veil.addEventListener('click', closeSheet);
 
 /* ---------- initial pbar animation for first screen ---------- */
@@ -1623,7 +1670,27 @@ const AR = {
 // toasts
 'Ahlan, Majd — Amman is yours':'أهلاً مجد — عمّان صارت إلك','+40 XP':'+40 نقطة',
 'Maqha al-Fann — stamp #24 collected':'مقهى الفن — الطابع رقم 24','+25 XP':'+25 نقطة',
-'Enjoy it — say hi to the Toot team':'صحتين — سلملنا على فريق التوت'
+'Enjoy it — say hi to the Toot team':'صحتين — سلملنا على فريق التوت',
+// mastercard one-world update
+'Store':'المتجر','Store — Points':'المتجر — النقاط','A Mastercard experience':'تجربة من ماستركارد','pts':'نقطة',
+'Your balance':'رصيدك','Earned across 23 places · spend it anywhere':'من 23 مكان · اصرفها وين ما بدك',
+'One balance, every place. Earn points with every purchase, spend them anywhere on Dawwar.':'رصيد واحد بكل مكان. اكسب نقاط مع كل شراء، واصرفها وين ما بدك على دوّار.',
+'Shop by category':'تسوق حسب الفئة','Coffee':'قهوة','Food':'أكل','Clothing':'ملابس','Beauty':'جمال','Fitness':'لياقة','Dessert':'حلويات','Barbers':'حلاقة','Flowers':'ورد',
+'Ready near you':'جاهزة حواليك','Free V60 pour-over':'V60 ببلاش','1,200 pts':'1,200 نقطة','Free smash burger':'سماش برجر ببلاش','2,800 pts':'2,800 نقطة',
+'Knafeh plate on the house':'صحن كنافة ع الحساب','1,500 pts':'1,500 نقطة','5 JOD off anything':'خصم 5 دنانير على أي إشي','5,000 pts':'5,000 نقطة',
+'Friday bouquet':'بوكيه الجمعة','4,500 pts':'4,500 نقطة','Hot-towel shave':'حلاقة بالمنشفة السخنة','3,500 pts':'3,500 نقطة','Day pass + coffee':'دخولية يوم + قهوة','2,000 pts':'2,000 نقطة','Flat white + print':'فلات وايت + مطبوعة','1,100 pts':'1,100 نقطة',
+'Qamar Roasters · Weibdeh':'محمصة قمر · اللويبدة','Bunduq Burger · Sweifieh':'بندق برجر · الصويفية','Halab Sweets · Al-Balad':'حلويات حلب · البلد','Thread & Co · Sweifieh':'ثريد آند كو · الصويفية','Warda Flower Studio · Jabal Amman':'ستوديو وردة · جبل عمّان','The Fade Room · Weibdeh':'غرفة الفيد · اللويبدة','Iron District · Sweifieh':'آيرون ديستريكت · الصويفية','Warsheh · Weibdeh':'ورشة · اللويبدة',
+'One stamp away from a 2,000-pt bonus. Sabah would be proud.':'طابع واحد وبتاخد بونص 2,000 نقطة. صباح الخير فعلاً.',
+'Double points on knafeh, all week':'نقاط مضاعفة على الكنافة طول الأسبوع','Visit #5 drops a 3,500-pt bonus':'الزيارة الخامسة بتنزّلك بونص 3,500 نقطة',
+'2,000-pt stamp bonus':'بونص طوابع 2,000 نقطة','· spend it anywhere on Dawwar':'· اصرفه وين ما بدك على دوّار',
+'XP, badges, collections and one points balance — all stacking quietly in your pocket.':'نقاط خبرة، أوسمة، مجموعات، ورصيد نقاط واحد — كلها بتتجمع بهدوء بجيبتك.',
+'trophy + 3,000-pt bonus':'كأس + بونص 3,000 نقطة','🏆 Unlocks: gold profile frame · 6,000-pt bonus':'🏆 بتفتح: إطار ذهبي لبروفايلك · بونص 6,000 نقطة',
+'One balance · 5 places':'رصيد واحد · 5 أماكن','One Mastercard balance on top — your standing with each place below.':'رصيد ماستركارد واحد فوق — ومكانتك عند كل محل تحت.',
+'DAWWAR POINTS':'نقاط دوّار','☕️ 9 / 10 — 2,000-pt bonus next visit':'☕️ 9 / 10 — بونص 2,000 نقطة الزيارة الجاي','🥞 Friend tier — 1.5× points here':'🥞 مستوى صديق — نقاط ×1.5 هون','🥐 Bonus ready — 1,500 pts':'🥐 بونص جاهز — 1,500 نقطة','💈 3 / 5 — 3,500-pt bonus at five':'💈 3 / 5 — بونص 3,500 نقطة عند الخامسة',
+'One stamp from a 2,000-pt bonus':'طابع واحد عن بونص الـ 2,000 نقطة',
+'Dawwar is free for explorers, always. One balance, powered by Mastercard and Retainly.':'دوّار مجاني للمستكشفين، دايماً. رصيد واحد، بدعم من ماستركارد وريتينلي.',
+'1,200 pts will come off your balance when they scan this. New balance: 11,250 pts.':'رح ينخصم 1,200 نقطة من رصيدك لما يمسحوا الرمز. رصيدك الجديد: 11,250 نقطة.',
+'Dawwar points':'نقاط دوّار','Redeemed — enjoy your V60':'تم — صحتين على الـ V60','-1,200 pts':'-1,200 نقطة'
 };
 
 let lang = 'en';
