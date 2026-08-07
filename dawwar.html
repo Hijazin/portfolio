@@ -227,6 +227,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <button class="cta press" data-go="onb2">Start exploring</button>
       <button class="ghost-link">I already have an account</button>
       <div class="mc-powered"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>A Mastercard experience</span></div>
+      <button class="vendor-link press" data-stack="vendor">Are you a business? Join Dawwar →</button>
     </div>
   </div>
 </section>
@@ -1315,7 +1316,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="stack-head"><button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><h2>Settings</h2></div>
   <div class="pad">
-    <div class="set-user card"><span class="avatar" style="width:48px;height:48px;background:#C24E12;font-size:17px">MH</span><div style="flex:1"><b style="font-size:15px">Majd Hijazin</b><span style="display:block;font-size:12px;color:var(--ink-2)">+962 79 ··· ··42 · Weibdeh chapter</span></div><span class="more">Edit</span></div>
+    <div class="set-user card"><span class="avatar" style="width:48px;height:48px;background:#C24E12;font-size:17px">MH</span><div style="flex:1"><b style="font-size:15px">Majd Hijazin</b><span style="display:block;font-size:12px;color:var(--ink-2)">+962 79 ··· ··42 · Weibdeh chapter</span></div><span class="more" id="setEdit" style="cursor:pointer">Edit</span></div>
 
     <div class="kicker set-k">Privacy</div>
     <div class="card set-group">
@@ -1333,11 +1334,11 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 
     <div class="kicker set-k">General</div>
     <div class="card set-group">
-      <div class="set-row link"><b>Language</b><span class="set-val">English · العربية</span></div>
-      <div class="set-row link"><b>Linked payment recognition</b><span class="set-val teal">Active ✓</span></div>
-      <div class="set-row link"><b>Help & about</b><span class="set-val">›</span></div>
+      <div class="set-row link" id="setLangRow"><b>Language</b><span class="set-val">English · العربية</span></div>
+      <div class="set-row link" id="setPayRow"><b>Linked payment recognition</b><span class="set-val teal">Active ✓</span></div>
+      <div class="set-row link" id="setHelpRow"><b>Help & about</b><span class="set-val">›</span></div>
     </div>
-    <button class="signout">Sign out</button>
+    <button class="signout press" id="signoutBtn">Sign out</button>
     <p class="set-fine">Dawwar is free for explorers, always. One balance, powered by Mastercard and Retainly.</p>
     <div style="height:40px"></div>
   </div>
@@ -1356,6 +1357,71 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 .set-val.teal{color:var(--teal);font-weight:700}
 .signout{width:100%;height:48px;border-radius:15px;border:1.5px solid var(--rose-soft);background:none;color:var(--rose);font-family:var(--body);font-weight:700;font-size:14px;margin-top:20px;cursor:pointer}
 .set-fine{font-size:11.5px;color:var(--ink-3);text-align:center;margin-top:14px;line-height:1.5}
+</style>
+
+<!-- ================= VENDOR SIGNUP (stack) ================= -->
+<section class="scr stack" id="vendor">
+  <div class="status"><span>9:41</span><span>🔇</span></div>
+  <div class="stack-head"><button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><h2>For businesses</h2></div>
+  <div class="pad">
+    <div class="kicker" style="color:var(--amber-deep)">Dawwar for vendors</div>
+    <h1 class="h-display onb-title" style="margin-top:6px">Put your business in their pocket</h1>
+    <p class="onb-sub">Thousands of explorers open Dawwar every day. Appear in Discover, earn a passport stamp, and let one points world bring them back.</p>
+
+    <div class="how-list">
+      <div class="how-row"><div class="how-ic" style="background:var(--amber-soft);color:var(--amber-deep)">📍</div><div><b>Appear in Discover & the Passport</b><span>Dawwar members near you find you, stamp you, and come back.</span></div></div>
+      <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">🔁</div><div><b>Retention runs on Retainly</b><span>Stamps, campaigns and win-backs, managed from one dashboard.</span></div></div>
+      <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">⭐</div><div><b>Your Google profile does the setup</b><span>Rating, reviews, hours and photos are pulled automatically.</span></div></div>
+    </div>
+
+    <!-- form -->
+    <div id="vForm">
+      <label class="vlab">Business name</label>
+      <input class="vin" type="text" placeholder="Qamar Roasters">
+      <label class="vlab">Category</label>
+      <select class="vin"><option>Coffee</option><option>Food</option><option>Dessert</option><option>Clothing</option><option>Barber</option><option>Fitness</option><option>Flowers</option></select>
+      <label class="vlab">Phone</label>
+      <input class="vin" type="tel" placeholder="+962 6 465 1234">
+      <label class="vlab">Google Business link</label>
+      <input class="vin" type="url" placeholder="https://maps.app.goo.gl/...">
+      <p class="vhint">We'll pull your rating, reviews, hours and photos automatically.</p>
+      <button class="cta press" id="vendorCta" style="margin-top:6px">Create my business</button>
+    </div>
+
+    <!-- success -->
+    <div id="vSuccess" class="vhide">
+      <div class="rs-check">✓</div>
+      <h2 class="h-display" style="font-size:22px;text-align:center">Your page is ready 🎉</h2>
+      <p class="rs-note" style="margin-bottom:10px">Pulled from your Google link in seconds:</p>
+      <div class="card vpulled">
+        <div class="vp-row"><b>★ 4.8 rating · 312 reviews</b><span>✓</span></div>
+        <div class="vp-row"><b>Opening hours</b><span>✓</span></div>
+        <div class="vp-row"><b>14 photos</b><span>✓</span></div>
+        <div class="vp-row"><b>Location pin in Weibdeh</b><span>✓</span></div>
+      </div>
+      <p class="vhint" style="text-align:center">Manage stamps, rewards and campaigns from your Retainly dashboard.</p>
+      <button class="cta press" id="vendorDash">Open Retainly dashboard</button>
+      <button class="ghost2" id="vendorPreview">Preview my page</button>
+    </div>
+    <div style="height:40px"></div>
+  </div>
+</section>
+
+<style>
+/* vendor signup */
+.vendor-link{margin-top:14px;width:100%;height:46px;border-radius:14px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:#F7EFE2;font-family:var(--body);font-weight:700;font-size:13.5px;cursor:pointer}
+.vlab{font-size:12px;font-weight:700;color:var(--ink-2);margin:13px 2px 6px;display:block}
+.vin{width:100%;height:48px;border-radius:14px;border:1px solid var(--line-2);background:var(--card);padding:0 14px;font-family:var(--body);font-weight:500;font-size:14px;color:var(--ink);box-shadow:var(--sh-1);-webkit-appearance:none;appearance:none}
+.vin:focus{outline:none;border-color:var(--amber)}
+select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236B5F4E' stroke-width='2'><path d='m6 9 6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 14px center}
+[dir="rtl"] select.vin{background-position:left 14px center}
+.vhint{font-size:12px;color:var(--ink-3);line-height:1.5;margin:10px 2px 12px}
+.vhide{display:none}
+.vpulled{padding:4px 16px;margin-bottom:12px}
+.vp-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.vp-row:last-child{border-bottom:none}
+.vp-row span{color:var(--teal);font-weight:800}
+.set-row.link{cursor:pointer}
 </style>
 
 <!-- ================= CHROME: tabbar, sheet, toast ================= -->
@@ -1701,11 +1767,36 @@ function closeContact(){ cSheet.classList.remove('on'); veil.classList.remove('o
 document.getElementById('reserveBtn').addEventListener('click', e => { e.stopPropagation(); openContact(); });
 document.getElementById('contactClose').addEventListener('click', closeContact);
 
+/* ---------- working settings ---------- */
+document.querySelectorAll('.tgl').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
+document.getElementById('setLangRow').addEventListener('click', () => setLang(lang === 'en' ? 'ar' : 'en'));
+document.getElementById('setPayRow').addEventListener('click', () => toast('💳','Linked · Mastercard ·· 4417',''));
+document.getElementById('setHelpRow').addEventListener('click', () => toast('💬','Dawwar support — help@dawwar.app',''));
+document.getElementById('setEdit').addEventListener('click', () => toast('✏️','Profile editing lands in beta',''));
+document.getElementById('signoutBtn').addEventListener('click', () => { show('onb1', false); toast('👋','Signed out — see you soon',''); });
+
+/* ---------- vendor signup flow ---------- */
+document.getElementById('vendorCta').addEventListener('click', () => {
+  const b = document.getElementById('vendorCta');
+  b.disabled = true;
+  b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'عم نسحب من جوجل…' : 'Pulling from Google…';
+  setTimeout(() => {
+    document.getElementById('vForm').classList.add('vhide');
+    document.getElementById('vSuccess').classList.remove('vhide');
+    document.getElementById('vendor').scrollTop = 0;
+    toast('⭐','Google sync complete','');
+    b.disabled = false;
+    b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'أنشئ صفحة محلي' : 'Create my business';
+  }, 1400);
+});
+document.getElementById('vendorDash').addEventListener('click', () => toast('🟠','Retainly dashboard — the vendor side of this demo',''));
+document.getElementById('vendorPreview').addEventListener('click', () => show('biz', true));
+
 /* ---------- swipe-right to go back (Instagram/iOS style) ---------- */
 (function(){
   const shell = document.getElementById('shell');
   const isRtl = () => shell.getAttribute('dir') === 'rtl';
-  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings'];
+  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings','vendor'];
   function backTargetOf(id){
     if (id === 'onb2') return 'onb1';
     if (id === 'onb3') return 'onb2';
@@ -1772,7 +1863,7 @@ document.getElementById('contactClose').addEventListener('click', closeContact);
 setTimeout(() => document.querySelectorAll('#onb1 .pbar > i').forEach(b => b.style.width = b.dataset.w || '0%'), 300);
 
 /* ---------- "Powered by retainly." footer on every screen ---------- */
-['home','city','passport','rewards','wallet','profile','biz','collections','achievements','seasonal','notifications','settings'].forEach(id => {
+['home','city','passport','rewards','wallet','profile','biz','collections','achievements','seasonal','notifications','settings','vendor'].forEach(id => {
   const scr = document.getElementById(id);
   if (!scr) return;
   const spacers = scr.querySelectorAll('div[style*="height:120px"], div[style*="height:40px"]');
@@ -1987,7 +2078,23 @@ const AR = {
 '"Cozy, great beans, parking is tricky on Fridays."':'«مكان دافي وبن ممتاز، بس الباركنج صعب يوم الجمعة.»',
 'Updated daily · reviews stay on Google, Dawwar just mirrors them':'بتتحدث يومياً · التقييمات بتظل على جوجل، دوّار بس بيعكسها',
 'From Dawwar explorers':'من مستكشفين دوّار',
-'Powered by':'بدعم من'
+'Powered by':'بدعم من',
+// vendor signup + working settings
+'Are you a business? Join Dawwar →':'عندك محل؟ انضم لدوّار ←','For businesses':'للأعمال','Dawwar for vendors':'دوّار للتجار',
+'Put your business in their pocket':'حط محلك بجيبة زباينك',
+'Thousands of explorers open Dawwar every day. Appear in Discover, earn a passport stamp, and let one points world bring them back.':'آلاف المستكشفين بيفتحوا دوّار كل يوم. اظهر بالاستكشاف، خد ختمك بالجواز، وخلي عالم النقاط الواحد يرجّعهم لعندك.',
+'Appear in Discover & the Passport':'اظهر في الاستكشاف والجواز','Dawwar members near you find you, stamp you, and come back.':'أعضاء دوّار حواليك بيلاقوك، بيختموك، وبيرجعوا.',
+'Retention runs on Retainly':'الاحتفاظ بالزباين على ريتينلي','Stamps, campaigns and win-backs, managed from one dashboard.':'طوابع، حملات، وإرجاع زباين — كلها من لوحة وحدة.',
+'Your Google profile does the setup':'صفحتك على جوجل بتجهز كل إشي','Rating, reviews, hours and photos are pulled automatically.':'التقييم، المراجعات، الدوام والصور بينسحبوا تلقائياً.',
+'Business name':'اسم المحل','Category':'الفئة','Phone':'الهاتف','Google Business link':'رابط جوجل بزنس',
+"We'll pull your rating, reviews, hours and photos automatically.":'رح نسحب تقييمك ومراجعاتك ودوامك وصورك تلقائياً.',
+'Create my business':'أنشئ صفحة محلي','Your page is ready 🎉':'صفحتك جاهزة 🎉','Pulled from your Google link in seconds:':'انسحب من رابط جوجل خلال ثواني:',
+'★ 4.8 rating · 312 reviews':'★ تقييم 4.8 · 312 مراجعة','Opening hours':'ساعات الدوام','14 photos':'14 صورة','Location pin in Weibdeh':'موقعك في اللويبدة',
+'Manage stamps, rewards and campaigns from your Retainly dashboard.':'دير الطوابع والمكافآت والحملات من لوحة ريتينلي.',
+'Open Retainly dashboard':'افتح لوحة ريتينلي','Preview my page':'شوف صفحتي',
+'Google sync complete':'اكتمل السحب من جوجل','Retainly dashboard — the vendor side of this demo':'لوحة ريتينلي — جزء التاجر من الديمو',
+'Linked · Mastercard ·· 4417':'مربوطة · ماستركارد ·· 4417','Dawwar support — help@dawwar.app':'دعم دوّار — help@dawwar.app',
+'Profile editing lands in beta':'تعديل البروفايل جاي بالبيتا','Signed out — see you soon':'سجلت خروج — منشوفك قريباً'
 };
 
 let lang = 'en';
