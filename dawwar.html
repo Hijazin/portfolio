@@ -192,17 +192,15 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <nav class="rail-nav">
       <button class="rail-item on" data-go="onb1"><span class="n">01</span>Onboarding</button>
       <button class="rail-item" data-go="home"><span class="n">02</span>Home — Today</button>
-      <button class="rail-item" data-go="city"><span class="n">03</span>Discover — The City</button>
+      <button class="rail-item" data-go="city"><span class="n">03</span>Discover (from Home)</button>
       <button class="rail-item" data-go="biz"><span class="n">04</span>Business Profile</button>
       <button class="rail-item" data-go="passport"><span class="n">05</span>Passport</button>
-      <button class="rail-item" data-go="collections"><span class="n">06</span>Collections</button>
-      <button class="rail-item" data-go="achievements"><span class="n">07</span>Achievements</button>
-      <button class="rail-item" data-go="rewards"><span class="n">08</span>Store — Points</button>
-      <button class="rail-item" data-go="wallet"><span class="n">09</span>Wallet</button>
-      <button class="rail-item" data-go="profile"><span class="n">10</span>Profile</button>
-      <button class="rail-item" data-go="seasonal"><span class="n">11</span>Seasonal — Summer Passport</button>
-      <button class="rail-item" data-go="notifications"><span class="n">12</span>Notifications</button>
-      <button class="rail-item" data-go="settings"><span class="n">13</span>Settings</button>
+      <button class="rail-item" data-go="rewards"><span class="n">06</span>Store — Points</button>
+      <button class="rail-item" data-go="wallet"><span class="n">07</span>Wallet (from Store)</button>
+      <button class="rail-item" data-go="profile"><span class="n">08</span>Profile</button>
+      <button class="rail-item" data-go="seasonal"><span class="n">09</span>Seasonal — Summer Passport</button>
+      <button class="rail-item" data-go="notifications"><span class="n">10</span>Notifications</button>
+      <button class="rail-item" data-go="settings"><span class="n">11</span>Settings</button>
     </nav>
     <div class="rail-note" id="railNote">
       <b>Every screen is live.</b> Click through the phone itself — tabs, cards, stamps, redeem sheets and toasts all work. The rail is just a shortcut.
@@ -271,7 +269,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="how-list">
       <div class="how-row"><div class="how-ic" style="background:var(--amber-soft);color:var(--amber-deep)">1</div><div><b>Live your day as usual</b><span>Buy the coffee. Get the haircut. Pay however you pay.</span></div></div>
       <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">2</div><div><b>The stamp lands on its own</b><span>Participating places recognise you at the till — the visit appears in your passport in seconds.</span></div></div>
-      <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">3</div><div><b>The city opens up</b><span>XP, badges, collections and one points balance — all stacking quietly in your pocket.</span></div></div>
+      <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">3</div><div><b>The city opens up</b><span>Stamps, seals, albums and one points balance — all stacking quietly in your pocket.</span></div></div>
     </div>
     <div class="link-card card">
       <div class="link-row"><b>Phone number</b><span class="linked">+962 79 ··· ··42 ✓</span></div>
@@ -343,10 +341,17 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 
     <button class="lvl-strip card press" data-go="profile">
       <div class="lvl-ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="var(--line-2)" stroke-width="3.5"/><circle cx="20" cy="20" r="17" fill="none" stroke="var(--amber)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="107" stroke-dashoffset="18" transform="rotate(-90 20 20)"/></svg><span>7</span></div>
-      <div class="lvl-copy"><b>City Insider</b><span>2,840 / 3,200 XP — 360 to Level 8</span>
-        <div class="pbar"><i data-w="89%"></i></div>
+      <div class="lvl-copy"><b>City Insider · Level 7</b><span>23 places stamped — 2 more to Level 8</span>
+        <div class="pbar"><i data-w="92%"></i></div>
       </div>
       <span class="pts-chip"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg>12,450 <em>pts</em></span>
+    </button>
+
+    <!-- radar: nearest missing stamp -->
+    <button class="radar card press" data-stack="city">
+      <span class="radar-dot"><i></i></span>
+      <div class="radar-c"><b>You're 200 m from a stamp you don't have</b><span>Maqha al-Fann · Weibdeh · closes 11 pm</span></div>
+      <svg class="icon sm" viewBox="0 0 24 24" style="color:var(--ink-3)"><path d="m9 18 6-6-6-6"/></svg>
     </button>
 
     <!-- morning ritual -->
@@ -364,17 +369,17 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       </div>
     </button>
 
-    <!-- daily quest -->
+    <!-- the weekly dawra: one city-wide quest -->
     <div class="quest card-dark">
       <div class="quest-l">
-        <div class="kicker" style="color:#C9A24B">Today's dawra · ends 11:59 pm</div>
-        <b>Order something you've never tried at a place you already love</b>
-        <span class="quest-meta">Layla and Omar are in · 2,114 explorers today</span>
+        <div class="kicker" style="color:#C9A24B">The Weekly Dawra · 4 days left</div>
+        <b>Stamp a place you've never been in Al-Balad</b>
+        <span class="quest-meta">12,431 explorers in · Layla already finished</span>
       </div>
-      <div class="quest-xp"><em>+120</em><span>XP</span></div>
+      <div class="quest-xp"><em>+500</em><span>pts</span></div>
     </div>
 
-    <div class="sec-head"><h3>Trending in Amman</h3><span class="more" data-go="city">This week</span></div>
+    <div class="sec-head"><h3>Trending in Amman</h3><span class="more" data-stack="city">This week</span></div>
   </div>
   <div class="hrow">
     <button class="trend press" data-stack="biz"><img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=70&auto=format&fit=crop" alt=""><div class="trend-veil"></div><span class="rank">1</span><div class="trend-c"><b>Sitti's Kitchen</b><span>Levantine breakfast · Jabal Amman</span><div class="trend-foot"><em>▲ 214 visits this week</em></div></div></button>
@@ -389,6 +394,9 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <div class="friend-row" data-stack="biz"><span class="avatar" style="width:40px;height:40px;background:#C14E4E;font-size:14px">RN</span><div class="friend-c"><b>Rania started Summer Passport</b><span>3 friends are in this season's event</span></div><span class="friend-t">1d</span></div>
     </div>
 
+    <!-- duo stamp -->
+    <div class="duo card"><span class="duo-ic">🤝</span><div class="duo-c"><b>Duo stamp this week</b><span>Visit anywhere with Layla — you both earn 2× points</span></div><button class="duo-btn press">Invite</button></div>
+
     <div class="sec-head"><h3>Ends soon</h3><span class="more" data-go="rewards">Store</span></div>
   </div>
   <div class="hrow">
@@ -397,13 +405,13 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <button class="ltd press" data-go="rewards"><img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=520&q=70&auto=format&fit=crop" alt=""><div class="ltd-c"><span class="ltd-timer">⏳ Fri</span><b>The Fade Room</b><span>Visit #5 drops a 3,500-pt bonus</span></div></button>
   </div>
   <div class="pad">
-    <div class="sec-head"><h3>New in Weibdeh</h3><span class="more" data-go="city">Map</span></div>
+    <div class="sec-head"><h3>New in Weibdeh</h3><span class="more" data-stack="city">Map</span></div>
     <button class="newplace card press" data-stack="biz">
       <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=70&auto=format&fit=crop" alt="">
       <div class="newplace-c">
         <span class="newtag">Opened 9 days ago</span>
         <b>Warsheh — Coffee & Print</b>
-        <span class="np-sub">A risograph studio that serves flat whites. First stamp earns the <em>Early Believer</em> badge.</span>
+        <span class="np-sub">A risograph studio that serves flat whites. First 100 stamps are numbered — <em>#042</em> is waiting for you.</span>
       </div>
     </button>
     <div style="height:120px"></div>
@@ -485,7 +493,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 <section class="scr" id="city">
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
-    <h1 class="h-display city-title">The City</h1>
+    <div class="stack-head" style="padding:6px 0 0"><button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button><h2>The City</h2></div>
     <div class="search press"><svg class="icon sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span>Places, cravings, neighbourhoods…</span></div>
   </div>
   <div class="hrow" style="padding-top:12px">
@@ -524,15 +532,15 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="sec-head"><h3>Hidden gems</h3><span class="more">Why these?</span></div>
     <div class="gem card press" data-stack="biz">
       <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=560&q=70&auto=format&fit=crop" alt="">
-      <div class="gem-c"><div class="gem-top"><b>Dar al-Toot</b><span class="gem-badge">💎 Gem</span></div><span class="gem-sub">Third-generation bakery. Only 41 Dawwar members have its stamp.</span><div class="gem-meta"><span>Weibdeh</span><span>·</span><span>650 m</span><span>·</span><em>+35 XP first visit</em></div></div>
+      <div class="gem-c"><div class="gem-top"><b>Dar al-Toot</b><span class="gem-badge">💎 Gem</span></div><span class="gem-sub">Third-generation bakery. Only 41 Dawwar members have its stamp.</span><div class="gem-meta"><span>Weibdeh</span><span>·</span><span>650 m</span><span>·</span><em>+350 pts first visit</em></div></div>
     </div>
     <div class="gem card press" data-stack="biz">
       <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=560&q=70&auto=format&fit=crop" alt="">
-      <div class="gem-c"><div class="gem-top"><b>Warda Flower Studio</b><span class="gem-badge">💎 Gem</span></div><span class="gem-sub">Buy a Friday bouquet, feed the <em>Support Local</em> collection.</span><div class="gem-meta"><span>Jabal Amman</span><span>·</span><span>1.2 km</span><span>·</span><em>+35 XP</em></div></div>
+      <div class="gem-c"><div class="gem-top"><b>Warda Flower Studio</b><span class="gem-badge">💎 Gem</span></div><span class="gem-sub">Buy a Friday bouquet, feed the <em>Support Local</em> collection.</span><div class="gem-meta"><span>Jabal Amman</span><span>·</span><span>1.2 km</span><span>·</span><em>+350 pts</em></div></div>
     </div>
     <div class="gem card press" data-stack="biz">
       <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=560&q=70&auto=format&fit=crop" alt="">
-      <div class="gem-c"><div class="gem-top"><b>Iron District</b><span class="gem-badge">New</span></div><span class="gem-sub">First gym on Dawwar. Ten visits in a month unlocks <em>Healthy Week</em> ×2.</span><div class="gem-meta"><span>Sweifieh</span><span>·</span><span>3.1 km</span><span>·</span><em>+35 XP</em></div></div>
+      <div class="gem-c"><div class="gem-top"><b>Iron District</b><span class="gem-badge">New</span></div><span class="gem-sub">First gym on Dawwar. Ten visits in a month unlocks <em>Healthy Week</em> ×2.</span><div class="gem-meta"><span>Sweifieh</span><span>·</span><span>3.1 km</span><span>·</span><em>+350 pts</em></div></div>
     </div>
     <div style="height:120px"></div>
   </div>
@@ -615,7 +623,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <p class="biz-story">Roasting on Sharia' Baouniyya since 2019. Farah and Seif started with a 1-kg roaster on a balcony; the neighbourhood kept showing up. The single-origin Yirgacheffe is the thing — <span class="hand">"ask for it as a pour-over"</span>.</p>
 
     <!-- achievements at this place -->
-    <div class="sec-head"><h3>Earn here</h3><span class="more" data-go="achievements">All</span></div>
+    <div class="sec-head"><h3>Earn here</h3><span class="more" data-go="passport">All</span></div>
     <div class="earn-row">
       <div class="earn card"><span class="earn-ic" style="background:var(--amber-soft)">☕️</span><div><b>Coffee Hunter</b><span>This café counts · 14/20</span></div><div class="mini-ring"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="12" fill="none" stroke="var(--line)" stroke-width="3"/><circle cx="15" cy="15" r="12" fill="none" stroke="var(--amber)" stroke-width="3" stroke-linecap="round" stroke-dasharray="75.4" stroke-dashoffset="22.6" transform="rotate(-90 15 15)"/></svg></div></div>
       <div class="earn card"><span class="earn-ic" style="background:var(--teal-soft)">🌅</span><div><b>Morning Person</b><span>5 visits before 9 am · 3/5</span></div><div class="mini-ring"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="12" fill="none" stroke="var(--line)" stroke-width="3"/><circle cx="15" cy="15" r="12" fill="none" stroke="var(--teal)" stroke-width="3" stroke-linecap="round" stroke-dasharray="75.4" stroke-dashoffset="30" transform="rotate(-90 15 15)"/></svg></div></div>
@@ -783,7 +791,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="stamp-grid">
       <button class="stampcell got press" data-stack="biz"><i class="ink" style="--rot:-6deg">☕️</i><b>Qamar</b></button>
       <button class="stampcell got press"><i class="ink" style="--rot:4deg">🥐</i><b>Dar al-Toot</b></button>
-      <button class="stampcell got press"><i class="ink" style="--rot:-3deg">📚</i><b>Warsheh</b></button>
+      <button class="stampcell got press" style="position:relative"><em class="st-num">#041</em><i class="ink" style="--rot:-3deg">📚</i><b>Warsheh</b></button>
       <button class="stampcell got press"><i class="ink" style="--rot:7deg">🎨</i><b>Gallery 14</b></button>
       <button class="stampcell got press"><i class="ink" style="--rot:-8deg">🫖</i><b>Shai w Nana</b></button>
       <button class="stampcell got press"><i class="ink" style="--rot:2deg">🌸</i><b>Warda</b></button>
@@ -797,9 +805,23 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <button class="stampcell press"><i class="hole">?</i><b>Zajal</b></button>
     </div>
 
-    <div class="sec-head"><h3>Album pages</h3><span class="more" data-go="collections">Collections</span></div>
-    <button class="album card press" data-go="collections"><span class="album-ic">☕️</span><div class="album-c"><b>Specialty Coffee of Amman</b><span>14 of 20 pages inked</span><div class="pbar" style="margin-top:7px"><i data-w="70%"></i></div></div></button>
-    <button class="album card press" data-go="collections"><span class="album-ic">🌙</span><div class="album-c"><b>Ramadan Nights '26</b><span>Sealed · reopens next Ramadan · 8/8 ✓</span><div class="pbar" style="margin-top:7px"><i data-w="100%" style="background:var(--gold)"></i></div></button>
+    <div class="sec-head"><h3>Albums</h3><span class="more">4 open · 2 sealed</span></div>
+    <div class="col-grid">
+      <button class="colcard card press"><span class="col-emoji" style="background:var(--amber-soft)">☕️</span><b>Coffee Hunter</b><span>14 of 20 cafés</span><div class="pbar"><i data-w="70%"></i></div></button>
+      <button class="colcard card press"><span class="col-emoji" style="background:var(--rose-soft)">🍔</span><b>Burger Explorer</b><span>6 of 12 joints</span><div class="pbar"><i data-w="50%" style="background:var(--rose)"></i></div></button>
+      <button class="colcard card press"><span class="col-emoji" style="background:var(--gold-soft)">🥞</span><b>Breakfast Club</b><span>5 of 8 mornings</span><div class="pbar"><i data-w="62%" style="background:var(--gold)"></i></div></button>
+      <button class="colcard card press"><span class="col-emoji" style="background:var(--teal-soft)">🌿</span><b>Support Local</b><span>9 of 15 independents</span><div class="pbar"><i data-w="60%" style="background:var(--teal)"></i></div></button>
+    </div>
+
+    <div class="sec-head"><h3>Seals</h3><span class="more">9 of 42</span></div>
+    <div class="ach-grid">
+      <button class="ach got rare press" data-pop><i>💎</i><b>Early Believer</b><span>Epic · only 41 have it</span></button>
+      <button class="ach got press" data-pop><i>🌸</i><b>Weibdeh Wanderer</b><span>Rare · May 3</span></button>
+      <button class="ach got press" data-pop><i>🌙</i><b>Ramadan Explorer</b><span>Seasonal · Apr 20</span></button>
+      <button class="ach press"><i>🌅</i><b>Morning Person</b><span>3/5 sunrise visits</span></button>
+      <button class="ach press"><i>🗺️</i><b>All Eight Circles</b><span>Visit every dawwar</span></button>
+      <button class="ach press"><i>❓</i><b>???</b><span>Secret · keep exploring</span></button>
+    </div>
     <div style="height:120px"></div>
   </div>
 </section>
@@ -983,6 +1005,8 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <svg class="mc-logo big" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg>
     </div>
 
+    <button class="wallet-link press" data-stack="wallet"><svg class="icon sm" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg><b>My place cards</b><svg class="icon sm" viewBox="0 0 24 24" style="color:var(--ink-3)"><path d="m9 18 6-6-6-6"/></svg></button>
+
     <div class="sec-head"><h3>Shop by category</h3></div>
     <div class="catgrid">
       <button class="cat on press" data-cat="all"><i>✨</i><span>All</span></button>
@@ -995,6 +1019,14 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <button class="cat press" data-cat="flowers"><i>🌸</i><span>Flowers</span></button>
     </div>
 
+    <div class="sec-head"><h3>Priceless · by Mastercard</h3><span class="more">The dream shelf</span></div>
+  </div>
+  <div class="hrow">
+    <div class="plx press"><div class="plx-top"><span>🍽️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div><b>Chef's table at Sufra</b><span class="plx-pts">60,000 pts</span></div>
+    <div class="plx press"><div class="plx-top"><span>🎞️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div><b>Rooftop cinema premiere</b><span class="plx-pts">45,000 pts</span></div>
+    <div class="plx press"><div class="plx-top"><span>✈️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div><b>Lounge pass · Amman–Dubai</b><span class="plx-pts">30,000 pts</span></div>
+  </div>
+  <div class="pad">
     <div class="sec-head"><h3>Ready near you</h3></div>
     <div class="sitem card" data-cat="coffee"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Qamar Roasters · Weibdeh</span><b>Free V60 pour-over</b><span class="sprice">1,200 pts</span></div><button class="redeem-btn press" id="openRedeem">Redeem</button></div>
     <div class="sitem card" data-cat="food"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=440&q=70&auto=format&fit=crop" alt=""><div class="sitem-c"><span class="ready-from">Bunduq Burger · Sweifieh</span><b>Free smash burger</b><span class="sprice">2,800 pts</span></div><button class="redeem-btn press">Redeem</button></div>
@@ -1040,7 +1072,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
   <div class="pad">
     <header class="pp-head">
       <div><div class="kicker">One balance · 5 places</div><h1 class="h-display city-title">Wallet</h1></div>
-      <button class="bell press" style="position:static"><svg class="icon sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
     </header>
     <p class="rew-sub">One Mastercard balance on top — your standing with each place below.</p>
 
@@ -1139,7 +1171,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       </div>
     </button>
 
-    <div class="sec-head"><h3>Trophy shelf</h3><span class="more" data-stack="achievements">All badges</span></div>
+    <div class="sec-head"><h3>Trophy shelf</h3><span class="more" data-go="passport">All seals</span></div>
     <div class="shelf card">
       <div class="trophy"><i>🌙</i><span>Ramadan '26</span></div>
       <div class="trophy"><i>🎄</i><span>Markets '25</span></div>
@@ -1154,7 +1186,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 
     <div class="share-row">
       <button class="share-btn press">Share profile card</button>
-      <button class="share-btn ghost press">Invite friends · both get +200 XP</button>
+      <button class="share-btn ghost press">Invite friends · both get +2,000 pts</button>
     </div>
     <div style="height:120px"></div>
   </div>
@@ -1295,7 +1327,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <div class="notif card"><span class="nf-ic" style="background:var(--gold-soft)">🍉</span><div class="nf-c"><b>Watermelon Week started</b><span>Halab Sweets sponsors this one · +100 XP, ends Sunday</span><em>9 h ago</em></div></div>
     <div class="kicker" style="margin:16px 0 10px">This week</div>
     <div class="notif card"><span class="nf-ic" style="background:var(--rose-soft)">🎂</span><div class="nf-c"><b>Sitti's Kitchen remembered your birthday month</b><span>A table gift is loaded on your card for any visit in August</span><em>Mon</em></div></div>
-    <div class="notif card"><span class="nf-ic" style="background:var(--olive-soft)">✦</span><div class="nf-c"><b>New in Weibdeh: Warsheh</b><span>First 100 stamps earn Early Believer · 41 claimed</span><em>Sun</em></div></div>
+    <div class="notif card"><span class="nf-ic" style="background:var(--olive-soft)">✦</span><div class="nf-c"><b>New in Weibdeh: Warsheh</b><span>First 100 stamps are numbered · #042 is next</span><em>Sun</em></div></div>
     <div class="notif card"><span class="nf-ic" style="background:var(--paper-2)">🔥</span><div class="nf-c"><b>Streak saved</b><span>Rain day — we held your 12-day streak. Gentle mode is on.</span><em>Sat</em></div></div>
     <div style="height:40px"></div>
   </div>
@@ -1500,12 +1532,39 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
 .vadd{padding:14px 16px;margin-top:4px}
 .vadd-row{display:flex;gap:10px}
 .prev-chip{position:absolute;top:112px;left:50%;transform:translateX(-50%);background:rgba(20,13,5,.6);backdrop-filter:blur(8px);color:#F5C97F;font-size:11px;font-weight:800;letter-spacing:.06em;padding:7px 14px;border-radius:100px;z-index:5;white-space:nowrap}
+/* v2 simplification additions */
+.radar{display:flex;align-items:center;gap:12px;width:100%;padding:13px 15px;margin-top:12px;text-align:left;font-family:var(--body);cursor:pointer}
+.radar-dot{width:36px;height:36px;border-radius:50%;background:var(--teal-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.radar-dot i{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 6px rgba(30,110,102,.16);animation:flamePulse 2.2s infinite}
+.radar-c{flex:1}
+.radar-c b{font-size:13.5px;display:block;letter-spacing:-.01em}
+.radar-c span{font-size:11.5px;color:var(--ink-2)}
+.duo{display:flex;align-items:center;gap:12px;padding:13px 15px;margin-top:12px}
+.duo-ic{font-size:22px}
+.duo-c{flex:1}
+.duo-c b{font-size:13.5px;display:block;letter-spacing:-.01em}
+.duo-c span{font-size:11.5px;color:var(--ink-2);line-height:1.4}
+.duo-btn{height:36px;padding:0 15px;border-radius:12px;border:none;background:var(--ink);color:var(--paper);font-family:var(--body);font-weight:700;font-size:12.5px;cursor:pointer}
+.plx{width:180px;flex-shrink:0;border-radius:18px;background:linear-gradient(150deg,#262019,#0F0C08);color:#F6EDDD;padding:15px 16px;box-shadow:var(--sh-1)}
+.plx-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.plx-top>span{font-size:24px}
+.plx b{font-size:14px;display:block;letter-spacing:-.01em;line-height:1.3}
+.plx-pts{font-family:var(--disp);font-weight:800;font-size:13px;color:#F5C97F;display:block;margin-top:5px}
+.wallet-link{display:flex;align-items:center;gap:10px;width:100%;padding:13px 15px;margin-top:12px;border-radius:var(--r-md);background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1);cursor:pointer;font-family:var(--body)}
+.wallet-link b{flex:1;text-align:left;font-size:13.5px}
+[dir="rtl"] .wallet-link b{text-align:right}
+.st-num{position:absolute;top:7px;right:7px;font-style:normal;font-family:var(--disp);font-weight:800;font-size:9px;background:var(--gold-soft);color:var(--gold);padding:2px 6px;border-radius:100px;z-index:2}
+.scratch-wrap{position:relative;width:300px;height:150px;margin:18px auto 6px;border-radius:18px;overflow:hidden}
+.scratch-prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(140deg,#2B2118,#171006);color:#F5C97F}
+.scratch-prize b{font-family:var(--disp);font-weight:800;font-size:32px}
+.scratch-prize span{font-size:12px;color:#C9BBA5}
+#scratchCv{position:absolute;inset:0;touch-action:none;cursor:crosshair;transition:opacity .5s}
 </style>
 
 <!-- ================= CHROME: tabbar, sheet, toast ================= -->
 <nav class="tabbar hide" id="tabbar">
   <button class="tab on" data-tab="home"><svg class="icon" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M9 22V12h6v10"/></svg><span>Today</span></button>
-  <button class="tab" data-tab="city"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/></svg><span>City</span></button>
+
   <button class="tab center" data-tab="passport"><span class="orb"><svg class="icon" viewBox="0 0 24 24" style="stroke:#fff"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M8 17h8"/></svg></span><span>Passport</span></button>
   <button class="tab" data-tab="rewards"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span>Store</span><i class="dot"></i></button>
   <button class="tab" data-tab="profile"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg><span>You</span></button>
@@ -1548,6 +1607,18 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
     <p class="rs-note">−1,200 pts · new balance 11,250 pts</p>
     <button class="cta press" id="rsDone" style="box-shadow:none">Done</button>
   </div>
+</div>
+
+<!-- scratch card: every 5th stamp -->
+<div class="sheet" id="scratchSheet">
+  <div class="grab"></div>
+  <div class="rs-head"><span class="ready-from">Every 5th stamp</span><h2 class="h-display" style="font-size:22px;margin-top:4px">Scratch your surprise</h2></div>
+  <div class="scratch-wrap">
+    <div class="scratch-prize"><b>+750 pts</b><span>from Halab Sweets · Watermelon Week</span></div>
+    <canvas id="scratchCv" width="300" height="150"></canvas>
+  </div>
+  <p class="rs-note">Priceless surprises land every fifth stamp. This one's yours.</p>
+  <button class="cta press" id="scratchDone" style="box-shadow:none">Claim</button>
 </div>
 
 <!-- reservation contact card -->
@@ -1667,15 +1738,15 @@ function fitPhone(){
 fitPhone(); addEventListener('resize', fitPhone);
 
 /* ---------- router ---------- */
-const TABS = ['home','city','passport','rewards','wallet','profile'];
+const TABS = ['home','passport','rewards','profile'];
 const NOTES = {
   onb1:'<b>Onboarding.</b> A promise, not a form. The Amman Citadel, the name in Arabic, one line of intent. Three screens, zero typing.',
   onb2:'<b>Tastes.</b> Selection here trains the whole city feed. Notice the tone — cravings, not "categories."',
   onb3:'<b>The trick.</b> No QR scanning, no receipts. Retainly tills recognise the member — the stamp just lands. This screen sells the magic honestly.',
-  home:'<b>Home = Today.</b> Time-aware ritual card, one daily quest, trending, friends, expiring rewards. Dense but each block answers "what should I do today?"',
+  home:'<b>Home = Today.</b> Radar to your nearest missing stamp, the one Weekly Dawra (not ten quests), duo stamps with a friend, trending, expiring rewards. One loop: visit → stamp → points.',
   city:'<b>Discover.</b> The map shows unstamped places as dashed pins — collection instinct does the marketing. Curated walking routes ("dawras") replace product grids.',
   biz:'<b>Business page.</b> "Your standing here" leads — relationship before menu. Hours, photos and Google reviews sync automatically from the vendor\'s Google Business link at registration; campaigns come from Retainly.',
-  passport:'<b>Passport.</b> The emotional core. Real ink-stamp texture, district chapters, sealed seasonal albums. Think Pokémon, not loyalty.',
+  passport:'<b>Passport.</b> Now the single home for ALL collecting — stamps (some numbered, like Warsheh #041), albums, and seals merged here. Levels come from places stamped, XP is gone.',
   collections:'<b>Collections.</b> Albums with clear prizes: profile flair + partner rewards. Completed ones seal — collecting has an ending, and that feels good.',
   achievements:'<b>Achievements.</b> Rarity tiers, secret badges, and a "so close" card that names the exact next action (tomorrow, 7am, Qamar).',
   rewards:'<b>Store.</b> One Mastercard points balance, categories first like a food app. Redemption is 3-layer safe: preview (nothing deducted) → slide to confirm → points only leave when the till scans.',
@@ -1741,7 +1812,7 @@ function toast(ic, msg, xp){
 /* ---------- onboarding finish ---------- */
 document.getElementById('finishOnb').addEventListener('click', () => {
   show('home', false);
-  setTimeout(() => toast('🧭','Ahlan, Majd — Amman is yours','+40 XP'), 500);
+  setTimeout(() => toast('🧭','Ahlan, Majd — Amman is yours','+100 pts'), 500);
 });
 
 /* ---------- taste chips toggle ---------- */
@@ -1760,7 +1831,8 @@ document.getElementById('tryStamp').addEventListener('click', function(){
   ink.className = 'ink fresh'; ink.style.setProperty('--rot','-5deg'); ink.textContent = '🌙';
   hole.replaceWith(ink);
   this.classList.add('got');
-  toast('🌙','Maqha al-Fann — stamp #24 collected','+25 XP');
+  toast('🌙','Maqha al-Fann — stamp #24 collected','+50 pts');
+  setTimeout(() => { if (typeof openScratch === 'function') openScratch(); }, 1300);
 });
 
 /* ---------- achievements pop ---------- */
@@ -1836,6 +1908,8 @@ document.querySelectorAll('.cat').forEach(c => c.addEventListener('click', () =>
 veil.addEventListener('click', () => {
   const cs = document.getElementById('contactSheet');
   if (cs.classList.contains('on')) { cs.classList.remove('on'); veil.classList.remove('on'); return; }
+  const sc = document.getElementById('scratchSheet');
+  if (sc.classList.contains('on')) { sc.classList.remove('on'); veil.classList.remove('on'); return; }
   closeRedeemSafe(!document.getElementById('rsS2').classList.contains('hide'));
 });
 
@@ -1945,11 +2019,47 @@ document.getElementById('vAddBtn').addEventListener('click', () => {
   toast('🛍️', isAr() ? 'صار ظاهر بمتجر دوّار' : 'Now live in the Dawwar Store', '');
 });
 
+/* ---------- scratch card: every 5th stamp ---------- */
+const scSheet = document.getElementById('scratchSheet');
+const scCv = document.getElementById('scratchCv');
+let scMoves = 0, scDown = false;
+function paintScratchCover(){
+  const ctx = scCv.getContext('2d');
+  ctx.globalCompositeOperation = 'source-over';
+  const g = ctx.createLinearGradient(0, 0, 300, 150);
+  g.addColorStop(0, '#C9C2B6'); g.addColorStop(.5, '#EBE5D9'); g.addColorStop(1, '#B4AC9E');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 300, 150);
+  ctx.fillStyle = '#8A8274';
+  ctx.font = '700 15px "Instrument Sans", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('S C R A T C H  ✦', 150, 80);
+  scCv.style.opacity = '1';
+  scMoves = 0;
+}
+function openScratch(){ paintScratchCover(); veil.classList.add('on'); scSheet.classList.add('on'); }
+function closeScratch(){ scSheet.classList.remove('on'); veil.classList.remove('on'); }
+function scratchAt(e){
+  const r = scCv.getBoundingClientRect();
+  const x = (e.clientX - r.left) * (300 / r.width), y = (e.clientY - r.top) * (150 / r.height);
+  const ctx = scCv.getContext('2d');
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath(); ctx.arc(x, y, 20, 0, Math.PI * 2); ctx.fill();
+  scMoves++;
+  if (scMoves > 26) scCv.style.opacity = '0';
+}
+scCv.addEventListener('pointerdown', e => { e.preventDefault(); scDown = true; scratchAt(e); });
+scCv.addEventListener('pointermove', e => { if (scDown) scratchAt(e); });
+window.addEventListener('pointerup', () => { scDown = false; });
+document.getElementById('scratchDone').addEventListener('click', () => {
+  closeScratch();
+  toast('🎁', isAr() ? '+750 نقطة انضافت لرصيدك' : '+750 pts added to your balance', '');
+});
+
 /* ---------- swipe-right to go back (Instagram/iOS style) ---------- */
 (function(){
   const shell = document.getElementById('shell');
   const isRtl = () => shell.getAttribute('dir') === 'rtl';
-  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings','vendor','vdash'];
+  const STACKS = ['biz','collections','achievements','seasonal','notifications','settings','vendor','vdash','city','wallet'];
   function backTargetOf(id){
     if (id === 'onb2') return 'onb1';
     if (id === 'onb3') return 'onb2';
@@ -2266,7 +2376,22 @@ const AR = {
 'We call you this week':'منتصل فيك هالأسبوع','A quick chat about your place and your regulars.':'حكي سريع عن محلك وزباينك.',
 'One visit sets up your till with Retainly':'زيارة وحدة بتجهز كاشيرك مع ريتينلي','Stamps, points and rewards — working before we leave.':'طوابع، نقاط ومكافآت — شغّالة قبل ما نطلع.',
 'You go live with a Founding Partner badge':'بتصير لايف مع وسام شريك مؤسس','Early explorers hunt new stamps — launch is your busiest week.':'المستكشفين بيطاردوا الأختام الجديدة — أسبوع الإطلاق أكثر أسبوع شغل.',
-'Already attached to your request:':'مرفق بطلبك جاهز:',"Preview what you'll manage after setup":'شوف شو رح تدير بعد التجهيز'
+'Already attached to your request:':'مرفق بطلبك جاهز:',"Preview what you'll manage after setup":'شوف شو رح تدير بعد التجهيز',
+// v2 simplification
+'City Insider · Level 7':'خبير المدينة · مستوى 7','23 places stamped — 2 more to Level 8':'23 مكان مختوم — باقي 2 للمستوى 8',
+'The Weekly Dawra · 4 days left':'دورة الأسبوع · باقي 4 أيام',"Stamp a place you've never been in Al-Balad":'اختم مكان عمرك ما رحته بالبلد',
+'12,431 explorers in · Layla already finished':'12,431 مستكشف مشاركين · ليلى خلصتها',
+"You're 200 m from a stamp you don't have":'إنت على بعد 200 م عن ختم مش معك','Maqha al-Fann · Weibdeh · closes 11 pm':'مقهى الفن · اللويبدة · بسكر 11 بالليل',
+'Duo stamp this week':'ختم ثنائي هالأسبوع','Visit anywhere with Layla — you both earn 2× points':'زور أي مكان مع ليلى — الاثنين بتاخدوا نقاط ×2','Invite':'اعزم',
+'First 100 stamps are numbered —':'أول 100 ختم مرقمين —','is waiting for you.':'مستنيك.','First 100 stamps are numbered · #042 is next':'أول 100 ختم مرقمين · #042 هو الجاي',
+'Albums':'الألبومات','4 open · 2 sealed':'4 مفتوحة · 2 مختومة','Seals':'الأختام الخاصة','9 of 42':'9 من 42',
+'Priceless · by Mastercard':'برايسلس · من ماستركارد','The dream shelf':'رف الأحلام',"Chef's table at Sufra":'طاولة الشيف في سفرة','60,000 pts':'60,000 نقطة',
+'Rooftop cinema premiere':'عرض أول سينما عالسطح','45,000 pts':'45,000 نقطة','Lounge pass · Amman–Dubai':'دخول صالة · عمّان–دبي','30,000 pts':'30,000 نقطة',
+'My place cards':'بطاقات أماكني','Every 5th stamp':'كل خامس ختم','Scratch your surprise':'اكشط مفاجأتك','+750 pts':'+750 نقطة',
+'from Halab Sweets · Watermelon Week':'من حلويات حلب · أسبوع البطيخ',"Priceless surprises land every fifth stamp. This one's yours.":'مفاجآت برايسلس بتنزل كل خامس ختم. هاي إلك.','Claim':'استلم',
+'Stamps, seals, albums and one points balance — all stacking quietly in your pocket.':'أختام، أوسمة، ألبومات ورصيد نقاط واحد — كلها بتتجمع بهدوء بجيبتك.',
+'+350 pts first visit':'+350 نقطة أول زيارة','+350 pts':'+350 نقطة','+100 pts':'+100 نقطة','+50 pts':'+50 نقطة','+500':'+500',
+'Invite friends · both get +2,000 pts':'اعزم أصحابك · الاثنين بتاخدوا +2,000 نقطة','All seals':'كل الأختام'
 };
 
 let lang = 'en';
