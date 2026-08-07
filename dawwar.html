@@ -1318,14 +1318,40 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 <div class="sheet-veil" id="veil"></div>
 <div class="sheet" id="redeemSheet">
   <div class="grab"></div>
-  <div class="rs-head"><span class="ready-from">Qamar Roasters · Weibdeh</span><h2 class="h-display" style="font-size:22px;margin-top:4px">Free V60 pour-over</h2></div>
-  <div class="rs-qr">
-    <div class="rs-qr-box"></div>
-    <span class="rs-code">DWR·8214</span>
-    <div class="rs-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>Dawwar points</span></div>
+
+  <!-- stage 1: preview, nothing deducted -->
+  <div class="rstage" id="rsS1">
+    <div class="rs-head"><span class="ready-from">Qamar Roasters · Weibdeh</span><h2 class="h-display" style="font-size:22px;margin-top:4px">Free V60 pour-over</h2></div>
+    <div class="rs-price"><b>1,200 <em>pts</em></b><span>Balance after: <b>11,250 pts</b></span></div>
+    <div class="rs-safe"><svg class="icon sm" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Nothing is deducted yet</div>
+    <div class="slide" id="slideCtl" dir="ltr">
+      <div class="slide-fill" id="slideFill"></div>
+      <span class="slide-label" id="slideLabel">Slide to redeem</span>
+      <div class="slide-thumb" id="slideThumb"><svg class="icon sm" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+    </div>
+    <button class="ghost2" id="rsNotNow">Not now</button>
   </div>
-  <p class="rs-note">1,200 pts will come off your balance when they scan this. New balance: 11,250 pts.</p>
-  <button class="cta press" id="closeRedeem" style="box-shadow:none">Done</button>
+
+  <!-- stage 2: live code, deduct on scan only -->
+  <div class="rstage hide" id="rsS2">
+    <div class="rs-head"><span class="ready-from">Qamar Roasters · Weibdeh</span><h2 class="h-display" style="font-size:22px;margin-top:4px">Ready at the till</h2></div>
+    <div class="rs-qr">
+      <div class="rs-qr-box press" id="qrSim"></div>
+      <span class="rs-code">DWR·8214</span>
+      <span class="rs-count" id="rsCount">5:00</span>
+      <div class="rs-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>Dawwar points</span></div>
+    </div>
+    <p class="rs-note">Points leave your balance only when the till scans this code. Tap the code to simulate the scan.</p>
+    <button class="ghost2 danger" id="rsCancel">Cancel — keep my points</button>
+  </div>
+
+  <!-- stage 3: success -->
+  <div class="rstage hide" id="rsS3">
+    <div class="rs-check">✓</div>
+    <h2 class="h-display" style="font-size:22px;text-align:center">Redeemed! Enjoy your V60</h2>
+    <p class="rs-note">−1,200 pts · new balance 11,250 pts</p>
+    <button class="cta press" id="rsDone" style="box-shadow:none">Done</button>
+  </div>
 </div>
 
 <div class="toast" id="toast"><span id="toastIc">🎉</span><span id="toastMsg">Welcome to Dawwar</span><span class="xp" id="toastXp">+40 XP</span></div>
@@ -1362,6 +1388,23 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 .mc-bal em{font-style:normal;font-size:13px;color:#C9A97F;font-weight:600}
 .rs-mc{display:flex;align-items:center;gap:7px;margin-top:4px;color:var(--ink-2);font-size:12px;font-weight:700}
 .rs-head{text-align:center}
+/* safe redemption flow */
+.rstage.hide{display:none}
+.rs-price{display:flex;align-items:baseline;justify-content:space-between;margin:18px 4px 6px}
+.rs-price>b{font-family:var(--disp);font-size:30px;font-weight:800;letter-spacing:-.02em}
+.rs-price>b em{font-style:normal;font-size:13px;color:var(--ink-3);font-weight:600}
+.rs-price>span{font-size:12.5px;color:var(--ink-2)}
+.rs-price>span b{color:var(--ink)}
+.rs-safe{display:flex;align-items:center;gap:8px;justify-content:center;font-size:12.5px;font-weight:700;color:var(--teal);background:var(--teal-soft);border-radius:12px;padding:10px;margin:10px 0 16px}
+.slide{position:relative;height:58px;border-radius:100px;background:var(--paper-2);border:1px solid var(--line-2);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none}
+.slide-fill{position:absolute;left:0;top:0;bottom:0;width:58px;background:linear-gradient(150deg,#F07E23,#D9540A);border-radius:100px}
+.slide-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--ink-2);pointer-events:none}
+.slide-thumb{position:absolute;top:4px;left:4px;width:50px;height:50px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:grab;color:var(--amber-deep)}
+.slide-thumb:active{cursor:grabbing}
+.ghost2{width:100%;background:none;border:none;font-family:var(--body);font-weight:600;font-size:13.5px;color:var(--ink-3);margin-top:14px;cursor:pointer;padding:8px}
+.ghost2.danger{color:var(--rose);font-weight:700}
+.rs-count{font-family:var(--disp);font-weight:800;font-size:13px;color:var(--amber-deep);background:var(--amber-soft);padding:5px 12px;border-radius:100px}
+.rs-check{width:64px;height:64px;border-radius:50%;background:var(--teal);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;margin:8px auto 14px;animation:popIn .5s cubic-bezier(.2,1.4,.4,1)}
 .rs-qr{display:flex;flex-direction:column;align-items:center;gap:10px;margin:20px 0 6px}
 .rs-qr-box{width:170px;height:170px;border-radius:18px;background:
  repeating-linear-gradient(0deg,var(--ink) 0 5px,transparent 5px 10px),
@@ -1400,7 +1443,7 @@ const NOTES = {
   passport:'<b>Passport.</b> The emotional core. Real ink-stamp texture, district chapters, sealed seasonal albums. Think Pokémon, not loyalty.',
   collections:'<b>Collections.</b> Albums with clear prizes: profile flair + partner rewards. Completed ones seal — collecting has an ending, and that feels good.',
   achievements:'<b>Achievements.</b> Rarity tiers, secret badges, and a "so close" card that names the exact next action (tomorrow, 7am, Qamar).',
-  rewards:'<b>Store.</b> One Mastercard points balance — earned anywhere, spent anywhere. Categories first, like a food app, then redeem at the till.',
+  rewards:'<b>Store.</b> One Mastercard points balance, categories first like a food app. Redemption is 3-layer safe: preview (nothing deducted) → slide to confirm → points only leave when the till scans.',
   wallet:'<b>Wallet.</b> The Mastercard balance on top, your standing with each place below. Tap to pay or redeem, works offline.',
   profile:'<b>Profile.</b> A gaming profile: level ring, stat grid, trophy shelf, monthly recap built for sharing. Status is the currency.',
   seasonal:'<b>Seasonal.</b> Tiered summer event with sponsored challenges (revenue!) and a friends race that resets — competition without punishment.',
@@ -1493,8 +1536,59 @@ document.querySelectorAll('[data-pop]').forEach(a => a.addEventListener('click',
 const veil = document.getElementById('veil'), sheet = document.getElementById('redeemSheet');
 function openSheet(){ veil.classList.add('on'); sheet.classList.add('on'); }
 function closeSheet(){ veil.classList.remove('on'); sheet.classList.remove('on'); }
-document.getElementById('openRedeem').addEventListener('click', e => { e.stopPropagation(); openSheet(); });
-document.getElementById('closeRedeem').addEventListener('click', () => { closeSheet(); toast('✅','Redeemed — enjoy your V60','-1,200 pts') });
+/* ---------- safe redemption: preview → slide → deduct-on-scan ---------- */
+let rsTimer = null;
+function rsStage(n){ ['rsS1','rsS2','rsS3'].forEach((id,i) => document.getElementById(id).classList.toggle('hide', i !== n - 1)); }
+function resetSlider(){
+  document.getElementById('slideThumb').style.left = '4px';
+  document.getElementById('slideFill').style.width = '58px';
+  document.getElementById('slideLabel').style.opacity = '1';
+}
+function stopRsTimer(){ if (rsTimer) { clearInterval(rsTimer); rsTimer = null; } }
+function closeRedeemSafe(wasActive){
+  stopRsTimer(); closeSheet();
+  if (wasActive) toast('🛡️','Cancelled — nothing deducted','');
+}
+document.querySelectorAll('.redeem-btn').forEach(b => b.addEventListener('click', e => {
+  e.stopPropagation(); rsStage(1); resetSlider(); openSheet();
+}));
+document.getElementById('rsNotNow').addEventListener('click', () => closeRedeemSafe(false));
+document.getElementById('rsCancel').addEventListener('click', () => closeRedeemSafe(true));
+document.getElementById('rsDone').addEventListener('click', () => { stopRsTimer(); closeSheet(); });
+function confirmRedeem(){
+  rsStage(2);
+  let s = 300; const el = document.getElementById('rsCount'); el.textContent = '5:00';
+  stopRsTimer();
+  rsTimer = setInterval(() => {
+    s--;
+    if (s <= 0) { closeRedeemSafe(true); return; }
+    el.textContent = Math.floor(s/60) + ':' + String(s % 60).padStart(2,'0');
+  }, 1000);
+}
+document.getElementById('qrSim').addEventListener('click', () => { stopRsTimer(); rsStage(3); toast('✅','Redeemed — enjoy your V60','-1,200 pts'); });
+/* slide-to-redeem gesture */
+(function(){
+  const ctl = document.getElementById('slideCtl'), thumb = document.getElementById('slideThumb'),
+        fill = document.getElementById('slideFill'), label = document.getElementById('slideLabel');
+  let drag = false;
+  const maxX = () => ctl.clientWidth - 54;
+  function setX(x){
+    x = Math.max(4, Math.min(maxX(), x));
+    thumb.style.left = x + 'px'; fill.style.width = (x + 54) + 'px';
+    label.style.opacity = String(Math.max(0, 1 - (x - 4) / (maxX() * .6)));
+    return x;
+  }
+  thumb.addEventListener('pointerdown', e => { drag = true; thumb.setPointerCapture && thumb.setPointerCapture(e.pointerId); });
+  ctl.addEventListener('pointermove', e => { if (!drag) return; const r = ctl.getBoundingClientRect(); setX(e.clientX - r.left - 27); });
+  function finish(e){
+    if (!drag) return; drag = false;
+    const r = ctl.getBoundingClientRect(); const x = e.clientX - r.left - 27;
+    if (x > maxX() * .82) { setX(maxX()); setTimeout(confirmRedeem, 180); }
+    else resetSlider();
+  }
+  ctl.addEventListener('pointerup', finish);
+  ctl.addEventListener('pointercancel', () => { drag = false; resetSlider(); });
+})();
 
 /* ---------- store category filter ---------- */
 document.querySelectorAll('.cat').forEach(c => c.addEventListener('click', () => {
@@ -1503,7 +1597,7 @@ document.querySelectorAll('.cat').forEach(c => c.addEventListener('click', () =>
   const f = c.dataset.cat;
   document.querySelectorAll('.sitem').forEach(it => { it.style.display = (f === 'all' || it.dataset.cat === f) ? 'flex' : 'none'; });
 }));
-veil.addEventListener('click', closeSheet);
+veil.addEventListener('click', () => closeRedeemSafe(!document.getElementById('rsS2').classList.contains('hide')));
 
 /* ---------- initial pbar animation for first screen ---------- */
 setTimeout(() => document.querySelectorAll('#onb1 .pbar > i').forEach(b => b.style.width = b.dataset.w || '0%'), 300);
@@ -1690,7 +1784,14 @@ const AR = {
 'One stamp from a 2,000-pt bonus':'طابع واحد عن بونص الـ 2,000 نقطة',
 'Dawwar is free for explorers, always. One balance, powered by Mastercard and Retainly.':'دوّار مجاني للمستكشفين، دايماً. رصيد واحد، بدعم من ماستركارد وريتينلي.',
 '1,200 pts will come off your balance when they scan this. New balance: 11,250 pts.':'رح ينخصم 1,200 نقطة من رصيدك لما يمسحوا الرمز. رصيدك الجديد: 11,250 نقطة.',
-'Dawwar points':'نقاط دوّار','Redeemed — enjoy your V60':'تم — صحتين على الـ V60','-1,200 pts':'-1,200 نقطة'
+'Dawwar points':'نقاط دوّار','Redeemed — enjoy your V60':'تم — صحتين على الـ V60','-1,200 pts':'-1,200 نقطة',
+// safe redemption flow
+'Ready at the till':'جاهز عند الكاشير','Nothing is deducted yet':'لسا ما انخصم إشي','Slide to redeem':'اسحب لتستخدم',
+'Balance after:':'رصيدك بعدها:','11,250 pts':'11,250 نقطة','Not now':'مش هلأ',
+'Points leave your balance only when the till scans this code. Tap the code to simulate the scan.':'النقاط بتنخصم من رصيدك بس لما يمسح الكاشير الرمز. اكبس على الرمز لتجرب المسح.',
+'Cancel — keep my points':'إلغاء — خلي نقاطي','Redeemed! Enjoy your V60':'تم! صحتين على الـ V60',
+'−1,200 pts · new balance 11,250 pts':'−1,200 نقطة · رصيدك الجديد 11,250 نقطة',
+'Cancelled — nothing deducted':'انلغى — ما انخصم إشي'
 };
 
 let lang = 'en';
