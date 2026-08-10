@@ -327,8 +327,8 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <p class="onb-sub">Your number is your account. No passwords to forget.</p>
       <label class="vlab">Phone number</label>
       <div class="phone-row"><span class="cc-chip">+962</span><input class="vin" type="tel" id="acPhoneIn" placeholder="7X XXX XXXX" style="flex:1"></div>
-      <p class="vhint">We'll text you a one-time code. Standard SMS rates apply.</p>
-      <button class="cta press" id="acSend" style="margin-top:8px">Send code</button>
+      <p class="vhint">SMS verification arrives at launch — skipped in this preview.</p>
+      <button class="cta press" id="acSend" style="margin-top:8px">Continue</button>
     </div>
 
     <!-- otp -->
@@ -1811,7 +1811,7 @@ const NOTES = {
   onb1:'<b>Onboarding.</b> A promise, not a form. The Amman Citadel, the name in Arabic, one line of intent. Three screens, zero typing.',
   onb2:'<b>Tastes.</b> Selection here trains the whole city feed. Notice the tone — cravings, not "categories."',
   onb3:'<b>The trick.</b> No QR scanning, no receipts. Retainly tills recognise the member — the stamp just lands. This screen sells the magic honestly.',
-  onb4:'<b>Secure account.</b> Phone + real SMS OTP (auto-advancing boxes, resend timer), then your name. No passwords, no magic pre-linked numbers.',
+  onb4:'<b>Account.</b> Phone + name. SMS OTP is built (auto-advancing boxes, resend timer) but bypassed until the service is live — one flag turns it back on.',
   onb5:'<b>Card linking, consent-first.</b> Tokenization explained in plain words, no CVC collected, skippable — and location is an explicit choice, not a pre-checked toggle.',
   home:'<b>Home = Today.</b> Radar to your nearest missing stamp, the one Weekly Dawra (not ten quests), duo stamps with a friend, trending, expiring rewards. One loop: visit → stamp → points.',
   city:'<b>Discover.</b> The map shows unstamped places as dashed pins — collection instinct does the marketing. Curated walking routes ("dawras") replace product grids.',
@@ -1899,11 +1899,11 @@ document.getElementById('acSend').addEventListener('click', () => {
     return;
   }
   acPhoneIn.style.borderColor = '';
-  document.getElementById('acMaskNum').textContent = '+962 ' + digits.slice(0,2) + ' ··· ··' + digits.slice(-2);
+  /* SMS verification disabled for preview — re-enable at launch:
+     show acStOtp, focus first .otp, startResend() */
   document.getElementById('acStPhone').classList.add('vhide');
-  document.getElementById('acStOtp').classList.remove('vhide');
-  document.querySelector('.otp').focus();
-  startResend();
+  document.getElementById('acStName').classList.remove('vhide');
+  document.getElementById('acNameIn').focus();
 });
 const otps = [...document.querySelectorAll('.otp')];
 otps.forEach((o, i) => {
@@ -2560,6 +2560,7 @@ const AR = {
 'Create my account':'أنشئ حسابي','Create your account':'أنشئ حسابك','Your number is your account. No passwords to forget.':'رقمك هو حسابك. بدون كلمات سر تنساها.',
 "We'll text you a one-time code. Standard SMS rates apply.":'رح نبعتلك رمز لمرة وحدة برسالة.','Send code':'ابعت الرمز',
 'Enter the 6-digit code':'أدخل الرمز المكون من 6 أرقام','Sent by SMS to':'انبعت برسالة إلى','Resend in 0:30':'إعادة الإرسال بعد 0:30',
+'SMS verification arrives at launch — skipped in this preview.':'التحقق بالرسائل جاي مع الإطلاق — متخطى بهالمعاينة.',
 'What do your friends call you?':'شو بينادوك أصحابك؟',"This is how you'll appear if you ever choose to share.":'هيك رح تظهر إذا اخترت تشارك بأي وقت.','Your name':'اسمك',
 'Link your card':'اربط بطاقتك','This is how stamps land automatically when you pay.':'هيك بينزل الختم تلقائياً لما تدفع.',
 'Tokenized by Mastercard':'مشفّرة برموز من ماستركارد','We never see or store your card number.':'عمرنا ما منشوف أو منخزن رقم بطاقتك.',
