@@ -88,7 +88,7 @@ body{font-family:var(--body);background:#161210;color:var(--ink);overflow:hidden
 .avatar{border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;overflow:hidden;flex-shrink:0}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .avatar.me{background:#C24E12!important}
-.prof-ava .avatar.me{background:#2A1407!important}
+.prof-ava .avatar.me{background:#04122E!important}
 .pbar{height:7px;border-radius:10px;background:rgba(34,26,16,.1);overflow:hidden}
 .pbar>i{display:block;height:100%;border-radius:10px;background:var(--amber);width:0;transition:width 1s cubic-bezier(.3,.8,.3,1)}
 .badge-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block}
@@ -185,8 +185,8 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
   <aside class="rail">
     <div>
       <div class="rail-logo">Dawwar <span class="ar">دوّار</span></div>
-      <div class="rail-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg> for Mastercard</div>
-      <div class="rail-tag">The daily companion for your city. One points balance on Mastercard rails, powered by Retainly.</div>
+      <div class="rail-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg> for American Express</div>
+      <div class="rail-tag">The daily companion for your city. One points balance on American Express rails, powered by Retainly.</div>
     </div>
     <div class="rail-sec">Flow</div>
     <nav class="rail-nav">
@@ -226,7 +226,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <p>Every coffee, every haircut, every late breakfast in Amman counts for something now. Collect stamps, unlock the city.</p>
       <button class="cta press" data-go="onb2">Start exploring</button>
       <button class="ghost-link">I already have an account</button>
-      <div class="mc-powered"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>A Mastercard experience</span></div>
+      <div class="mc-powered"><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg><span>An American Express experience</span></div>
       <button class="vendor-link press" data-stack="vendor">Are you a business? Join Dawwar →</button>
     </div>
   </div>
@@ -362,12 +362,12 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <h1 class="h-display onb-title">Link your card</h1>
       <p class="onb-sub">This is how stamps land automatically when you pay.</p>
       <div class="how-list" style="margin-bottom:18px">
-        <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">🔒</div><div><b>Tokenized by Mastercard</b><span>We never see or store your card number.</span></div></div>
+        <div class="how-row"><div class="how-ic" style="background:var(--teal-soft);color:var(--teal)">🔒</div><div><b>Tokenized by American Express</b><span>We never see or store your card number.</span></div></div>
         <div class="how-row"><div class="how-ic" style="background:var(--amber-soft);color:var(--amber-deep)">👁️</div><div><b>Partner purchases only</b><span>We only see purchases at Dawwar partner places. Nothing else.</span></div></div>
         <div class="how-row"><div class="how-ic" style="background:var(--gold-soft);color:var(--gold)">🗑️</div><div><b>You stay in control</b><span>Unlink anytime from Settings.</span></div></div>
       </div>
       <label class="vlab">Card number</label>
-      <input class="vin" type="tel" id="cardNumIn" placeholder="5412 •••• •••• ••••" autocomplete="off">
+      <input class="vin" type="tel" id="cardNumIn" placeholder="3782 •••••• •••••" autocomplete="off">
       <div class="vadd-row" style="margin-top:2px">
         <div style="flex:1"><label class="vlab">Expiry</label><input class="vin" type="tel" id="cardExpIn" placeholder="MM/YY" autocomplete="off"></div>
         <div style="flex:1.6;display:flex;align-items:flex-end;padding-bottom:4px"><span class="vhint" style="margin:0">No CVC needed — we can't charge your card, only recognise it.</span></div>
@@ -376,7 +376,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <button class="ghost2" id="cardSkip">Skip for now — earn with your code at the till</button>
     </div>
 
-    <div id="cardDoneChip" class="cardchip vhide"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><b>Mastercard ·· 4417</b><span style="margin-left:auto">✓</span></div>
+    <div id="cardDoneChip" class="cardchip vhide"><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg><b>Amex ·· 4417</b><span style="margin-left:auto">✓</span></div>
 
     <div id="locStage" class="vhide">
       <h2 class="h-display" style="font-size:22px;margin:6px 0 8px">One last thing — location</h2>
@@ -420,7 +420,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
     <button class="lvl-strip card press" data-go="profile">
       <span class="ls-ic"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="10" r="3"/><path d="M8 17h8"/></svg></span>
       <div class="lvl-copy"><b>23 places stamped</b><span>Weibdeh 64% complete · 4 districts</span></div>
-      <span class="pts-chip"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg>12,450 <em>pts</em></span>
+      <span class="pts-chip"><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg>12,450 <em>pts</em></span>
     </button>
 
     <!-- radar: nearest missing stamp -->
@@ -1071,12 +1071,12 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 <section class="scr" id="rewards">
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
-    <div class="store-head"><h1 class="h-display city-title" style="margin-top:8px">Store</h1><svg class="mc-logo" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div>
+    <div class="store-head"><h1 class="h-display city-title" style="margin-top:8px">Store</h1><svg class="mc-logo" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg></div>
     <p class="rew-sub">One balance, every place. Earn points with every purchase, spend them anywhere on Dawwar.</p>
 
     <div class="balcard">
-      <div class="bal-l"><span class="kicker" style="color:#C9A97F">Your balance</span><b>12,450 <em>pts</em></b><span class="bal-sub">Earned across 23 places · spend it anywhere</span></div>
-      <svg class="mc-logo big" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg>
+      <div class="bal-l"><span class="kicker" style="color:#9CC3F0">Your balance</span><b>12,450 <em>pts</em></b><span class="bal-sub">Earned across 23 places · spend it anywhere</span></div>
+      <svg class="mc-logo big" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg>
     </div>
 
     <button class="wallet-link press" data-stack="wallet"><svg class="icon sm" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg><b>Balance & history</b><svg class="icon sm" viewBox="0 0 24 24" style="color:var(--ink-3)"><path d="m9 18 6-6-6-6"/></svg></button>
@@ -1093,12 +1093,12 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <button class="cat press" data-cat="flowers"><i>🌸</i><span>Flowers</span></button>
     </div>
 
-    <div class="sec-head"><h3>Priceless · by Mastercard</h3><span class="more">The dream shelf</span></div>
+    <div class="sec-head"><h3>Amex Experiences</h3><span class="more">The dream shelf</span></div>
   </div>
   <div class="hrow">
-    <div class="plx press"><div class="plx-top"><span>🍽️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div><b>Chef's table at Sufra</b><span class="plx-pts">60,000 pts</span></div>
-    <div class="plx press"><div class="plx-top"><span>🎞️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div><b>Rooftop cinema premiere</b><span class="plx-pts">45,000 pts</span></div>
-    <div class="plx press"><div class="plx-top"><span>✈️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div><b>Lounge pass · Amman–Dubai</b><span class="plx-pts">30,000 pts</span></div>
+    <div class="plx press"><div class="plx-top"><span>🍽️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg></div><b>Chef's table at Sufra</b><span class="plx-pts">60,000 pts</span></div>
+    <div class="plx press"><div class="plx-top"><span>🎞️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg></div><b>Rooftop cinema premiere</b><span class="plx-pts">45,000 pts</span></div>
+    <div class="plx press"><div class="plx-top"><span>✈️</span><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg></div><b>Lounge pass · Amman–Dubai</b><span class="plx-pts">30,000 pts</span></div>
   </div>
   <div class="pad">
     <div class="sec-head"><h3>Ready near you</h3></div>
@@ -1145,13 +1145,13 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
   <div class="status"><span>9:41</span><span>􀙇 􀖀 􀛨</span></div>
   <div class="pad">
     <header class="pp-head">
-      <div><div class="kicker">Mastercard balance</div><h1 class="h-display city-title">Wallet</h1></div>
+      <div><div class="kicker">Amex balance</div><h1 class="h-display city-title">Wallet</h1></div>
       <button class="backbtn press" data-back><svg class="icon sm" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
     </header>
     <p class="rew-sub">One balance across every place on Dawwar.</p>
 
     <div class="mccard press">
-      <div class="wcard-top"><b>DAWWAR POINTS</b><svg class="mc-logo" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg></div>
+      <div class="wcard-top"><b>DAWWAR POINTS</b><svg class="mc-logo" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg></div>
       <div class="mc-bal">12,450 <em>pts</em></div>
       <div class="wcard-bot"><span>MAJD H. ·· 4417</span><span class="wqr"></span></div>
     </div>
@@ -1256,13 +1256,13 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
 
 <style>
 /* profile */
-.prof-hero{background:linear-gradient(165deg,#EB001B 0%,#FF5F00 48%,#F79E1B 100%);color:#FFFDF8;padding-bottom:24px;border-radius:0 0 34px 34px}
+.prof-hero{background:linear-gradient(165deg,#00175A 0%,#006FCF 55%,#3D9BE9 100%);color:#FFFDF8;padding-bottom:24px;border-radius:0 0 34px 34px}
 .prof-top{display:flex;justify-content:space-between;padding:8px 16px 0}
 .prof-id{text-align:center;margin-top:6px}
 .prof-ava{position:relative;width:96px;height:96px;margin:0 auto 12px}
 .prof-ava svg{position:absolute;inset:0;width:96px;height:96px}
 .prof-ava .avatar{position:absolute;top:10px;left:10px}
-.prof-lvl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#FFFDF8;color:#B33A00;font-style:normal;font-family:var(--disp);font-weight:800;font-size:10.5px;padding:3px 10px;border-radius:100px;letter-spacing:.06em;box-shadow:0 2px 8px rgba(90,20,0,.3)}
+.prof-lvl{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);background:#FFFDF8;color:#005EB8;font-style:normal;font-family:var(--disp);font-weight:800;font-size:10.5px;padding:3px 10px;border-radius:100px;letter-spacing:.06em;box-shadow:0 2px 8px rgba(0,23,90,.35)}
 .prof-id h1{font-size:24px;font-weight:800;letter-spacing:-.02em}
 .prof-title{font-size:13px;color:rgba(255,255,255,.92);margin-top:3px;font-weight:600}
 .prof-xpline{display:flex;align-items:center;gap:10px;margin:14px 26px 0}
@@ -1435,7 +1435,7 @@ body.swiping, body.swiping *{user-select:none!important;-webkit-user-select:none
       <div class="set-row link" id="setHelpRow"><b>Help & about</b><span class="set-val">›</span></div>
     </div>
     <button class="signout press" id="signoutBtn">Sign out</button>
-    <p class="set-fine">Dawwar is free for explorers, always. One balance, powered by Mastercard and Retainly.</p>
+    <p class="set-fine">Dawwar is free for explorers, always. One balance, powered by American Express and Retainly.</p>
     <div style="height:40px"></div>
   </div>
 </section>
@@ -1607,19 +1607,19 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
 .duo-c b{font-size:13.5px;display:block;letter-spacing:-.01em}
 .duo-c span{font-size:11.5px;color:var(--ink-2);line-height:1.4}
 .duo-btn{height:36px;padding:0 15px;border-radius:12px;border:none;background:var(--ink);color:var(--paper);font-family:var(--body);font-weight:700;font-size:12.5px;cursor:pointer}
-.plx{width:180px;flex-shrink:0;border-radius:18px;background:linear-gradient(150deg,#262019,#0F0C08);color:#F6EDDD;padding:15px 16px;box-shadow:var(--sh-1)}
+.plx{width:180px;flex-shrink:0;border-radius:18px;background:linear-gradient(150deg,#0C2B5E,#04122E);color:#F6EDDD;padding:15px 16px;box-shadow:var(--sh-1)}
 .plx-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
 .plx-top>span{font-size:24px}
 .plx b{font-size:14px;display:block;letter-spacing:-.01em;line-height:1.3}
-.plx-pts{font-family:var(--disp);font-weight:800;font-size:13px;color:#F5C97F;display:block;margin-top:5px}
+.plx-pts{font-family:var(--disp);font-weight:800;font-size:13px;color:#9CC3F0;display:block;margin-top:5px}
 .wallet-link{display:flex;align-items:center;gap:10px;width:100%;padding:13px 15px;margin-top:12px;border-radius:var(--r-md);background:var(--card);border:1px solid var(--line);box-shadow:var(--sh-1);cursor:pointer;font-family:var(--body)}
 .wallet-link b{flex:1;text-align:left;font-size:13.5px}
 [dir="rtl"] .wallet-link b{text-align:right}
 .st-num{position:absolute;top:7px;right:7px;font-style:normal;font-family:var(--disp);font-weight:800;font-size:9px;background:var(--gold-soft);color:var(--gold);padding:2px 6px;border-radius:100px;z-index:2}
 .scratch-wrap{position:relative;width:300px;height:150px;margin:18px auto 6px;border-radius:18px;overflow:hidden}
-.scratch-prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(140deg,#2B2118,#171006);color:#F5C97F}
+.scratch-prize{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:linear-gradient(140deg,#0C2B5E,#04122E);color:#9CC3F0}
 .scratch-prize b{font-family:var(--disp);font-weight:800;font-size:32px}
-.scratch-prize span{font-size:12px;color:#C9BBA5}
+.scratch-prize span{font-size:12px;color:#8FB2DC}
 #scratchCv{position:absolute;inset:0;touch-action:none;cursor:crosshair;transition:opacity .5s}
 .pass-entry{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 18px;margin-top:14px;border:none;border-radius:var(--r-lg);background:linear-gradient(155deg,#2E2213,#1A1209 60%);color:#E9D9B8;cursor:pointer;font-family:var(--body);box-shadow:var(--sh-2)}
 .pe-l{display:flex;align-items:center;gap:14px;text-align:left}
@@ -1661,7 +1661,7 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
       <div class="rs-qr-box press" id="qrSim"></div>
       <span class="rs-code">DWR·8214</span>
       <span class="rs-count" id="rsCount">5:00</span>
-      <div class="rs-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><circle cx="17" cy="15" r="13" fill="#EB001B"/><circle cx="31" cy="15" r="13" fill="#F79E1B"/><path d="M24 4.6a13 13 0 0 1 0 20.8 13 13 0 0 1 0-20.8Z" fill="#FF5F00"/></svg><span>Dawwar points</span></div>
+      <div class="rs-mc"><svg class="mc-logo sm" viewBox="0 0 48 30"><rect x="1" y="4" width="46" height="22" rx="4" fill="#006FCF"/><text x="24" y="15.8" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="800" letter-spacing=".6">AMEX</text></svg><span>Dawwar points</span></div>
     </div>
     <p class="rs-note">Points leave your balance only when the till scans this code. Tap the code to simulate the scan.</p>
     <button class="ghost2 danger" id="rsCancel">Cancel — keep my points</button>
@@ -1684,7 +1684,7 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
     <div class="scratch-prize"><b>+750 pts</b><span>from Halab Sweets · Watermelon Week</span></div>
     <canvas id="scratchCv" width="300" height="150"></canvas>
   </div>
-  <p class="rs-note">Priceless surprises land every fifth stamp. This one's yours.</p>
+  <p class="rs-note">Amex surprises land every fifth stamp. This one's yours.</p>
   <button class="cta press" id="scratchDone" style="box-shadow:none">Claim</button>
 </div>
 
@@ -1724,7 +1724,7 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
 <div class="edge" id="edgeR"></div>
 
 <style>
-/* mastercard / one-world store */
+/* amex / one-world store */
 .mc-logo{width:36px;height:23px;flex-shrink:0}
 .mc-logo.sm{width:27px;height:17px}
 .mc-logo.big{width:52px;height:33px}
@@ -1734,10 +1734,10 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
 .pts-chip em{font-style:normal;font-size:10px;color:#A8977F;font-weight:600}
 .ls-ic{width:44px;height:44px;border-radius:14px;background:var(--amber-soft);color:var(--amber-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .store-head{display:flex;align-items:center;justify-content:space-between}
-.balcard{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(140deg,#2B2118,#171006);border-radius:var(--r-lg);padding:20px;margin-top:16px;color:#F6EDDD;box-shadow:var(--sh-2)}
+.balcard{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(140deg,#0C2B5E,#04122E);border-radius:var(--r-lg);padding:20px;margin-top:16px;color:#F6EDDD;box-shadow:var(--sh-2)}
 .bal-l b{display:block;font-family:var(--disp);font-weight:800;font-size:32px;letter-spacing:-.02em;margin:4px 0 2px}
-.bal-l b em{font-style:normal;font-size:14px;color:#C9A97F;font-weight:600}
-.bal-sub{font-size:12px;color:#A8977F}
+.bal-l b em{font-style:normal;font-size:14px;color:#9CC3F0;font-weight:600}
+.bal-sub{font-size:12px;color:#8FB2DC}
 .catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .cat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 4px 11px;border-radius:16px;background:var(--card);border:1px solid var(--line);cursor:pointer;font-family:var(--body);box-shadow:var(--sh-1)}
 .cat i{font-size:22px;font-style:normal}
@@ -1749,9 +1749,9 @@ select.vin{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.
 .sitem-c{flex:1}
 .sitem-c b{display:block;font-size:14px;letter-spacing:-.01em;margin:2px 0}
 .sprice{font-family:var(--disp);font-weight:800;font-size:13px;color:var(--amber-deep)}
-.mccard{width:100%;border:none;border-radius:22px;background:linear-gradient(140deg,#26221F,#0E0C0A);color:#F6EDDD;padding:18px 20px;display:flex;flex-direction:column;gap:10px;cursor:pointer;font-family:var(--body);text-align:left;box-shadow:0 14px 34px rgba(10,8,5,.4),inset 0 1px 0 rgba(255,255,255,.12);margin-top:16px;position:relative;z-index:2}
+.mccard{width:100%;border:none;border-radius:22px;background:linear-gradient(140deg,#0C2B5E,#04122E);color:#F6EDDD;padding:18px 20px;display:flex;flex-direction:column;gap:10px;cursor:pointer;font-family:var(--body);text-align:left;box-shadow:0 14px 34px rgba(10,8,5,.4),inset 0 1px 0 rgba(255,255,255,.12);margin-top:16px;position:relative;z-index:2}
 .mc-bal{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.02em}
-.mc-bal em{font-style:normal;font-size:13px;color:#C9A97F;font-weight:600}
+.mc-bal em{font-style:normal;font-size:13px;color:#9CC3F0;font-weight:600}
 .rs-mc{display:flex;align-items:center;gap:7px;margin-top:4px;color:var(--ink-2);font-size:12px;font-weight:700}
 .rs-head{text-align:center}
 /* safe redemption flow */
@@ -1819,7 +1819,7 @@ const NOTES = {
   passport:'<b>Passport.</b> Now the single home for ALL collecting — stamps (some numbered, like Warsheh #041), albums, and seals merged here. Levels come from places stamped, XP is gone.',
   collections:'<b>Collections.</b> Albums with clear prizes: profile flair + partner rewards. Completed ones seal — collecting has an ending, and that feels good.',
   achievements:'<b>Achievements.</b> Rarity tiers, secret badges, and a "so close" card that names the exact next action (tomorrow, 7am, Qamar).',
-  rewards:'<b>Store.</b> One Mastercard points balance, categories first like a food app. Redemption is 3-layer safe: preview (nothing deducted) → slide to confirm → points only leave when the till scans.',
+  rewards:'<b>Store.</b> One Amex points balance, categories first like a food app. Redemption is 3-layer safe: preview (nothing deducted) → slide to confirm → points only leave when the till scans.',
   wallet:'<b>Wallet.</b> Phase-1 simple: your balance and your recent redemptions. Nothing else.',
   profile:'<b>Profile.</b> Phase-1 simple: who you are, your stats, your Passport, your recap. No levels, no XP — places stamped is the only status.',
   seasonal:'<b>Seasonal.</b> Tiered summer event with sponsored challenges (revenue!) and a friends race that resets — competition without punishment.',
@@ -1929,11 +1929,11 @@ document.getElementById('acNameBtn').addEventListener('click', () => {
 });
 /* card linking */
 const cnIn = document.getElementById('cardNumIn'), exIn = document.getElementById('cardExpIn');
-cnIn.addEventListener('input', () => { const d = cnIn.value.replace(/\D/g, '').slice(0, 16); cnIn.value = d.replace(/(.{4})/g, '$1 ').trim(); });
+cnIn.addEventListener('input', () => { const d = cnIn.value.replace(/\D/g, '').slice(0, 15); cnIn.value = [d.slice(0,4), d.slice(4,10), d.slice(10,15)].filter(Boolean).join(' '); });
 exIn.addEventListener('input', () => { const d = exIn.value.replace(/\D/g, '').slice(0, 4); exIn.value = d.length > 2 ? d.slice(0,2) + '/' + d.slice(2) : d; });
 document.getElementById('cardLinkBtn').addEventListener('click', () => {
   const d = cnIn.value.replace(/\D/g, '');
-  if (d.length < 16) {
+  if (d.length < 15) {
     cnIn.style.borderColor = 'var(--rose)';
     toast('⚠️', (typeof lang !== 'undefined' && lang === 'ar') ? 'أدخل رقم بطاقة كامل' : 'Enter a full card number', '');
     return;
@@ -1941,12 +1941,12 @@ document.getElementById('cardLinkBtn').addEventListener('click', () => {
   cnIn.style.borderColor = '';
   const b = document.getElementById('cardLinkBtn');
   b.disabled = true;
-  b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'عم نأمنها مع ماستركارد…' : 'Securing with Mastercard…';
+  b.textContent = (typeof lang !== 'undefined' && lang === 'ar') ? 'عم نأمنها مع أمريكان إكسبريس…' : 'Securing with Amex…';
   setTimeout(() => {
     document.getElementById('cardStage').classList.add('vhide');
     const chip = document.getElementById('cardDoneChip');
     chip.classList.remove('vhide');
-    chip.querySelector('b').textContent = 'Mastercard ·· ' + d.slice(-4);
+    chip.querySelector('b').textContent = 'Amex ·· ' + d.slice(-4);
     document.getElementById('locStage').classList.remove('vhide');
     toast('🔒', (typeof lang !== 'undefined' && lang === 'ar') ? 'انربطت البطاقة بأمان' : 'Card linked securely', '');
   }, 1600);
@@ -2071,7 +2071,7 @@ document.getElementById('contactClose').addEventListener('click', closeContact);
 /* ---------- working settings ---------- */
 document.querySelectorAll('.tgl').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
 document.getElementById('setLangRow').addEventListener('click', () => setLang(lang === 'en' ? 'ar' : 'en'));
-document.getElementById('setPayRow').addEventListener('click', () => toast('💳','Linked · Mastercard ·· 4417',''));
+document.getElementById('setPayRow').addEventListener('click', () => toast('💳','Linked · Amex ·· 4417',''));
 document.getElementById('setHelpRow').addEventListener('click', () => toast('💬','Dawwar support — help@dawwar.app',''));
 document.getElementById('setEdit').addEventListener('click', () => toast('✏️','Profile editing lands in beta',''));
 document.getElementById('signoutBtn').addEventListener('click', () => { show('onb1', false); toast('👋','Signed out — see you soon',''); });
@@ -2450,8 +2450,8 @@ const AR = {
 'Ahlan, Majd — Amman is yours':'أهلاً مجد — عمّان صارت إلك','+40 XP':'+40 نقطة',
 'Maqha al-Fann — stamp #24 collected':'مقهى الفن — الطابع رقم 24','+25 XP':'+25 نقطة',
 'Enjoy it — say hi to the Toot team':'صحتين — سلملنا على فريق التوت',
-// mastercard one-world update
-'Store':'المتجر','Store — Points':'المتجر — النقاط','A Mastercard experience':'تجربة من ماستركارد','pts':'نقطة',
+// amex one-world update
+'Store':'المتجر','Store — Points':'المتجر — النقاط','An American Express experience':'تجربة من أمريكان إكسبريس','pts':'نقطة',
 'Your balance':'رصيدك','Earned across 23 places · spend it anywhere':'من 23 مكان · اصرفها وين ما بدك',
 'One balance, every place. Earn points with every purchase, spend them anywhere on Dawwar.':'رصيد واحد بكل مكان. اكسب نقاط مع كل شراء، واصرفها وين ما بدك على دوّار.',
 'Shop by category':'تسوق حسب الفئة','Coffee':'قهوة','Food':'أكل','Clothing':'ملابس','Beauty':'جمال','Fitness':'لياقة','Dessert':'حلويات','Barbers':'حلاقة','Flowers':'ورد',
@@ -2464,10 +2464,10 @@ const AR = {
 '2,000-pt stamp bonus':'بونص طوابع 2,000 نقطة','· spend it anywhere on Dawwar':'· اصرفه وين ما بدك على دوّار',
 'XP, badges, collections and one points balance — all stacking quietly in your pocket.':'نقاط خبرة، أوسمة، مجموعات، ورصيد نقاط واحد — كلها بتتجمع بهدوء بجيبتك.',
 'trophy + 3,000-pt bonus':'كأس + بونص 3,000 نقطة','🏆 Unlocks: gold profile frame · 6,000-pt bonus':'🏆 بتفتح: إطار ذهبي لبروفايلك · بونص 6,000 نقطة',
-'One balance · 5 places':'رصيد واحد · 5 أماكن','One Mastercard balance on top — your standing with each place below.':'رصيد ماستركارد واحد فوق — ومكانتك عند كل محل تحت.',
+'One balance · 5 places':'رصيد واحد · 5 أماكن','One Amex balance on top — your standing with each place below.':'رصيد أمريكان إكسبريس واحد فوق — ومكانتك عند كل محل تحت.',
 'DAWWAR POINTS':'نقاط دوّار','☕️ 9 / 10 — 2,000-pt bonus next visit':'☕️ 9 / 10 — بونص 2,000 نقطة الزيارة الجاي','🥞 Friend tier — 1.5× points here':'🥞 مستوى صديق — نقاط ×1.5 هون','🥐 Bonus ready — 1,500 pts':'🥐 بونص جاهز — 1,500 نقطة','💈 3 / 5 — 3,500-pt bonus at five':'💈 3 / 5 — بونص 3,500 نقطة عند الخامسة',
 'One stamp from a 2,000-pt bonus':'طابع واحد عن بونص الـ 2,000 نقطة',
-'Dawwar is free for explorers, always. One balance, powered by Mastercard and Retainly.':'دوّار مجاني للمستكشفين، دايماً. رصيد واحد، بدعم من ماستركارد وريتينلي.',
+'Dawwar is free for explorers, always. One balance, powered by American Express and Retainly.':'دوّار مجاني للمستكشفين، دايماً. رصيد واحد، بدعم من أمريكان إكسبريس وريتينلي.',
 '1,200 pts will come off your balance when they scan this. New balance: 11,250 pts.':'رح ينخصم 1,200 نقطة من رصيدك لما يمسحوا الرمز. رصيدك الجديد: 11,250 نقطة.',
 'Dawwar points':'نقاط دوّار','Redeemed — enjoy your V60':'تم — صحتين على الـ V60','-1,200 pts':'-1,200 نقطة',
 // safe redemption flow
@@ -2506,7 +2506,7 @@ const AR = {
 'Manage stamps, rewards and campaigns from your Retainly dashboard.':'دير الطوابع والمكافآت والحملات من لوحة ريتينلي.',
 'Open Retainly dashboard':'افتح لوحة ريتينلي','Preview my page':'شوف صفحتي',
 'Google sync complete':'اكتمل السحب من جوجل','Retainly dashboard — the vendor side of this demo':'لوحة ريتينلي — جزء التاجر من الديمو',
-'Linked · Mastercard ·· 4417':'مربوطة · ماستركارد ·· 4417','Dawwar support — help@dawwar.app':'دعم دوّار — help@dawwar.app',
+'Linked · Amex ·· 4417':'مربوطة · أمريكان إكسبريس ·· 4417','Dawwar support — help@dawwar.app':'دعم دوّار — help@dawwar.app',
 'Profile editing lands in beta':'تعديل البروفايل جاي بالبيتا','Signed out — see you soon':'سجلت خروج — منشوفك قريباً',
 // staged sync + vendor dashboard
 'Resolving your Google link…':'عم نتحقق من رابط جوجل…','Pulling rating & 312 reviews…':'عم نسحب التقييم و312 مراجعة…',
@@ -2535,17 +2535,17 @@ const AR = {
 'Duo stamp this week':'ختم ثنائي هالأسبوع','Visit anywhere with Layla — you both earn 2× points':'زور أي مكان مع ليلى — الاثنين بتاخدوا نقاط ×2','Invite':'اعزم',
 'First 100 stamps are numbered —':'أول 100 ختم مرقمين —','is waiting for you.':'مستنيك.','First 100 stamps are numbered · #042 is next':'أول 100 ختم مرقمين · #042 هو الجاي',
 'Albums':'الألبومات','4 open · 2 sealed':'4 مفتوحة · 2 مختومة','Seals':'الأختام الخاصة','9 of 42':'9 من 42',
-'Priceless · by Mastercard':'برايسلس · من ماستركارد','The dream shelf':'رف الأحلام',"Chef's table at Sufra":'طاولة الشيف في سفرة','60,000 pts':'60,000 نقطة',
+'Amex Experiences':'تجارب أمريكان إكسبريس','The dream shelf':'رف الأحلام',"Chef's table at Sufra":'طاولة الشيف في سفرة','60,000 pts':'60,000 نقطة',
 'Rooftop cinema premiere':'عرض أول سينما عالسطح','45,000 pts':'45,000 نقطة','Lounge pass · Amman–Dubai':'دخول صالة · عمّان–دبي','30,000 pts':'30,000 نقطة',
 'My place cards':'بطاقات أماكني','Every 5th stamp':'كل خامس ختم','Scratch your surprise':'اكشط مفاجأتك','+750 pts':'+750 نقطة',
-'from Halab Sweets · Watermelon Week':'من حلويات حلب · أسبوع البطيخ',"Priceless surprises land every fifth stamp. This one's yours.":'مفاجآت برايسلس بتنزل كل خامس ختم. هاي إلك.','Claim':'استلم',
+'from Halab Sweets · Watermelon Week':'من حلويات حلب · أسبوع البطيخ',"Amex surprises land every fifth stamp. This one's yours.":'مفاجآت أمريكان إكسبريس بتنزل كل خامس ختم. هاي إلك.','Claim':'استلم',
 'Stamps, seals, albums and one points balance — all stacking quietly in your pocket.':'أختام، أوسمة، ألبومات ورصيد نقاط واحد — كلها بتتجمع بهدوء بجيبتك.',
 '+350 pts first visit':'+350 نقطة أول زيارة','+350 pts':'+350 نقطة','+100 pts':'+100 نقطة','+50 pts':'+50 نقطة','+500':'+500',
 'Invite friends · both get +2,000 pts':'اعزم أصحابك · الاثنين بتاخدوا +2,000 نقطة','All seals':'كل الأختام',
 '23 stamps · 4 districts · Weibdeh 64%':'23 ختم · 4 أحياء · اللويبدة 64%',
 '2 places to Level 8':'باقي مكانين للمستوى 8',
 // simplified wallet
-'Mastercard balance':'رصيد ماستركارد','One balance across every place on Dawwar.':'رصيد واحد بكل مكان على دوّار.',
+'Amex balance':'رصيد أمريكان إكسبريس','One balance across every place on Dawwar.':'رصيد واحد بكل مكان على دوّار.',
 'Recent redemptions':'آخر الاستخدامات','All history':'كل السجل',
 'Qamar Roasters · Today, 9:12 am':'محمصة قمر · اليوم 9:12 صباحاً','Halab Sweets · Monday':'حلويات حلب · الاثنين',
 'The Fade Room · Jul 28':'غرفة الفيد · 28 تموز',"Sitti's Kitchen · Jul 21":'مطبخ ستي · 21 تموز',
@@ -2563,7 +2563,7 @@ const AR = {
 'SMS verification arrives at launch — skipped in this preview.':'التحقق بالرسائل جاي مع الإطلاق — متخطى بهالمعاينة.',
 'What do your friends call you?':'شو بينادوك أصحابك؟',"This is how you'll appear if you ever choose to share.":'هيك رح تظهر إذا اخترت تشارك بأي وقت.','Your name':'اسمك',
 'Link your card':'اربط بطاقتك','This is how stamps land automatically when you pay.':'هيك بينزل الختم تلقائياً لما تدفع.',
-'Tokenized by Mastercard':'مشفّرة برموز من ماستركارد','We never see or store your card number.':'عمرنا ما منشوف أو منخزن رقم بطاقتك.',
+'Tokenized by American Express':'مشفّرة برموز من أمريكان إكسبريس','We never see or store your card number.':'عمرنا ما منشوف أو منخزن رقم بطاقتك.',
 'Partner purchases only':'مشتريات الشركاء بس','We only see purchases at Dawwar partner places. Nothing else.':'منشوف بس مشترياتك عند شركاء دوّار. ولا إشي غير هيك.',
 'You stay in control':'التحكم بإيدك','Unlink anytime from Settings.':'افصلها بأي وقت من الإعدادات.',
 'Card number':'رقم البطاقة','Expiry':'تاريخ الانتهاء',"No CVC needed — we can't charge your card, only recognise it.":'بدون CVC — ما منقدر نخصم من بطاقتك، بس منتعرف عليها.',
