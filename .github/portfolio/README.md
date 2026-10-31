@@ -24,23 +24,25 @@ The contact form prepares a mailto draft; it does not send or store submissions.
 
 ## Assets
 
-Google Sans is self-hosted as subset WOFF2 files. Its license is included in
-`studio-assets/GoogleSans-OFL.txt`. Existing product screenshots are retained;
-`retainly-current.png` captures the public product demonstration on retainly.dev.
-Game images come from the owner's public SHT Games website. TV icons come from
-the owner's existing local TV assets. The limestone image is AI-generated
-editorial artwork; it is not a photograph of a claimed location or project.
-The composite TV preview is illustrative, using the real collection's icons.
+Google Sans is self-hosted, with its license included. Product cards use actual
+product or website screenshots. Retainly and the dental chart use public demos
+with fictional data. Rider Hub uses an anonymised product demonstration.
+The TV collection uses original application captures, including an idle renderer
+capture for Visualiser. Existing screenshots are retained for earlier private builds.
+No project cards use monogram placeholders or AI-generated product interfaces.
+The limestone hero artwork is generated editorial scenery.
 
-## Validation completed
+## Validation
 
-- JavaScript syntax check.
-- Local references and image descriptions across all 49 generated pages.
-- Desktop review and mobile review at 390px and 320px.
-- Mobile menu, category filtering, search, no-results state and reset.
-- TV project enquiry preselection and mailto draft generation, without sending.
-- No horizontal overflow on the checked mobile layouts after the header fix.
-- No unrounded or broken images on the checked main pages and TV detail page.
+Rebuild with `python3 .github/portfolio/build.py .`. Check local references,
+image assets, a single H1 per generated page, and JavaScript syntax. Review
+catalogue search and filters, the mobile menu, and project pages at desktop,
+390px and 320px. The native screenshot dialog must close with Escape and return
+focus to its trigger. Contact drafts remain browser-local and require the visitor
+to review and send through their own email app.
+
+Poco Kids is pending a verified website URL and an original website screenshot.
+It was not found in the connected Hostinger or Spaceship accounts.
 
 ## Image-generation brief
 

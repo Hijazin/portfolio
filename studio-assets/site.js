@@ -20,3 +20,13 @@ if(cards.length)updateCatalogue();
 
 const contactForm=document.querySelector('[data-contact-form]');
 if(contactForm){const params=new URLSearchParams(location.search);const interest=params.get('interest');const project=params.get('project');const select=contactForm.querySelector('[name=interest]');if(interest&&[...select.options].some(option=>option.value===interest))select.value=interest;if(project)contactForm.querySelector('[name=message]').value=`I'd like to hear more about ${project}.\n\n`;contactForm.addEventListener('submit',event=>{event.preventDefault();if(!contactForm.reportValidity())return;const data=new FormData(contactForm);const subject=`${data.get('interest')} — ${data.get('name')}`;const body=`Hi Majd,\n\n${data.get('message')}\n\n${data.get('name')}\n${data.get('email')}${data.get('company')?'\n'+data.get('company'):''}`;const href=`mailto:mfhijazin@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;const result=document.querySelector('[data-form-result]');result.hidden=false;result.textContent='Your email draft is ready. Open it in your email app to review and send.';const actions=document.querySelector('[data-email-actions]');actions.hidden=false;const open=document.querySelector('[data-open-email]');open.href=href;document.querySelector('[data-copy-message]').onclick=async()=>{try{await navigator.clipboard.writeText(`Subject: ${subject}\n\n${body}`);result.textContent='Message copied. You can paste it into an email to mfhijazin@gmail.com.'}catch{result.textContent='You can open the email draft, or email mfhijazin@gmail.com directly.'}};open.focus()})}
+
+const imageDialog=document.querySelector('.image-dialog');
+const imageTrigger=document.querySelector('[data-open-image]');
+if(imageDialog&&imageTrigger){
+ imageTrigger.addEventListener('click',()=>{imageDialog.showModal();document.body.classList.add('image-open')});
+ const closeImage=()=>imageDialog.close();
+ imageDialog.querySelector('[data-close-image]').addEventListener('click',closeImage);
+ imageDialog.addEventListener('click',event=>{if(event.target===imageDialog){const bounds=imageDialog.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)closeImage()}});
+ imageDialog.addEventListener('close',()=>{document.body.classList.remove('image-open');imageTrigger.focus()});
+}
