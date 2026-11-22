@@ -76,10 +76,10 @@
   $('#logout').addEventListener('click', logout);
 
   /* ---------- tabs & range ---------- */
-  $$('.ad-tabs button').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.tab); }); });
+  $$('.mhx-tabs button').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.tab); }); });
   function go(tab) {
     state.tab = tab;
-    $$('.ad-tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.tab === tab)); });
+    $$('.mhx-tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.tab === tab)); });
     $$('[data-panel]').forEach(function (p) { p.hidden = p.dataset.panel !== tab; });
     try { history.replaceState(null, '', '#' + tab); } catch (e) {}
     refresh();
@@ -102,13 +102,13 @@
 
   /* ---------- bar list helper ---------- */
   function bars(el, rows, opt) {
-    if (!rows.length) { el.innerHTML = '<li class="ad-empty">No data yet.</li>'; return; }
+    if (!rows.length) { el.innerHTML = '<li class="mhx-empty">No data yet.</li>'; return; }
     var max = Math.max.apply(null, rows.map(function (r) { return r.n; })) || 1;
     el.innerHTML = rows.map(function (r) {
       var pct = opt && opt.fixedMax ? (r.n / opt.fixedMax * 100) : (r.n / max * 100);
       return '<li><i style="width:' + Math.max(pct, 1.5).toFixed(1) + '%"></i>' + (r.pre || '') +
         '<span class="lbl" title="' + esc(r.title || r.label) + '">' + esc(r.label) + (r.small ? '<small>' + esc(r.small) + '</small>' : '') + '</span>' +
-        (r.chip ? '<span class="ad-chip">' + esc(r.chip) + '</span>' : '') +
+        (r.chip ? '<span class="mhx-chip">' + esc(r.chip) + '</span>' : '') +
         '<span class="num">' + esc(r.num != null ? r.num : num(r.n)) + '</span></li>';
     }).join('');
   }
@@ -119,11 +119,11 @@
       $('#online-count').textContent = d.count;
       $('#online-updated').textContent = 'updated ' + clock(d.now);
       var ul = $('#online-list');
-      if (!d.sessions.length) { ul.innerHTML = '<li class="ad-empty">Nobody right now.</li>'; return; }
+      if (!d.sessions.length) { ul.innerHTML = '<li class="mhx-empty">Nobody right now.</li>'; return; }
       ul.innerHTML = d.sessions.map(function (s) {
         return '<li><span class="flag" title="' + esc(countryName(s.country, s.country_name)) + '">' + flag(s.country) + '</span>' +
-          '<span class="path">' + esc(s.path) + '</span><span class="ad-chip">' + esc(s.device) + '</span>' +
-          '<span class="ad-sub">' + dur(d.now - s.first_ts) + '</span></li>';
+          '<span class="path">' + esc(s.path) + '</span><span class="mhx-chip">' + esc(s.device) + '</span>' +
+          '<span class="mhx-sub">' + dur(d.now - s.first_ts) + '</span></li>';
       }).join('');
     }).catch(function () {});
   }
@@ -133,7 +133,7 @@
       var labels = { today: 'Today', '7d': 'Last 7 days', '30d': 'Last 30 days' };
       $('#kpis').innerHTML = ['today', '7d', '30d'].map(function (k) {
         var s = d.summary[k];
-        return '<div class="ad-kpi"><h3>' + labels[k] + '</h3><dl><div><dt>Visitors</dt><dd>' + num(s.visitors) + '</dd></div>' +
+        return '<div class="mhx-kpi"><h3>' + labels[k] + '</h3><dl><div><dt>Visitors</dt><dd>' + num(s.visitors) + '</dd></div>' +
           '<div><dt>Page views</dt><dd>' + num(s.pageviews) + '</dd></div><div><dt>Avg time on site</dt><dd class="sm">' + dur(s.avg_time_s) + '</dd></div></dl></div>';
       }).join('');
     }).catch(function () {});
@@ -156,15 +156,15 @@
       $('#pages tbody').innerHTML = d.pages.length ? d.pages.map(function (p) {
         return '<tr><td>' + esc(p.path) + '</td><td>' + num(p.pageviews) + '</td><td>' + num(p.visitors) + '</td><td>' + dur(p.avg_engaged_s) +
           '</td><td>' + (p.avg_scroll == null ? '–' : meter(p.avg_scroll)) + '</td><td>' + num(p.clicks) + '</td></tr>';
-      }).join('') : '<tr><td colspan="6" class="ad-sub">No data yet.</td></tr>';
+      }).join('') : '<tr><td colspan="6" class="mhx-sub">No data yet.</td></tr>';
     }).catch(function () {});
     api('scroll', r).then(function (d) {
       $('#scroll tbody').innerHTML = d.scroll.length ? d.scroll.map(function (s) {
         return '<tr><td>' + esc(s.path) + '</td><td>' + num(s.n) + '</td><td>' + meter(s.avg) + '</td><td>' + s.p25 + '%</td><td>' + s.p50 + '%</td><td>' + s.p75 + '%</td><td>' + s.p100 + '%</td></tr>';
-      }).join('') : '<tr><td colspan="7" class="ad-sub">No data yet.</td></tr>';
+      }).join('') : '<tr><td colspan="7" class="mhx-sub">No data yet.</td></tr>';
     }).catch(function () {});
   }
-  function meter(v) { v = Math.round(+v || 0); return '<span class="ad-meter"><i style="width:' + v + '%"></i></span>' + v + '%'; }
+  function meter(v) { v = Math.round(+v || 0); return '<span class="mhx-meter"><i style="width:' + v + '%"></i></span>' + v + '%'; }
 
   /* ---------- clicks ---------- */
   function fillPaths(sel, paths, keepFirst) {
@@ -182,9 +182,9 @@
       var total = d.kinds.reduce(function (a, k) { return a + +k.n; }, 0);
       var out = d.outbound.reduce(function (a, k) { return a + +k.n; }, 0);
       $('#click-kpis').innerHTML =
-        '<div class="ad-stat"><b>' + num(total) + '</b><span>clicks recorded</span></div>' +
-        '<div class="ad-stat"><b>' + num(d.cv_downloads) + '</b><span>CV downloads</span></div>' +
-        '<div class="ad-stat"><b>' + num(out) + '</b><span>outbound link clicks</span></div>';
+        '<div class="mhx-stat"><b>' + num(total) + '</b><span>clicks recorded</span></div>' +
+        '<div class="mhx-stat"><b>' + num(d.cv_downloads) + '</b><span>CV downloads</span></div>' +
+        '<div class="mhx-stat"><b>' + num(out) + '</b><span>outbound link clicks</span></div>';
       bars($('#el-top'), d.top.map(function (t) {
         return { label: t.label, small: d.path ? (t.href || '') : (t.pages > 1 ? t.pages + ' pages' : t.path), title: (t.label || '') + (t.href ? ' → ' + t.href : ''), chip: t.kind || 'other', n: +t.n };
       }));
@@ -205,37 +205,37 @@
       $('#vis-total').textContent = num(d.total) + ' visits · ' + rangeLabel();
       var html = d.visitors.map(function (v) {
         var j = v.journey.map(function (p) { return '<span title="' + esc(p.path) + '">' + esc(p.path) + '<em>' + dur(p.ms / 1000) + '</em></span>'; }).join('<span class="arr">→</span>');
-        return '<li class="ad-visit" data-sid="' + esc(v.sid) + '"><button type="button" aria-expanded="false">' +
+        return '<li class="mhx-visit" data-sid="' + esc(v.sid) + '"><button type="button" aria-expanded="false">' +
           '<span class="flag" title="' + esc(countryName(v.country, v.country_name)) + '">' + flag(v.country) + '</span>' +
           '<span class="meta"><b>' + esc(when(v.first_ts)) + '</b><span>' + esc(countryName(v.country, v.country_name)) + '</span><span>' + esc(v.ref || 'direct') + '</span><span>' + esc(v.device || '') + '</span><span>' + num(v.pages) + ' page' + (v.pages == 1 ? '' : 's') + ' · ' + num(v.clicks) + ' click' + (v.clicks == 1 ? '' : 's') + '</span></span>' +
           '<span class="total">' + dur(v.total_ms / 1000) + '<small>engaged</small></span>' +
-          '<span class="ad-journey">' + (j || '<span>–</span>') + '</span></button></li>';
+          '<span class="mhx-journey">' + (j || '<span>–</span>') + '</span></button></li>';
       }).join('');
       if (append) ul.insertAdjacentHTML('beforeend', html);
-      else ul.innerHTML = html || '<li class="ad-empty">No visits in this range yet.</li>';
+      else ul.innerHTML = html || '<li class="mhx-empty">No visits in this range yet.</li>';
       state.visOffset += d.visitors.length;
       $('#vis-more').hidden = state.visOffset >= d.total;
     }).catch(function () {});
   }
   $('#vis-more').addEventListener('click', function () { loadVisitors(true); });
   $('#visits').addEventListener('click', function (e) {
-    var btn = e.target.closest('.ad-visit > button');
+    var btn = e.target.closest('.mhx-visit > button');
     if (!btn) return;
     var li = btn.parentNode, open = btn.getAttribute('aria-expanded') === 'true';
-    var det = li.querySelector('.ad-visit-detail');
+    var det = li.querySelector('.mhx-visit-detail');
     btn.setAttribute('aria-expanded', String(!open));
     if (open) { if (det) det.hidden = true; return; }
     if (det) { det.hidden = false; return; }
     det = document.createElement('div');
-    det.className = 'ad-visit-detail';
-    det.innerHTML = '<p class="ad-sub">Loading clicks…</p>';
+    det.className = 'mhx-visit-detail';
+    det.innerHTML = '<p class="mhx-sub">Loading clicks…</p>';
     li.appendChild(det);
     api('visitor', { sid: li.dataset.sid }).then(function (d) {
-      det.innerHTML = d.clicks.length ? '<ol class="ad-steps">' + d.clicks.map(function (c) {
-        return '<li><time>' + clock(c.ts) + '</time><span class="what">' + (c.kind ? '<span class="ad-chip">' + esc(c.kind) + '</span> ' : '') +
+      det.innerHTML = d.clicks.length ? '<ol class="mhx-steps">' + d.clicks.map(function (c) {
+        return '<li><time>' + clock(c.ts) + '</time><span class="what">' + (c.kind ? '<span class="mhx-chip">' + esc(c.kind) + '</span> ' : '') +
           esc(c.label || (c.href ? '' : 'Click on page')) + (c.href ? ' <small>→ ' + esc(c.href) + '</small>' : '') + ' <small>on ' + esc(c.path) + '</small></span></li>';
-      }).join('') + '</ol>' : '<p class="ad-sub">No clicks in this visit.</p>';
-    }).catch(function () { det.innerHTML = '<p class="ad-sub">Could not load clicks.</p>'; });
+      }).join('') + '</ol>' : '<p class="mhx-sub">No clicks in this visit.</p>';
+    }).catch(function () { det.innerHTML = '<p class="mhx-sub">Could not load clicks.</p>'; });
   });
 
   /* ---------- heatmap ---------- */
@@ -249,10 +249,10 @@
     }).catch(function () {});
   }
   $('#hm-path').addEventListener('change', loadHeatmap);
-  $$('.ad-seg button').forEach(function (b) {
+  $$('.mhx-seg button').forEach(function (b) {
     b.addEventListener('click', function () {
       state.w = b.dataset.w;
-      $$('.ad-seg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      $$('.mhx-seg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
       loadHeatmap();
     });
   });
