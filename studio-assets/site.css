@@ -136,7 +136,6 @@ body.image-open{overflow:hidden}
 
 /* ---- Marketing media: lite YouTube, Instagram reels, CV charts (2026-11-22) ---- */
 .mk-watch{padding-top:40px}
-.mk-watch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
 .mk-media{margin:0;min-width:0}
 .mk-yt{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#141615;isolation:isolate}
 .mk-yt-open{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:none;color:inherit;border-radius:inherit}
@@ -183,25 +182,9 @@ body.image-open{overflow:hidden}
 .mk-seo-plot{display:flex;gap:10px;flex:1 1 0;min-height:64px;margin:12px 0 4px}
 .mk-seo-plot .mk-dash-chart{margin:0}
 .mk-seo-y{display:flex;flex-direction:column;justify-content:space-between;padding:8px 0 28px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:9px;color:var(--muted)}
-.mk-reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
-.mk-reel{min-width:0}
-.mk-reel blockquote.instagram-media{margin:0;padding:0;border:0;background:none;width:100%;min-width:0;max-width:none}
-.mk-reel iframe{min-width:0!important;max-width:100%!important;width:100%!important;margin:0!important;border-radius:20px!important}
-.mk-reel-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:4/5;border-radius:24px;overflow:hidden;padding:20px;color:#fff;background:radial-gradient(120% 70% at 85% 0%,rgb(255 255 255 / .28),transparent 60%),linear-gradient(165deg,#0d2f4f 0%,#14628d 55%,#5bb8c8 100%)}
-.mk-reel-card:after{content:'';position:absolute;left:-10%;right:-10%;bottom:-30%;height:60%;background:repeating-radial-gradient(ellipse at 50% 0%,rgb(255 255 255 / .09) 0 2px,transparent 2px 18px)}
-.mk-reel-badge{position:absolute;top:16px;left:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;border:1px solid rgb(255 255 255 / .5);border-radius:50px;padding:5px 10px}
-.mk-reel-play{position:absolute;left:50%;top:42%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:rgb(255 255 255 / .92);color:var(--ink);display:grid;place-items:center;transition:background .2s,color .2s}
-.mk-reel-play svg{width:22px;height:22px;margin-left:3px}
-.mk-reel-card:hover .mk-reel-play{background:var(--blue);color:#fff}
-.mk-reel-text{position:relative;z-index:1;display:flex;flex-direction:column;gap:6px}
-.mk-reel-text strong{font-size:17px;font-weight:500;line-height:1.3;letter-spacing:-.3px}
-.mk-reel-text span{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.6px;opacity:.85}
 @media(max-width:1100px){
-.mk-watch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .mk-case-hero{grid-template-columns:1fr;gap:26px}
 .mk-case-hero .mk-case-media{order:-1}
-.mk-reels{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:10px;-webkit-overflow-scrolling:touch}
-.mk-reel{flex:0 0 min(320px,76vw);scroll-snap-align:start}
 }
 @media(max-width:800px){
 .mk-viz-frame{aspect-ratio:auto;padding:16px}
@@ -210,10 +193,112 @@ body.image-open{overflow:hidden}
 .mk-yt-play{width:54px;height:54px;margin:-27px 0 0 -27px}
 }
 @media(max-width:560px){
-.mk-watch-grid{grid-template-columns:1fr}
 .mk-strip-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:8px}
 .mk-strip-row .mk-media{flex:0 0 72%;scroll-snap-align:start}
 .mk-yt{border-radius:20px}
 .mk-dash-tiles strong{font-size:15px}
 }
 @media(prefers-reduced-motion:reduce){.mk-yt img,.mk-yt-play{transition:none}.mk-yt-open:hover img{transform:none}}
+
+/* ---- Marketing gallery: filterable grid + accessible lightbox (2026-11-22b) ---- */
+/* Play button, shared */
+.mk-play{position:absolute;z-index:2;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:rgb(255 255 255 / .92);color:var(--ink);display:grid;place-items:center;box-shadow:0 10px 30px rgb(0 0 0 / .22);transition:background .25s,color .25s,transform .25s}
+.mk-play svg{width:20px;height:20px;margin-left:3px}
+.mk-tile-link:hover .mk-play,.mk-tile-link:focus-visible .mk-play{background:var(--blue);color:#fff;transform:scale(1.06)}
+
+/* Gallery */
+.mk-gallery{position:relative;padding-top:110px;padding-bottom:40px}
+.mk-anchor{position:absolute;top:80px;left:0}
+.mk-filters{display:flex;gap:8px;margin:0 0 34px;overflow-x:auto;scrollbar-width:none;padding:4px 2px}
+.mk-filters::-webkit-scrollbar{display:none}
+.mk-chip{flex:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:100px;padding:10px 17px;font-size:14px;line-height:1.2;transition:background .2s,border-color .2s,color .2s}
+.mk-chip:hover{border-color:#a9aba4}
+.mk-chip-n{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;transition:color .2s}
+.mk-chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.mk-chip[aria-pressed=true] .mk-chip-n{color:#ffffffa0}
+.mk-chip:focus-visible{outline-offset:2px}
+.mk-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 26px;transition:opacity .18s ease}
+.mk-grid.is-out{opacity:0}
+.mk-grid.is-in .mk-tile{animation:mk-rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(min(var(--i,0),11) * 45ms)}
+@keyframes mk-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.mk-tile{min-width:0}
+.mk-tile-link{display:block;border-radius:20px}
+.mk-tile-link:focus-visible{outline-offset:6px}
+.mk-thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#1a1c1b;isolation:isolate;transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s}
+.mk-thumb img{width:100%;height:100%;object-fit:cover;border-radius:0;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.mk-tile-link:hover .mk-thumb,.mk-tile-link:focus-visible .mk-thumb{transform:translateY(-6px);box-shadow:0 28px 44px -24px rgb(23 25 24 / .55)}
+.mk-tile-link:hover .mk-thumb img{transform:scale(1.045)}
+.mk-cap{display:flex;flex-direction:column;gap:5px;margin-top:16px}
+.mk-cap strong{font-size:15px;font-weight:500;line-height:1.35;letter-spacing:-.2px}
+.mk-cap span{font-size:12.5px;color:var(--muted)}
+.mk-tile-link:hover .mk-cap strong{color:var(--blue)}
+/* Instagram tiles: branded gradient + glyph (no login-only thumbnails) */
+.mk-ig{color:#fff;background:radial-gradient(90% 120% at 100% 0%,rgb(255 255 255 / .22),transparent 55%),linear-gradient(135deg,#4f5bd5 0%,#962fbf 30%,#d62976 62%,#fa7e1e 88%,#feda75 100%)}
+.mk-ig-boatify{background:radial-gradient(70% 90% at 100% 0%,rgb(214 41 118 / .55),transparent 60%),radial-gradient(60% 80% at 0% 100%,rgb(250 126 30 / .35),transparent 60%),linear-gradient(150deg,#0c2c4a 0%,#13608a 55%,#4fb2c4 100%)}
+.mk-ig-byd{background:radial-gradient(70% 90% at 100% 0%,rgb(214 41 118 / .5),transparent 60%),radial-gradient(60% 80% at 0% 100%,rgb(79 91 213 / .45),transparent 60%),linear-gradient(150deg,#0d1420 0%,#1d2e44 55%,#3d5878 100%)}
+.mk-ig-badge{position:absolute;z-index:2;top:14px;left:14px;display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;border:1px solid rgb(255 255 255 / .45);border-radius:50px;padding:5px 10px 5px 8px}
+.mk-ig-glyph{display:block;width:13px;height:13px}.mk-ig-glyph svg{width:100%;height:100%}
+.mk-ig-word{position:absolute;z-index:2;left:20px;bottom:16px;display:flex;flex-direction:column;gap:3px;font-size:clamp(22px,2.2vw,30px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.mk-ig-word small{font-size:11px;font-weight:400;letter-spacing:.4px;opacity:.75}
+.mk-ig:after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 45%,rgb(0 0 0 / .28))}
+/* Lightbox */
+html.mk-locked,html.mk-locked body{overflow:hidden}
+.mk-lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px}
+.mk-lb-backdrop{position:absolute;inset:0;background:rgb(10 12 11 / .9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity .22s ease}
+.mk-lb-panel{position:relative;width:min(1240px,100%);display:grid;grid-template-columns:52px minmax(0,1fr) 52px;grid-template-areas:"bar bar bar" "prev stage next";gap:16px 20px;align-items:center;color:#fff;opacity:0;transform:translateY(10px) scale(.985);transition:opacity .22s ease,transform .3s cubic-bezier(.2,.7,.2,1)}
+.mk-lb.is-open .mk-lb-backdrop,.mk-lb.is-open .mk-lb-panel{opacity:1;transform:none}
+.mk-lb-bar{grid-area:bar;display:flex;align-items:center;gap:18px;padding-left:72px;min-width:0}
+.mk-lb-heading{flex:1;min-width:0}
+.mk-lb-heading p{margin:0;font-size:16px;font-weight:500;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-lb-heading span{display:block;margin-top:3px;font-size:12px;color:#b5bcb8}
+.mk-lb-count{font-size:12px;color:#b5bcb8;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mk-lb-ext{font-size:12px;white-space:nowrap;border-bottom:1px solid #ffffff55;padding-bottom:3px}
+.mk-lb-ext:hover{border-color:#fff}
+.mk-lb-close,.mk-lb-nav{display:grid;place-items:center;width:48px;height:48px;padding:0;border-radius:50%;border:1px solid #ffffff38;background:#ffffff12;color:#fff;transition:background .2s,color .2s}
+.mk-lb-close:hover,.mk-lb-nav:hover{background:#fff;color:var(--ink)}
+.mk-lb-close svg,.mk-lb-nav svg{width:20px;height:20px}
+.mk-lb-close:focus-visible,.mk-lb-nav:focus-visible,.mk-lb-ext:focus-visible{outline-color:#fff;outline-offset:3px}
+.mk-lb-prev{grid-area:prev}.mk-lb-next{grid-area:next}
+.mk-lb-stage{grid-area:stage;display:flex;justify-content:center;align-items:center;min-width:0}
+.mk-lb-frame{width:min(100%,calc((100dvh - 150px) * 16 / 9));aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000}
+.mk-lb-frame iframe{display:block;width:100%;height:100%;border:0}
+/* Instagram: 4:5 clip that crops the embed's 54px header and the likes/comments footer, leaving only the video */
+.mk-lb.is-portrait .mk-lb-frame{position:relative;aspect-ratio:4/5;width:min(100%,460px,calc((100dvh - 150px) * .8));background:#000}
+.mk-lb-frame iframe.mk-ig-embed{position:absolute;left:0;top:-54px;width:100%;height:calc(100% + 54px + 260px)}
+
+/* Ramadan strip + Boatify reel poster inside case cards */
+.mk-ram-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.mk-ram-strip .mk-thumb{border-radius:16px}
+.mk-ram-strip .mk-play{width:38px;height:38px;margin:-19px 0 0 -19px}
+.mk-ram-strip .mk-play svg{width:15px;height:15px;margin-left:2px}
+.mk-ram-strip .mk-cap{margin-top:10px}.mk-ram-strip .mk-cap strong{font-size:12.5px}
+.mk-case-wide#ramadan .mk-case-media{margin:28px 0 0}
+.mk-poster{display:block;max-width:420px}
+.mk-poster .mk-thumb{aspect-ratio:16/10}
+@media(max-width:900px){.mk-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 18px}.mk-lb-bar{padding-left:0}.mk-ram-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+.mk-lb{padding:0;place-items:stretch}
+.mk-lb-backdrop{background:#0b0d0c}
+.mk-lb-panel{width:100%;height:100%;grid-template-columns:1fr 1fr;grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"bar bar" "stage stage" "prev next";gap:14px;padding:max(14px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+.mk-lb-stage{height:100%}
+.mk-lb-frame{width:100%;border-radius:12px}
+.mk-lb.is-portrait .mk-lb-frame{width:min(100%,calc((100dvh - 190px) * .8))}
+.mk-lb-prev{justify-self:start}.mk-lb-next{justify-self:end}
+.mk-lb-count{display:none}
+.mk-lb-bar{gap:12px}
+}
+@media(max-width:600px){.mk-filters{margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px}.mk-gallery .section-top{margin-bottom:24px}}
+@media(max-width:480px){
+.mk-grid{gap:28px 12px}
+.mk-thumb,.mk-tile-link{border-radius:14px}
+.mk-play{width:38px;height:38px;margin:-19px 0 0 -19px}
+.mk-play svg{width:15px;height:15px;margin-left:2px}
+.mk-cap{margin-top:10px;gap:3px}
+.mk-cap strong{font-size:13px}
+.mk-cap span{font-size:11px}
+.mk-ig-badge{top:9px;left:9px;font-size:8px;padding:3px 7px 3px 6px}
+.mk-ig-word{left:12px;bottom:10px;font-size:18px}
+.mk-ig-word small{font-size:9px}
+.mk-ram-strip{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){.mk-tile-link:hover .mk-thumb,.mk-tile-link:hover .mk-thumb img{transform:none}.mk-grid.is-in .mk-tile{animation:none}}
