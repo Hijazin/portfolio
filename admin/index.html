@@ -1,83 +1,83 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Insights · Majd Hijazin</title><meta name="theme-color" content="#F5F3EE" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111312" media="(prefers-color-scheme: dark)"><link rel="icon" href="../studio-assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../studio-assets/admin.css?v=1"><script src="../studio-assets/insights.js?v=1"></script><script src="../studio-assets/admin.js?v=1" defer></script></head><body>
-<section class="ad-login" id="login" hidden>
-  <form class="ad-login-card" id="login-form" autocomplete="off">
-    <div class="ad-mark">Majd Hijazin<span>.</span></div>
-    <div class="ad-eyebrow">Insights</div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Insights · Majd Hijazin</title><meta name="theme-color" content="#F5F3EE" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#111312" media="(prefers-color-scheme: dark)"><link rel="icon" href="../studio-assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../studio-assets/admin.css?v=2"><script src="../studio-assets/insights.js?v=1"></script><script src="../studio-assets/admin.js?v=2" defer></script></head><body>
+<section class="mhx-login" id="login" hidden>
+  <form class="mhx-login-card" id="login-form" autocomplete="off">
+    <div class="mhx-mark">Majd Hijazin<span>.</span></div>
+    <div class="mhx-eyebrow">Insights</div>
     <h1>Private dashboard</h1>
-    <label class="ad-field"><span>Password</span><input id="pw" type="password" autocomplete="current-password" required maxlength="200" autofocus></label>
-    <button class="ad-btn" type="submit" id="login-btn">Sign in</button>
-    <p class="ad-error" id="login-error" role="alert"></p>
+    <label class="mhx-field"><span>Password</span><input id="pw" type="password" autocomplete="current-password" required maxlength="200" autofocus></label>
+    <button class="mhx-btn" type="submit" id="login-btn">Sign in</button>
+    <p class="mhx-error" id="login-error" role="alert"></p>
   </form>
 </section>
 
-<div class="ad-app" id="app" hidden>
-  <header class="ad-top">
-    <div class="ad-top-inner">
-      <div class="ad-brand"><span class="ad-mark">Majd Hijazin<span>.</span></span><span class="ad-eyebrow">Insights</span></div>
-      <nav class="ad-tabs" role="tablist" aria-label="Sections">
+<div class="mhx-app" id="app" hidden>
+  <header class="mhx-top">
+    <div class="mhx-top-inner">
+      <div class="mhx-brand"><span class="mhx-mark">Majd Hijazin<span>.</span></span><span class="mhx-eyebrow">Insights</span></div>
+      <nav class="mhx-tabs" role="tablist" aria-label="Sections">
         <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
         <button role="tab" data-tab="clicks" aria-selected="false">Clicks</button>
         <button role="tab" data-tab="visitors" aria-selected="false">Visitors</button>
         <button role="tab" data-tab="heatmap" aria-selected="false">Heatmap</button>
       </nav>
-      <div class="ad-tools">
+      <div class="mhx-tools">
         <select id="range" aria-label="Date range"><option value="today">Today</option><option value="7d">Last 7 days</option><option value="30d" selected>Last 30 days</option><option value="90d">Last 90 days</option><option value="180d">Last 180 days</option></select>
-        <button class="ad-ghost" id="logout" type="button">Sign out</button>
+        <button class="mhx-ghost" id="logout" type="button">Sign out</button>
       </div>
     </div>
   </header>
 
-  <main class="ad-main">
+  <main class="mhx-main">
     <section data-panel="overview">
-      <div class="ad-grid ad-grid-hero">
-        <article class="ad-card ad-online">
-          <div class="ad-card-head"><h2><span class="ad-pulse" aria-hidden="true"></span>Online now</h2><span class="ad-sub" id="online-updated"></span></div>
-          <div class="ad-big" id="online-count">–</div>
-          <ul class="ad-live" id="online-list"></ul>
+      <div class="mhx-grid mhx-grid-hero">
+        <article class="mhx-card mhx-online">
+          <div class="mhx-card-head"><h2><span class="mhx-pulse" aria-hidden="true"></span>Online now</h2><span class="mhx-sub" id="online-updated"></span></div>
+          <div class="mhx-big" id="online-count">–</div>
+          <ul class="mhx-live" id="online-list"></ul>
         </article>
-        <div class="ad-kpis" id="kpis"></div>
+        <div class="mhx-kpis" id="kpis"></div>
       </div>
-      <div class="ad-grid ad-grid-2">
-        <article class="ad-card"><div class="ad-card-head"><h2>Countries</h2><span class="ad-sub" data-range-label></span></div><ol class="ad-bars" id="countries"></ol></article>
-        <article class="ad-card"><div class="ad-card-head"><h2>Time on site</h2><span class="ad-sub" id="time-avg"></span></div><ol class="ad-bars ad-bars-fixed" id="time-dist"></ol>
-          <div class="ad-card-head ad-mt"><h2>Referrers</h2></div><ol class="ad-bars" id="referrers"></ol></article>
+      <div class="mhx-grid mhx-grid-2">
+        <article class="mhx-card"><div class="mhx-card-head"><h2>Countries</h2><span class="mhx-sub" data-range-label></span></div><ol class="mhx-bars" id="countries"></ol></article>
+        <article class="mhx-card"><div class="mhx-card-head"><h2>Time on site</h2><span class="mhx-sub" id="time-avg"></span></div><ol class="mhx-bars mhx-bars-fixed" id="time-dist"></ol>
+          <div class="mhx-card-head mhx-mt"><h2>Referrers</h2></div><ol class="mhx-bars" id="referrers"></ol></article>
       </div>
-      <article class="ad-card"><div class="ad-card-head"><h2>Top pages</h2><span class="ad-sub" data-range-label></span></div>
-        <div class="ad-table-wrap"><table class="ad-table" id="pages"><thead><tr><th>Page</th><th>Views</th><th>Visitors</th><th>Avg engaged</th><th>Avg scroll</th><th>Clicks</th></tr></thead><tbody></tbody></table></div></article>
-      <article class="ad-card"><div class="ad-card-head"><h2>Scroll depth</h2><span class="ad-sub">share of page views reaching each depth</span></div>
-        <div class="ad-table-wrap"><table class="ad-table" id="scroll"><thead><tr><th>Page</th><th>Views</th><th>Avg</th><th>25%</th><th>50%</th><th>75%</th><th>Bottom</th></tr></thead><tbody></tbody></table></div></article>
+      <article class="mhx-card"><div class="mhx-card-head"><h2>Top pages</h2><span class="mhx-sub" data-range-label></span></div>
+        <div class="mhx-table-wrap"><table class="mhx-table" id="pages"><thead><tr><th>Page</th><th>Views</th><th>Visitors</th><th>Avg engaged</th><th>Avg scroll</th><th>Clicks</th></tr></thead><tbody></tbody></table></div></article>
+      <article class="mhx-card"><div class="mhx-card-head"><h2>Scroll depth</h2><span class="mhx-sub">share of page views reaching each depth</span></div>
+        <div class="mhx-table-wrap"><table class="mhx-table" id="scroll"><thead><tr><th>Page</th><th>Views</th><th>Avg</th><th>25%</th><th>50%</th><th>75%</th><th>Bottom</th></tr></thead><tbody></tbody></table></div></article>
     </section>
 
     <section data-panel="clicks" hidden>
-      <div class="ad-filter"><label>Page <select id="clicks-path"><option value="">All pages</option></select></label></div>
-      <div class="ad-grid ad-grid-3" id="click-kpis"></div>
-      <div class="ad-grid ad-grid-2">
-        <article class="ad-card"><div class="ad-card-head"><h2>Most-clicked elements</h2><span class="ad-sub" data-range-label></span></div><ol class="ad-bars" id="el-top"></ol></article>
+      <div class="mhx-filter"><label>Page <select id="clicks-path"><option value="">All pages</option></select></label></div>
+      <div class="mhx-grid mhx-grid-3" id="click-kpis"></div>
+      <div class="mhx-grid mhx-grid-2">
+        <article class="mhx-card"><div class="mhx-card-head"><h2>Most-clicked elements</h2><span class="mhx-sub" data-range-label></span></div><ol class="mhx-bars" id="el-top"></ol></article>
         <div>
-          <article class="ad-card"><div class="ad-card-head"><h2>Downloads</h2></div><ol class="ad-bars" id="el-down"></ol></article>
-          <article class="ad-card"><div class="ad-card-head"><h2>Outbound links</h2></div><ol class="ad-bars" id="el-out"></ol></article>
-          <article class="ad-card"><div class="ad-card-head"><h2>By kind</h2></div><ol class="ad-bars" id="el-kind"></ol></article>
+          <article class="mhx-card"><div class="mhx-card-head"><h2>Downloads</h2></div><ol class="mhx-bars" id="el-down"></ol></article>
+          <article class="mhx-card"><div class="mhx-card-head"><h2>Outbound links</h2></div><ol class="mhx-bars" id="el-out"></ol></article>
+          <article class="mhx-card"><div class="mhx-card-head"><h2>By kind</h2></div><ol class="mhx-bars" id="el-kind"></ol></article>
         </div>
       </div>
     </section>
 
     <section data-panel="visitors" hidden>
-      <article class="ad-card"><div class="ad-card-head"><h2>Recent visitors</h2><span class="ad-sub" id="vis-total"></span></div>
-        <p class="ad-note">One row per visit (tab session). Anonymous: a random session id only — no IP, no fingerprint. Select a row to see its clicks.</p>
-        <ul class="ad-visits" id="visits"></ul>
-        <button class="ad-ghost ad-more" id="vis-more" type="button" hidden>Load more</button>
+      <article class="mhx-card"><div class="mhx-card-head"><h2>Recent visitors</h2><span class="mhx-sub" id="vis-total"></span></div>
+        <p class="mhx-note">One row per visit (tab session). Anonymous: a random session id only — no IP, no fingerprint. Select a row to see its clicks.</p>
+        <ul class="mhx-visits" id="visits"></ul>
+        <button class="mhx-ghost mhx-more" id="vis-more" type="button" hidden>Load more</button>
       </article>
     </section>
 
     <section data-panel="heatmap" hidden>
-      <div class="ad-filter">
+      <div class="mhx-filter">
         <label>Page <select id="hm-path"></select></label>
-        <div class="ad-seg" role="group" aria-label="Device"><button type="button" data-w="desktop" aria-pressed="true">Desktop</button><button type="button" data-w="mobile" aria-pressed="false">Mobile</button></div>
-        <label class="ad-check"><input type="checkbox" id="hm-dim" checked> Dim page</label>
-        <span class="ad-sub" id="hm-info"></span>
+        <div class="mhx-seg" role="group" aria-label="Device"><button type="button" data-w="desktop" aria-pressed="true">Desktop</button><button type="button" data-w="mobile" aria-pressed="false">Mobile</button></div>
+        <label class="mhx-check"><input type="checkbox" id="hm-dim" checked> Dim page</label>
+        <span class="mhx-sub" id="hm-info"></span>
       </div>
-      <div class="ad-stage" id="hm-stage"><div class="ad-stage-inner" id="hm-inner"><div class="ad-frame-box" id="hm-box"><iframe id="hm-frame" title="Page preview" tabindex="-1" scrolling="no"></iframe></div><canvas id="hm-canvas"></canvas></div></div>
-      <div class="ad-legend"><span>fewer clicks</span><i></i><span>more clicks</span></div>
+      <div class="mhx-stage" id="hm-stage"><div class="mhx-stage-inner" id="hm-inner"><div class="mhx-frame-box" id="hm-box"><iframe id="hm-frame" title="Page preview" tabindex="-1" scrolling="no"></iframe></div><canvas id="hm-canvas"></canvas></div></div>
+      <div class="mhx-legend"><span>fewer clicks</span><i></i><span>more clicks</span></div>
     </section>
   </main>
 </div>
