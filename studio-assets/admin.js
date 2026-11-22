@@ -64,7 +64,7 @@
       .then(function (r) { return r.json().then(function (j) { return { s: r.status, j: j }; }); })
       .then(function (res) {
         if (res.j && res.j.ok) {
-          store(TK, res.j.token); store('mhi_admin_exp', String(res.j.exp));
+          store(TK, res.j.token); store('mhi_admin_exp', String(res.j.exp)); try { localStorage.setItem('mhi_ignore', '1'); } catch (e) {}
           $('#pw').value = ''; startTimers(); showApp();
         } else {
           err.textContent = res.s === 429 ? 'Too many attempts. Try again in 15 minutes.' : 'Wrong password.';

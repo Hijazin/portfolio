@@ -12,6 +12,13 @@ if (!get('mhi_dev')) return;
 }
 if (/^\/admin/.test(L.pathname) || w.top !== w || n.doNotTrack == '1' || w.doNotTrack == '1' ||
 n.globalPrivacyControl || !n.sendBeacon || !w.JSON) return;
+// Owner devices: excluded once they sign in to /admin, or via ?notrack=1 (undo with ?notrack=0).
+try {
+var LS = w.localStorage, q = L.search;
+if (/[?&]notrack=1/.test(q)) LS.setItem('mhi_ignore','1');
+if (/[?&]notrack=0/.test(q)) LS.removeItem('mhi_ignore');
+if (LS.getItem('mhi_ignore') === '1') return;
+} catch (e) {}
 
 function id(l) {
 var a = new Uint8Array(l),s = '';
