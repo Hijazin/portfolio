@@ -63,4 +63,9 @@
   });
   poster.addEventListener('keydown',event=>{if(event.key===' '){event.preventDefault();poster.click()}});
  });
+ // Brand marquee: pause when off screen (CSS handles hover pause and reduced motion)
+ const marquee=document.querySelector('.jy-marquee');
+ if(marquee&&'IntersectionObserver' in window){
+  new IntersectionObserver(([entry])=>marquee.classList.toggle('jy-paused',!entry.isIntersecting)).observe(marquee);
+ }
 })();
