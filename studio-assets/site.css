@@ -77,3 +77,37 @@ body.image-open{overflow:hidden}
 @media(max-width:480px){.case-head{padding-top:20px}.case-head h1{font-size:49px;letter-spacing:-2.2px}.case-head p{font-size:19px}.case-facts{grid-template-columns:1fr 1fr;gap:18px;padding:20px 0 27px}.case-facts>div:nth-child(2){grid-row:2;grid-column:1/-1}.case-facts strong{font-size:12px}.case-facts span{font-size:9px}.case-showcase{padding:11px 11px 0;border-radius:23px}.case-frame-top{font-size:8px;padding-bottom:12px}.case-frame-top .frame-kind{display:none}.case-image-button{min-height:0}.case-image-button>img{max-height:520px;border-radius:14px}.case-showcase figcaption{font-size:8px;line-height:1.5;padding:13px 3px}.image-expand{font-size:9px;padding:8px 10px;bottom:10px;right:10px}.image-expand .icon{width:12px}.portrait-screen .case-image-button{padding:18px}.portrait-screen .case-image-button>img{height:370px;max-width:100%;border-radius:17px}.case-story{grid-template-columns:1fr;gap:15px;padding:42px 0}.case-story h2{font-size:32px;margin-bottom:10px}.case-lead{font-size:18px}.case-context p{font-size:15px}.case-features{grid-template-columns:1fr}.case-feature{min-height:0;display:flex;gap:22px;align-items:flex-start;padding:24px}.case-feature>span{margin:5px 0 0}.case-feature h3{font-size:19px}.case-next{display:block;padding:28px;border-radius:26px}.case-next h2{font-size:36px}.case-next .button{margin-top:25px}.case-related-grid{grid-template-columns:1fr;gap:30px}.image-dialog{width:calc(100% - 20px);padding:12px;border-radius:20px}.image-dialog-bar{font-size:10px;gap:10px}.image-dialog-bar>span{max-width:65%}.tv-real-label{font-size:11px;bottom:12px;left:12px}.tv-real-label i{font-size:7px}}
 
 .project-card[data-project=rider-pulse] img,.case-rider-pulse .case-image-button>img,.case-rider-pulse .image-dialog>img{clip-path:inset(9% 0 0 round 16px)}
+
+/* Marketing page + homepage marketing section */
+.mk-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.mk-kicker{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.4px;color:var(--muted);margin-top:22px}
+.mk-stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:24px;overflow:hidden;background-color:#fbfaf7;background-image:linear-gradient(#ebeae3 1px,transparent 1px),linear-gradient(90deg,#ebeae3 1px,transparent 1px);background-size:28px 28px;background-position:-1px -1px}
+.mk-stat{padding:26px 26px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgb(251 250 247 / .82);min-width:0}
+.mk-stat:nth-child(4n){border-right:0}.mk-stats>.mk-stat:nth-last-child(-n+4){border-bottom:0}
+.mk-stat-label{display:flex;justify-content:space-between;gap:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.mk-stat-label i{font-style:normal;color:var(--blue)}
+.mk-stat strong{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-size:clamp(30px,3.2vw,44px);font-weight:500;letter-spacing:-1.5px;line-height:1;margin:22px 0 10px}
+.mk-stat p{font-size:13px;line-height:1.5;color:var(--muted);margin:0}
+.mk-cases{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.mk-case{border:1px solid var(--line);border-radius:24px;padding:30px;background:#fbfaf7;display:flex;flex-direction:column;min-width:0}
+.mk-case-meta{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.mk-case-meta span:first-child{color:var(--blue)}
+.mk-case h3{font-size:24px;line-height:1.25;font-weight:500;letter-spacing:-.7px;margin:18px 0 18px}
+.mk-case dl{margin:0;display:grid;grid-template-columns:96px 1fr;gap:12px 16px;font-size:14px;line-height:1.6}
+.mk-case dt{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.mk-case dd{margin:0;color:var(--muted)}
+.mk-case .result{display:inline-block;background:#e9e8df;border-radius:50px;font-size:11px;padding:8px 13px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.mk-case-foot{margin-top:auto;padding-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.mk-case-foot .text-link{font-size:12px;padding-bottom:5px}
+.mk-stack .case-feature{min-height:0}
+.mk-stack .case-feature p{font-size:14px;line-height:1.6;color:var(--muted);margin:10px 0 0}
+.mk-chips{display:flex;flex-wrap:wrap;gap:8px}
+.mk-chips span{border:1px solid var(--line);border-radius:50px;padding:9px 14px;font-size:13px;background:#fbfaf7}
+.mk-two{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.mk-certs{list-style:none;margin:0;padding:0}
+.mk-certs li{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-top:1px solid var(--line);font-size:14px;line-height:1.5}
+.mk-certs li span{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);white-space:nowrap;padding-top:2px}
+.mk-subhead{font-size:clamp(26px,2.6vw,34px);font-weight:500;letter-spacing:-1.2px;line-height:1.1;margin:12px 0 26px}
+@media(max-width:1100px){.mk-stat{padding:22px 20px}.mk-two{gap:40px}}
+@media(max-width:800px){.mk-stats{grid-template-columns:repeat(2,1fr)}.mk-stat:nth-child(4n){border-right:1px solid var(--line)}.mk-stat:nth-child(2n){border-right:0}.mk-stats>.mk-stat:nth-last-child(-n+4){border-bottom:1px solid var(--line)}.mk-stats>.mk-stat:nth-last-child(-n+2){border-bottom:0}.mk-cases{grid-template-columns:1fr}.mk-two{grid-template-columns:1fr;gap:45px}.mk-stack.case-features{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.mk-stat{padding:18px 16px}.mk-stat strong{font-size:30px;margin:16px 0 8px}.mk-stat p{font-size:12px}.mk-case{padding:23px}.mk-case h3{font-size:21px}.mk-case dl{grid-template-columns:1fr;gap:4px}.mk-case dd{margin-bottom:10px}.mk-stack.case-features{grid-template-columns:1fr}.mk-stack .case-feature{display:block}.mk-stack .case-feature>span{margin:0 0 14px}.mk-certs li{flex-direction:column;gap:4px}}
