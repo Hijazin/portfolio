@@ -2,9 +2,24 @@ const menuButton=document.querySelector('.menu-toggle');
 const nav=document.querySelector('.nav-links');
 function closeMenu(){nav?.classList.remove('open');menuButton?.setAttribute('aria-expanded','false');menuButton?.setAttribute('aria-label','Open menu');document.body.classList.remove('menu-open')}
 menuButton?.addEventListener('click',()=>{const opened=menuButton.getAttribute('aria-expanded')==='true';if(opened){closeMenu()}else{nav.classList.add('open');menuButton.setAttribute('aria-expanded','true');menuButton.setAttribute('aria-label','Close menu');document.body.classList.add('menu-open')}});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();if(menuButton&&document.activeElement?.closest('.nav-links'))menuButton.focus()}});
+document.addEventListener('keydown',event=>{if(event.key!=='Escape')return;const group=document.querySelector('.nav-group.open');if(group){closeGroup(group);group.querySelector('.nav-parent').focus();return}if(nav?.classList.contains('open')){closeMenu();if(menuButton&&document.activeElement?.closest('.nav-links'))menuButton.focus()}});
 nav?.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu()});
 window.matchMedia('(min-width:801px)').addEventListener('change',event=>{if(event.matches)closeMenu()});
+const navGroups=[...document.querySelectorAll('.nav-group')];
+const hoverQuery=window.matchMedia('(hover:hover) and (min-width:801px)');
+function setGroup(group,open){group.classList.toggle('open',open);group.querySelector('.nav-parent')?.setAttribute('aria-expanded',String(open))}
+function closeGroup(group){setGroup(group,false)}
+navGroups.forEach(group=>{
+ const button=group.querySelector('.nav-parent');if(!button)return;
+ group.dataset.js='';
+ button.addEventListener('click',()=>setGroup(group,!group.classList.contains('open')));
+ button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))setGroup(group,true)});
+ group.addEventListener('mouseenter',()=>{if(hoverQuery.matches)setGroup(group,true)});
+ group.addEventListener('mouseleave',()=>{if(hoverQuery.matches&&!group.contains(document.activeElement))closeGroup(group)});
+ group.addEventListener('focusout',event=>{if(!group.contains(event.relatedTarget))closeGroup(group)});
+});
+document.addEventListener('click',event=>{navGroups.forEach(group=>{if(!group.contains(event.target))closeGroup(group)})});
+
 
 const filters=[...document.querySelectorAll('[data-filter]')];
 const cards=[...document.querySelectorAll('[data-project]')];
